@@ -1,0 +1,6 @@
+<openerp>
+    <data>
+        <menuitem id="diane.diploma" name="Diplomas" parent="membership.menu_membership_products" sequence="15"/>
+        <menuitem id="diane.section" name="Section" parent="membership.menu_membership_products" sequence="15"/>
+    </data>
+</openerp>

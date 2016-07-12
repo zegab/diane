@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="website_assets_diane" model="ir.ui.view">
+			<field name="name">diane.website.assets.theme</field>
+			<field name="inherit_id" ref="website.theme_united"/>
+			<field eval="16" name="priority"/>
+			<field name="arch" type="xml">
+				<xpath expr="//link[@href='/website/static/src/css/bootswatch/united.min.css']" position="replace">
+					<link rel="stylesheet" href="/diane/static/src/css/united_diane.css" t-ignore="true"/>
+				</xpath>
+			</field>
+		</record>
+		<record id="main_layout_diane" model="ir.ui.view">
+			<field name="name">diane.website.layout</field>
+			<field name="inherit_id" ref="website.layout"/>
+			<field eval="16" name="priority"/>
+			<field name="arch" type="xml">
+				<xpath expr="//head" position="inside">
+					<link rel='shortcut icon' type='image/x-icon' href='/diane/static/description/favicon.ico' />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

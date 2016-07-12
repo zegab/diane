@@ -1,0 +1,157 @@
+<openerp>
+	<data>
+		<!--<template id="portal_diane">
+			<title>Portal</title>
+			<t t-foreach="alumni" t-as="al">
+				<p>
+					<t t-esc="al"/>
+				</p>
+			</t>
+		</template>-->
+    <template id="details">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Contact Details</t>
+            <div id="wrap">
+                <div class="container">
+                  <div class="row">
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb mt8">
+                                <li><a href="/">My Account</a></li>
+                                <li>Details</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <form action="/diane/account_update" method="post">
+
+                        <div class="row oe_website_portal">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <h1>Personal Information</h1>
+                                    <div class="col-md-12">
+                                      <div t-if="error_message" class="alert alert-danger">
+                                          <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
+                                      </div>
+                                    </div>
+
+
+                                    <div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="contact_name">Last Name</label>
+                                        <input type="text" name="name" class="form-control" t-att-value="name or partner.name" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('forename') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="contact_name">First Name</label>
+                                        <input type="text" name="name" class="form-control" t-att-value="forename or partner.forename" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('title') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="titles">Title</label>
+                                        <select name="title" class="form-control">
+                                            <option value="">Title...</option>
+                                            <t t-foreach="titles or []" t-as="title">
+                                                <t t-if="title.website_published">
+                                                <option t-att-value="title.id" t-att-selected="title.id == partner.title.id">
+                                                    <t t-esc="title.name" />
+                                                </option>
+                                            </t>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('m_name') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="contact_name">Maiden Name</label>
+                                        <input type="text" name="m_name" class="form-control" t-att-value="m_name or partner.m_name" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('birthday') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="birthday">Birthday</label>
+                                        <input type="date" name="birthday" class="form-control" t-att-value="birthday or partner.birthday" />
+                                    </div>
+
+                                    <div t-attf-class="form-group #{error.get('o_country_id') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="o_country_id">Country of Origin</label>
+                                        <select name="o_country_id" class="form-control">
+                                            <option value="">Country...</option>
+                                            <t t-foreach="countries or []" t-as="country">
+                                                <option t-att-value="country.id" t-att-selected="country.id == partner.o_country_id.id">
+                                                    <t t-esc="country.name" />
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="clearfix" />
+                                    <h1>Social Media</h1>
+                                    <div t-attf-class="form-group #{error.get('facebook') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="facebook">Facebook Page</label>
+                                        <input type="text" name="facebook" class="form-control" t-att-value="facebook or partner.facebook" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('xing') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="xing">Xing Page</label>
+                                        <input type="text" name="xing" class="form-control" t-att-value="xing or partner.xing" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('linkedin') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="linkedin">LinkedIn Page</label>
+                                        <input type="text" name="linkedin" class="form-control" t-att-value="linkedin or partner.linkedin" />
+                                    </div>
+
+                                    <div class="clearfix" />
+                                    <h1>Private address</h1>
+                                    <div t-attf-class="form-group #{error.get('email') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="contact_name">Email</label>
+                                        <input type="email" name="email" class="form-control" t-att-value="email or partner.email" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('phone') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="phone">Phone</label>
+                                        <input type="tel" name="phone" class="form-control" t-att-value="phone or partner.phone" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('mobile') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="mobile">Mobile</label>
+                                        <input type="tel" name="mobile" class="form-control" t-att-value="mobile or partner.mobile" />
+                                    </div>
+
+                                    <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="street">Street</label>
+                                        <input type="text" name="street" class="form-control" t-att-value="street or partner.street" />
+                                    </div>
+
+                                    <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="street">Street 2</label>
+                                        <input type="text" name="street2" class="form-control" t-att-value="street2 or partner.street2" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('zip') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="zipcode">Zip / Postal Code</label>
+                                        <input type="text" name="zipcode" class="form-control" t-att-value="zipcode or partner.zip" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('city') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="city">City</label>
+                                        <input type="text" name="city" class="form-control" t-att-value="city or partner.city" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('country_id') and 'has-error' or ''} col-lg-6">
+                                        <label class="control-label" for="country_id">Country</label>
+                                        <select name="country_id" class="form-control">
+                                            <option value="">Country...</option>
+                                            <t t-foreach="countries or []" t-as="country">
+                                                <option t-att-value="country.id" t-att-selected="country.id == partner.country_id.id">
+                                                    <t t-esc="country.name" />
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+
+                                    <input type="hidden" name="redirect" t-att-value="redirect"/>
+                                </div>
+                                <div class="clearfix">
+                                    <button type="submit" class="btn btn-default btn-primary pull-right mb32 ">
+                                        Confirm
+                                        <span class="fa fa-long-arrow-right" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+	</data>
+</openerp>

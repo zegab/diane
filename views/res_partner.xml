@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="view_partners_form_diane" model="ir.ui.view">
+			<field name="name">view.res.partner.form.diane</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field eval="100" name="priority"/>
+			<field name="arch" type="xml">
+				<data>
+					<field name="name" position="before">
+						<field name="forename"/>
+					</field>
+					<field name="title" position="after">
+						<field name="m_name"/>
+					</field>
+					<page name="internal_notes" position="before">
+						<page name="additional" string="Additional Information">
+							<group string="Social Networks">
+								<field name="facebook"/>
+								<field name="xing"/>
+								<field name="linkedin"/>
+							</group>
+							<group string="Nationalities and Origin">
+								<field name="o_country_id"/>
+								<field name="nationality"/>
+							</group>
+						</page>
+						<page name="company" string="Company Address">
+							<group>
+								<group>
+									<field name="c_name"/>
+									<field name="c_nace"/>
+									<field name="c_street"/>
+									<field name="c_street2"/>
+									<field name="c_zip"/>
+									<field name="c_city"/>
+									<field name="c_country_id"/>
+								</group>
+								<group>
+									<field name="c_email"/>
+									<field name="c_phone"/>
+									<field name="c_fax"/>
+									<field name="c_mobile"/>
+								</group>
+							</group>
+						</page>
+						<page name="home" string="Home Address">
+							<group>
+								<group>
+									<field name="h_street"/>
+									<field name="h_street2"/>
+									<field name="h_zip"/>
+									<field name="h_city"/>
+									<field name="h_country_id"/>
+								</group>
+								<group>
+									<field name="h_email"/>
+									<field name="h_phone"/>
+									<field name="h_fax"/>
+									<field name="h_mobile"/>
+								</group>
+							</group>
+						</page>
+					</page>
+				</data>
+			</field>
+		</record>
+
+		<record id="view_partner_title_tree" model="ir.ui.view">
+			<field name="name">res.partner.title.tree.diane</field>
+			<field name="model">res.partner.title</field>
+			<field name="inherit_id" ref="base.view_partner_title_tree"/>
+			<field eval="50" name="priority"/>
+			<field name="arch" type="xml">
+				<data>
+                    <tree string="Partner Titles" position="attributes">
+                        <attribute name="editable">True</attribute>
+                    </tree>
+                    <field name="shortcut" position="after">
+                        <field name="website_published"/>
+                    </field>
+				</data>
+			</field>
+		</record>
+
+	</data>
+</openerp>
