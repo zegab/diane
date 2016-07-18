@@ -210,13 +210,14 @@
                                     <h1>Privacy Settings</h1>
                                     <div class="form-group col-lg-6">
 
-                                        <label class="control-label" for="Custom Checkbox">
+                                        <label class="control-label" for="annuaire_ok">
                                                Publication in Alumni directory
                                             </label>
 
                                         <input type="checkbox" class="form-control" name="annuaire_ok" t-att-value="annuaire_ok or partner.annuaire_ok"/>
 
                                     </div>
+                                    <field name="annuaire_ok"/>
 
                                     <input type="hidden" name="redirect" t-att-value="redirect"/>
                                 </div>
