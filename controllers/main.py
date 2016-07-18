@@ -21,20 +21,24 @@ class website_diane_account(http.Controller):
             values.update(post)
             if not error:
                 post.update({'zip': post.pop('zipcode', '')})
+                if post['birthday']:
+                    del post['birthday']
                 partner.sudo().write(post)
                 if redirect:
                     return request.redirect(redirect)
-                return request.redirect('/')
+                return request.website.render("diane.thanks", values)
 
         countries = request.env['res.country'].sudo().search([])
         states = request.env['res.country.state'].sudo().search([])
         titles = request.env['res.partner.title'].sudo().search([])
+        nace = request.env['diane.nace'].sudo().search([])
 
         values.update({
             'partner': partner,
             'countries': countries,
             'states': states,
             'titles': titles,
+            'nace': nace,
             'redirect': redirect,
         })
 

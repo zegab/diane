@@ -22,10 +22,11 @@
 
     'data': [
         'views/res_partner.xml',
-		'views/portal.xml',
         'views/association.xml',
         'views/website_blog.xml',
         'views/website_theme.xml',
+        'views/website_menu.xml',
+        'views/account_update.xml',
     ],
     'demo': [],
 
