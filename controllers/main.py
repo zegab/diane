@@ -18,12 +18,11 @@ class website_diane_account(http.Controller):
         if post:
             error, error_message = self.details_form_validate(post)
             values.update({'error': error, 'error_message': error_message})
+            if post['birthday'] == "":
+                    del post['birthday']
             values.update(post)
             if not error:
                 post.update({'zip': post.pop('zipcode', '')})
-                if post['birthday']:
-                    del post['birthday']
-                raise Warning(post)
                 partner.sudo().write(post)
                 if redirect:
                     return request.redirect(redirect)

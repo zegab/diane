@@ -19,6 +19,7 @@ $RECYCLE.BIN/
 
 # Python Compiled
 *.pyc
+*.idea
 
 # =========================
 # Operating System Files
