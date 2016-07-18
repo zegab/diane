@@ -23,6 +23,7 @@ class website_diane_account(http.Controller):
                 post.update({'zip': post.pop('zipcode', '')})
                 if post['birthday']:
                     del post['birthday']
+                raise Warning(post)
                 partner.sudo().write(post)
                 if redirect:
                     return request.redirect(redirect)
