@@ -6,9 +6,7 @@
 			<field name="inherit_id" ref="website_blog.blog_post_complete"/>
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
-				<!--<xpath expr="//div[@id='title']" position="attributes">
-					<attribute name="style">"min-height:220px !important"</attribute>
-				</xpath>-->
+				<xpath expr="//div[@id='blog_angle_down']" position="replace"/>
 				<xpath expr="//span[@t-field='blog_post.author_id']/.." position="replace"/>
 				<xpath expr="//span[@t-field='next_post.author_avatar']" position="replace">
 					<span t-field="next_post.author_avatar" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle&quot;, &quot;style&quot;:&quot;width: 80px; margin-right: 10px; display:inline&quot;}"/>
