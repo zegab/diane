@@ -28,7 +28,7 @@
                             <div class="col-md-8">
                                 <div class="row">
                                     <h1>Personal Information</h1>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                       <div t-if="error_message" class="alert alert-danger">
                                           <t t-foreach="error_message" t-as="err"><t t-esc="err"/><br /></t>
                                       </div>
