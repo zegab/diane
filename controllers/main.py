@@ -18,8 +18,8 @@ class website_diane_account(http.Controller):
         if post:
             error, error_message = self.details_form_validate(post)
             values.update({'error': error, 'error_message': error_message})
-            if post['birthday'] == "":
-                    post['birthday']=None
+            #if post['birthday'] == "":
+            #        post['birthday']=None
             values.update(post)
             if not error:
                 post.update({'zip': post.pop('zipcode', '')})
