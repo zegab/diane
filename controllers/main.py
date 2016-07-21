@@ -32,6 +32,8 @@ class website_diane_account(http.Controller):
         states = request.env['res.country.state'].sudo().search([])
         titles = request.env['res.partner.title'].sudo().search([])
         nace = request.env['diane.nace'].sudo().search([])
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
 
         values.update({
             'partner': partner,
@@ -39,6 +41,8 @@ class website_diane_account(http.Controller):
             'states': states,
             'titles': titles,
             'nace': nace,
+            'sections': sections,
+            'diplomas': diplomas,
             'redirect': redirect,
         })
 

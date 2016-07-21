@@ -12,7 +12,8 @@
 					<field name="name" position="before">
 						<field name="forename"/>
 					</field>
-					<field name="title" position="after">
+					<field name="title" position="replace">
+						<field name="x_title"/>
 						<field name="m_name"/>
 					</field>
 					<field name="website" position="replace">

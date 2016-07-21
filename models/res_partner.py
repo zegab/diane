@@ -5,7 +5,9 @@ class ResPartner(models.Model):
 	_inherit = 'res.partner'
 
 	forename = fields.Char('Forename')
+	lastname = fields.Char('Last name')
 	m_name = fields.Char('Maiden Name')
+	x_title = fields.Char('Title')
 	birthday = fields.Date('Birthday')
 	facebook = fields.Char('Facebook Page')
 	xing = fields.Char('Xing Page')
@@ -41,7 +43,6 @@ class ResPartner(models.Model):
 	h_email = fields.Char('Home Email')
 	h_phone = fields.Char('Home Phone')
 	h_mobile = fields.Char('Home Mobile')
-
 	annuaire_ok = fields.Boolean('Publication in Alumni directory')
 	sponsoring_ok = fields.Boolean('Allow to contact for sponsoring requests')
 	recruitment_ok = fields.Boolean('Allow recruiters to contact me')
