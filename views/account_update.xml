@@ -106,13 +106,13 @@
                                         <input type="text" name="d_other" class="form-control" t-att-value="d_other or partner.d_other" />
                                     </div>
                                     <div class="clearfix" />
-                                    <h1>Private address</h1>
+                                    <h1>Adresse privée</h1>
                                     <div t-attf-class="form-group #{error.get('email') and 'has-error' or ''} col-lg-4">
                                         <label class="control-label" for="contact_name">Email</label>
                                         <input type="email" name="email" class="form-control" t-att-value="email or partner.email" />
                                     </div>
                                     <div t-attf-class="form-group #{error.get('phone') and 'has-error' or ''} col-lg-4">
-                                        <label class="control-label" for="phone">Phone</label>
+                                        <label class="control-label" for="phone">Téléphone</label>
                                         <input type="tel" name="phone" class="form-control" t-att-value="phone or partner.phone" />
                                     </div>
                                     <div t-attf-class="form-group #{error.get('mobile') and 'has-error' or ''} col-lg-4">
@@ -121,28 +121,28 @@
                                     </div>
 
                                     <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-lg-6">
-                                        <label class="control-label" for="street">Street</label>
+                                        <label class="control-label" for="street">Rue</label>
                                         <input type="text" name="street" class="form-control" t-att-value="street or partner.street" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-lg-6">
-                                        <label class="control-label" for="street">Street 2</label>
+                                        <label class="control-label" for="street">Rue 2</label>
                                         <input type="text" name="street2" class="form-control" t-att-value="street2 or partner.street2" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group #{error.get('zip') and 'has-error' or ''} col-lg-2">
-                                        <label class="control-label" for="zipcode">Zip / Postal Code</label>
+                                        <label class="control-label" for="zipcode">Code postal</label>
                                         <input type="text" name="zipcode" class="form-control" t-att-value="zipcode or partner.zip" />
                                     </div>
                                     <div t-attf-class="form-group #{error.get('city') and 'has-error' or ''} col-lg-4">
-                                        <label class="control-label" for="city">City</label>
+                                        <label class="control-label" for="city">Ville</label>
                                         <input type="text" name="city" class="form-control" t-att-value="city or partner.city" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group #{error.get('country_id') and 'has-error' or ''} col-lg-6">
-                                        <label class="control-label" for="country_id">Country</label>
+                                        <label class="control-label" for="country_id">Pays</label>
                                         <select name="country_id" class="form-control">
-                                            <option value="">Country...</option>
+                                            <option value="">Pays...</option>
                                             <t t-foreach="countries or []" t-as="country">
                                                 <option t-att-value="country.id" t-att-selected="country.id == partner.country_id.id">
                                                     <t t-esc="country.name" />
@@ -151,35 +151,35 @@
                                         </select>
                                     </div>
                                     <div class="clearfix" />
-                                    <h1>Company address</h1>
-                                    <div t-attf-class="form-group col-lg-4">
-                                        <label class="control-label" for="c_name">Company name</label>
+                                    <h1>Adresse professionnelle</h1>
+                                    <div t-attf-class="form-group col-lg-6">
+                                        <label class="control-label" for="c_name">Nom de l'Entreprise</label>
                                         <input type="text" name="c_name" class="form-control" t-att-value="c_name or partner.c_name" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="c_street">Company street</label>
+                                        <label class="control-label" for="c_street">Rue</label>
                                         <input type="text" name="c_street" class="form-control" t-att-value="c_street or partner.c_street" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="c_street">Company street2</label>
+                                        <label class="control-label" for="c_street">Rue 2</label>
                                         <input type="text" name="c_street2" class="form-control" t-att-value="c_street2 or partner.c_street2" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-2">
-                                        <label class="control-label" for="c_street">Company ZIP</label>
+                                        <label class="control-label" for="c_street">Code postal</label>
                                         <input type="text" name="c_zip" class="form-control" t-att-value="c_zip or partner.c_zip" />
                                     </div>
                                     <div t-attf-class="form-group col-lg-4">
-                                        <label class="control-label" for="c_street">Company City</label>
+                                        <label class="control-label" for="c_street">Ville</label>
                                         <input type="text" name="c_city" class="form-control" t-att-value="c_city or partner.c_city" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="c_country_id">Company Country</label>
+                                        <label class="control-label" for="c_country_id">Pays</label>
                                         <select name="c_country_id" class="form-control">
-                                            <option value="">Country...</option>
+                                            <option value="">Pays...</option>
                                             <t t-foreach="countries or []" t-as="country">
                                                 <option t-att-value="country.id" t-att-selected="country.id == partner.c_country_id.id">
                                                     <t t-esc="country.name" />
@@ -200,33 +200,42 @@
                                         </select>
                                     </div>
                                     <div t-attf-class="form-group col-lg-3">
-                                        <label class="control-label" for="c_email">Company Email</label>
+                                        <label class="control-label" for="c_email">Courriel</label>
                                         <input type="email" name="c_email" class="form-control" t-att-value="c_email or partner.c_email" />
                                     </div>
                                     <div t-attf-class="form-group col-lg-3">
-                                        <label class="control-label" for="c_phone">Company Phone</label>
+                                        <label class="control-label" for="c_phone">Téléphone</label>
                                         <input type="tel" name="c_phone" class="form-control" t-att-value="c_phone or partner.c_phone" />
                                     </div>
                                     <div t-attf-class="form-group col-lg-3">
-                                        <label class="control-label" for="c_web">Company Website</label>
+                                        <label class="control-label" for="c_web">Site Web</label>
                                         <input type="text" name="c_web" class="form-control" t-att-value="c_web or partner.c_web" />
                                     </div>
                                     <div class="clearfix" />
-                                    <h1>HR Contact of your company</h1>
+                                    <h1>Contact RH de votre employeur</h1>
                                     <div t-attf-class="form-group col-lg-4">
-                                        <label class="control-label" for="hr_name">Name of HR-Contact</label>
+                                        <label class="control-label" for="hr_name">Nom</label>
                                         <input type="text" name="hr_name" class="form-control" t-att-value="hr_name or partner.hr_name" />
                                     </div>
                                     <div t-attf-class="form-group col-lg-4">
-                                        <label class="control-label" for="hr_phone">Phone of HR-Contact</label>
+                                        <label class="control-label" for="hr_phone">Téléphone</label>
                                         <input type="tel" name="hr_phone" class="form-control" t-att-value="hr_phone or partner.phone" />
                                     </div>
                                     <div t-attf-class="form-group col-lg-4">
-                                        <label class="control-label" for="hr_email">Email of HR-Contact</label>
+                                        <label class="control-label" for="hr_email">Email</label>
                                         <input type="email" name="hr_email" class="form-control" t-att-value="hr_email or partner.hr_email" />
                                     </div>
                                     <div class="clearfix" />
                                     <h1>Adresse d'Origine</h1>
+                                    <div t-attf-class="form-group col-lg-6">
+                                        <label class="control-label" for="h_phone">Téléphone</label>
+                                        <input type="tel" name="h_phone" class="form-control" t-att-value="h_phone or partner.h_phone" />
+                                    </div>
+                                    <div t-attf-class="form-group col-lg-6">
+                                        <label class="control-label" for="h_mobile">Mobile</label>
+                                        <input type="tel" name="h_mobile" class="form-control" t-att-value="h_mobile or partner.h_mobile" />
+                                    </div>
+                                    <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-6">
                                         <label class="control-label" for="h_street">Rue</label>
                                         <input type="text" name="h_street" class="form-control" t-att-value="h_street or partner.h_street" />
@@ -238,18 +247,18 @@
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-2">
-                                        <label class="control-label" for="c_street">ZIP</label>
+                                        <label class="control-label" for="c_street">Code postal</label>
                                         <input type="text" name="h_zip" class="form-control" t-att-value="h_zip or partner.h_zip" />
                                     </div>
                                     <div t-attf-class="form-group col-lg-4">
-                                        <label class="control-label" for="c_street">Company City</label>
+                                        <label class="control-label" for="c_street">Ville</label>
                                         <input type="text" name="h_city" class="form-control" t-att-value="h_city or partner.h_city" />
                                     </div>
                                     <div class="clearfix" />
                                     <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="h_country_id">Company Country</label>
+                                        <label class="control-label" for="h_country_id">Pays</label>
                                         <select name="h_country_id" class="form-control">
-                                            <option value="">Country...</option>
+                                            <option value="">Pays...</option>
                                             <t t-foreach="countries or []" t-as="country">
                                                 <option t-att-value="country.id" t-att-selected="country.id == partner.h_country_id.id">
                                                     <t t-esc="country.name" />
@@ -258,43 +267,29 @@
                                         </select>
                                     </div>
 
-                                    <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="h_phone">Phone</label>
-                                        <input type="tel" name="h_phone" class="form-control" t-att-value="h_phone or partner.h_phone" />
-                                    </div>
-                                    <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="h_mobile">Mobile</label>
-                                        <input type="tel" name="h_mobile" class="form-control" t-att-value="h_mobile or partner.h_mobile" />
-                                    </div>
-                                    <div t-attf-class="form-group col-lg-6">
-                                        <label class="control-label" for="hr_email">Email of HR-Contact</label>
-                                        <input type="email" name="hr_email" class="form-control" t-att-value="hr_email or partner.hr_email" />
-                                    </div>
+
+
                                     <div class="clearfix" />
-                                    <h1>Social Media</h1>
-                                    <div t-attf-class="form-group #{error.get('facebook') and 'has-error' or ''} col-lg-4">
-                                        <label class="control-label" for="facebook">Facebook Page</label>
-                                        <input type="text" name="facebook" class="form-control" t-att-value="facebook or partner.facebook" />
-                                    </div>
+                                    <h1>Réseaux sociaux</h1>
                                     <div t-attf-class="form-group #{error.get('xing') and 'has-error' or ''} col-lg-4">
-                                        <label class="control-label" for="xing">Xing Page</label>
+                                        <label class="control-label" for="xing">Page Xing</label>
                                         <input type="text" name="xing" class="form-control" t-att-value="xing or partner.xing" />
                                     </div>
                                     <div t-attf-class="form-group #{error.get('linkedin') and 'has-error' or ''} col-lg-4">
-                                        <label class="control-label" for="linkedin">LinkedIn Page</label>
+                                        <label class="control-label" for="linkedin">Page LinkedIn</label>
                                         <input type="text" name="linkedin" class="form-control" t-att-value="linkedin or partner.linkedin" />
+                                    </div>
+                                    <div t-attf-class="form-group #{error.get('facebook') and 'has-error' or ''} col-lg-4">
+                                        <label class="control-label" for="facebook">Page Facebook</label>
+                                        <input type="text" name="facebook" class="form-control" t-att-value="facebook or partner.facebook" />
                                     </div>
                                     <h1>Privacy Settings</h1>
                                     <div class="form-group col-lg-6">
-
-                                        <label class="control-label" for="annuaire_ok">
-                                               Publication in Alumni directory
-                                            </label>
-
-                                        <input type="checkbox" class="form-control" name="annuaire_ok" t-att-value="annuaire_ok or partner.annuaire_ok"/>
+                                        <label class="control-label" for="annuaire_ok">Publication in Alumni directory</label>
+                                        <input type="checkbox" class="form-control" name="annuaire_ok" t-att-checked="annuaire_ok or partner.annuaire_ok"/>
 
                                     </div>
-                                    <field name="annuaire_ok"/>
+                                    <!--<field name="annuaire_ok"/>-->
 
                                     <input type="hidden" name="redirect" t-att-value="redirect"/>
                                 </div>
