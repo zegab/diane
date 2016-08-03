@@ -283,11 +283,10 @@
                                         <label class="control-label" for="facebook">Page Facebook</label>
                                         <input type="text" name="facebook" class="form-control" t-att-value="facebook or partner.facebook" />
                                     </div>
-                                    <h1>Privacy Settings</h1>
+                                    <h1>Options de confidentialité</h1>
                                     <div class="form-group col-lg-6">
-                                        <label class="control-label" for="annuaire_ok">Publication in Alumni directory</label>
-                                        <input type="checkbox" class="form-control" name="annuaire_ok" t-att-checked="annuaire_ok or partner.annuaire_ok"/>
-
+                                        <label for="annuaire_ok">Publication in Alumni directory</label>
+                                        <input type="checkbox" style="width:20%; height:25px" name="annuaire_ok" t-att-checked="annuaire_ok or partner.annuaire_ok"/>
                                     </div>
                                     <!--<field name="annuaire_ok"/>-->
 
