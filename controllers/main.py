@@ -18,8 +18,13 @@ class website_diane_account(http.Controller):
         if post:
             error, error_message = self.details_form_validate(post)
             values.update({'error': error, 'error_message': error_message})
+            #activate if birthday is needed
             #if post['birthday'] == "":
             #        post['birthday']=None
+            if not 'annuaire_ok' in post:
+                post['annuaire_ok']=False
+            #add here all the other checkboxes
+
             values.update(post)
             if not error:
                 post.update({'zip': post.pop('zipcode', '')})
