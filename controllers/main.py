@@ -47,7 +47,7 @@ class website_diane_account(http.Controller):
                     return request.redirect(redirect)
                 return request.website.render("diane.thanks", values)
 
-        countries = request.env['res.country'].sudo().search([])
+        countries = request.env['res.country'].sudo().search([]).sorted(key=lambda r:r.display_name)
         states = request.env['res.country.state'].sudo().search([])
         titles = request.env['res.partner.title'].sudo().search([])
         nace = request.env['diane.nace'].sudo().search([])

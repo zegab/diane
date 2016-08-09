@@ -23,6 +23,7 @@ class ResPartner(models.Model):
 	d_other = fields.Char('Other Diplomas')
 	c_name = fields.Char('Company Name')
 	c_nace = fields.Many2one('diane.nace', 'NACE Code', ondelete='restrict')
+	c_nace_text = fields.Char('NACE Code (Text)')
 	c_street = fields.Char('Company Street')
 	c_street2 = fields.Char('Company Street2')
 	c_zip = fields.Char('Company ZIP')

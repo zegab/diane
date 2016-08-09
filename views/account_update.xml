@@ -53,7 +53,7 @@
 										</div>
 										<div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="contact_name">Titre</label>
-											<input type="text" name="x_title" class="form-control" t-att-value="title or partner.title" />
+											<input type="text" name="x_title" class="form-control" t-att-value="x_title or partner.x_title" />
 										</div>
 										<div t-attf-class="form-group #{error.get('m_name') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="contact_name">Fonction</label>
@@ -236,10 +236,10 @@
 											<label class="control-label" for="h_phone">Téléphone</label>
 											<input type="tel" name="h_phone" class="form-control" t-att-value="h_phone or partner.h_phone" />
 										</div>
-										<div t-attf-class="form-group col-lg-6">
+										<!--<div t-attf-class="form-group col-lg-6">
 											<label class="control-label" for="h_mobile">Mobile</label>
 											<input type="tel" name="h_mobile" class="form-control" t-att-value="h_mobile or partner.h_mobile" />
-										</div>
+										</div>-->
 										<div class="clearfix" />
 										<div t-attf-class="form-group col-lg-6">
 											<label class="control-label" for="h_street">Rue</label>
