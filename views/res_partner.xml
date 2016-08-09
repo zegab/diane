@@ -82,8 +82,8 @@
 						</page>
 						<page name="privacy" string="Privacy Information">
 							<group>
-								<field name="annuaire_ok"/>
-								<field name="sponsoring_ok"/>
+								<!--<field name="annuaire_ok"/>
+								<field name="sponsoring_ok"/>-->
 								<field name="recruitment_ok"/>
 								<field name="hr_contact_ok"/>
 								<field name="perso_annuaire_ok"/>
