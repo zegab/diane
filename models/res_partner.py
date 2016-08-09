@@ -48,6 +48,12 @@ class ResPartner(models.Model):
 	recruitment_ok = fields.Boolean('Allow recruiters to contact me')
 	map_ok = fields.Boolean('Allow to be identified on the map')
 	hr_contact_ok = fields.Boolean('Allow us to contact the HR of your company')
+	perso_annuaire_ok = fields.Boolean('Personal data in Alumni Directory')
+	pro_annuaire_ok = fields.Boolean('Professional data in Alumni Directory')
+	perso_anciens_ok = fields.Boolean('Personal data available to Anciens')
+	pro_anciens_ok = fields.Boolean('Professional data available to Anciens')
+	pro_stage_ok = fields.Boolean('Professional Email for Stage Requests')
+	hr_stage_ok = fields.Boolean('HR Email for Stage Requests')
 
 class ResPartnerTitle(models.Model):
 	_name = 'res.partner.title'

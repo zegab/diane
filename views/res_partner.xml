@@ -29,10 +29,10 @@
 							</group>
 							<group string="Origin, Nationalities, Languages">
 								<field name="o_country_id"/>
-								<field name="nationality1"/>
+								<!--<field name="nationality1"/>
 								<field name="nationality2"/>
 								<field name="language1"/>
-								<field name="language2"/>
+								<field name="language2"/>-->
 							</group>
 							<group string="Social Networks">
 								<field name="facebook"/>
@@ -85,8 +85,13 @@
 								<field name="annuaire_ok"/>
 								<field name="sponsoring_ok"/>
 								<field name="recruitment_ok"/>
-								<field name="map_ok"/>
 								<field name="hr_contact_ok"/>
+								<field name="perso_annuaire_ok"/>
+								<field name="pro_annuaire_ok"/>
+								<field name="perso_anciens_ok"/>
+								<field name="pro_anciens_ok"/>
+								<field name="pro_stage_ok"/>
+								<field name="hr_stage_ok"/>
 								<field name="opt_out"/>
 							</group>
 						</page>

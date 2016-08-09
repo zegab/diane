@@ -21,8 +21,22 @@ class website_diane_account(http.Controller):
             #activate if birthday is needed
             #if post['birthday'] == "":
             #        post['birthday']=None
-            if not 'annuaire_ok' in post:
-                post['annuaire_ok']=False
+            if not 'recruitment_ok' in post:
+                post['recruitment_ok']=False
+            if not 'hr_contact_ok' in post:
+                post['hr_contact_ok']=False
+            if not 'perso_annuaire_ok' in post:
+                post['perso_annuaire_ok']=False
+            if not 'pro_annuaire_ok' in post:
+                post['pro_annuaire_ok']=False
+            if not 'perso_anciens_ok' in post:
+                post['perso_anciens_ok']=False
+            if not 'pro_anciens_ok' in post:
+                post['pro_anciens_ok']=False
+            if not 'pro_stage_ok' in post:
+                post['pro_stage_ok']=False
+            if not 'hr_stage_ok' in post:
+                post['hr_stage_ok']=False
             #add here all the other checkboxes
 
             values.update(post)
