@@ -18,23 +18,50 @@ class website_diane_account(http.Controller):
         if post:
             error, error_message = self.details_form_validate(post)
             values.update({'error': error, 'error_message': error_message})
+            #activate if birthday is needed
+            #if post['birthday'] == "":
+            #        post['birthday']=None
+            if not 'recruitment_ok' in post:
+                post['recruitment_ok']=False
+            if not 'hr_contact_ok' in post:
+                post['hr_contact_ok']=False
+            if not 'perso_annuaire_ok' in post:
+                post['perso_annuaire_ok']=False
+            if not 'pro_annuaire_ok' in post:
+                post['pro_annuaire_ok']=False
+            if not 'perso_anciens_ok' in post:
+                post['perso_anciens_ok']=False
+            if not 'pro_anciens_ok' in post:
+                post['pro_anciens_ok']=False
+            if not 'pro_stage_ok' in post:
+                post['pro_stage_ok']=False
+            if not 'hr_stage_ok' in post:
+                post['hr_stage_ok']=False
+            #add here all the other checkboxes
+
             values.update(post)
             if not error:
                 post.update({'zip': post.pop('zipcode', '')})
                 partner.sudo().write(post)
                 if redirect:
                     return request.redirect(redirect)
-                return request.redirect('/')
+                return request.website.render("diane.thanks", values)
 
-        countries = request.env['res.country'].sudo().search([])
+        countries = request.env['res.country'].sudo().search([]).sorted(key=lambda r:r.display_name)
         states = request.env['res.country.state'].sudo().search([])
         titles = request.env['res.partner.title'].sudo().search([])
+        nace = request.env['diane.nace'].sudo().search([])
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
 
         values.update({
             'partner': partner,
             'countries': countries,
             'states': states,
             'titles': titles,
+            'nace': nace,
+            'sections': sections,
+            'diplomas': diplomas,
             'redirect': redirect,
         })
 

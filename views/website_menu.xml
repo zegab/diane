@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record id="diane_website_menu" model="ir.ui.view">
+			<field name="name">diane.website.menu</field>
+			<field name="inherit_id" ref="website.layout"/>
+			<field eval="16" name="priority"/>
+			<field name="arch" type="xml">
+				<xpath expr="//li[@class='dropdown']/ul/li[contains(.,'My Account')]" position="replace">
+					<li>
+						<a href="/diane/account_update" role="menuitem">Meine persönlichen Daten</a>
+					</li>
+				</xpath>
+			</field>
+		</record>
+
+		<template id="thanks">
+				<t t-call="website.layout">
+					<div id="wrap">
+						<div class="container">
+							<h1>Gespeichert</h1>
+							<div class="row">
+								<div class="col-md-8">
+									<div class="alert alert-success">
+								Ihre Daten wurden gespeichert!
+										<button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</t>
+		</template>
+	</data>
+</openerp>

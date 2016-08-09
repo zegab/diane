@@ -8,22 +8,36 @@
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
 				<data>
+					<field name="opt_out" position="replace"/>
 					<field name="name" position="before">
 						<field name="forename"/>
 					</field>
-					<field name="title" position="after">
+					<field name="title" position="replace">
+						<field name="x_title"/>
 						<field name="m_name"/>
 					</field>
-					<page name="internal_notes" position="before">
+					<field name="website" position="replace">
+						<field name="section"/>
+						<field name="diploma"/>
+						<field name="d_year"/>
+						<field name="d_other"/>
+					</field>
+					<page name="internal_notes" position="after">
 						<page name="additional" string="Additional Information">
+							<group>
+								<field name="birthday"/>
+							</group>
+							<group string="Origin, Nationalities, Languages">
+								<field name="o_country_id"/>
+								<!--<field name="nationality1"/>
+								<field name="nationality2"/>
+								<field name="language1"/>
+								<field name="language2"/>-->
+							</group>
 							<group string="Social Networks">
 								<field name="facebook"/>
 								<field name="xing"/>
 								<field name="linkedin"/>
-							</group>
-							<group string="Nationalities and Origin">
-								<field name="o_country_id"/>
-								<field name="nationality"/>
 							</group>
 						</page>
 						<page name="company" string="Company Address">
@@ -40,8 +54,12 @@
 								<group>
 									<field name="c_email"/>
 									<field name="c_phone"/>
-									<field name="c_fax"/>
-									<field name="c_mobile"/>
+									<field name="c_web"/>
+								</group>
+								<group string="HR Responsible">
+									<field name="hr_name"/>
+									<field name="hr_phone"/>
+									<field name="hr_email"/>
 								</group>
 							</group>
 						</page>
@@ -57,9 +75,24 @@
 								<group>
 									<field name="h_email"/>
 									<field name="h_phone"/>
-									<field name="h_fax"/>
+
 									<field name="h_mobile"/>
 								</group>
+							</group>
+						</page>
+						<page name="privacy" string="Privacy Information">
+							<group>
+								<!--<field name="annuaire_ok"/>
+								<field name="sponsoring_ok"/>-->
+								<field name="recruitment_ok"/>
+								<field name="hr_contact_ok"/>
+								<field name="perso_annuaire_ok"/>
+								<field name="pro_annuaire_ok"/>
+								<field name="perso_anciens_ok"/>
+								<field name="pro_anciens_ok"/>
+								<field name="pro_stage_ok"/>
+								<field name="hr_stage_ok"/>
+								<field name="opt_out"/>
 							</group>
 						</page>
 					</page>
