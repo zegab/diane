@@ -9,9 +9,12 @@
 			<field name="arch" type="xml">
 				<data>
 					<field name="opt_out" position="replace"/>
-					<field name="name" position="before">
-						<field name="forename"/>
-					</field>
+					<xpath expr="//label[@for='street']/../.." position="before">
+                        <group>
+                            <field name="forename"/>
+                            <field name="lastname"/>
+                        </group>
+                    </xpath>
 					<field name="title" position="replace">
 						<field name="x_title"/>
 						<field name="m_name"/>
@@ -45,6 +48,7 @@
 								<group>
 									<field name="c_name"/>
 									<field name="c_nace"/>
+                                    <field name="c_nace_text"/>
 									<field name="c_street"/>
 									<field name="c_street2"/>
 									<field name="c_zip"/>

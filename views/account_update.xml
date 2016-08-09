@@ -193,7 +193,7 @@
 											</select>
 										</div>
 										<div class="clearfix" />
-										<div t-attf-class="form-group col-lg-3">
+										<!--<div t-attf-class="form-group col-lg-3">
 											<label class="control-label" for="nace">NACE Code</label>
 											<select name="c_nace" class="form-control">
 												<option value="">NACE Code...</option>
@@ -203,6 +203,10 @@
 													</option>
 												</t>
 											</select>
+										</div>-->
+                                        <div t-attf-class="form-group col-lg-3">
+											<label class="control-label" for="c_nace_text">Domaine d'activité ou code NACE</label>
+											<input type="text" name="c_nace_text" class="form-control" t-att-value="c_nace_text or partner.c_nace_text" />
 										</div>
 										<div t-attf-class="form-group col-lg-3">
 											<label class="control-label" for="c_email">Courriel</label>
@@ -337,7 +341,7 @@ Autoriser vous l'Association à permettre aux professionnels de vous adressez de
 											<input type="checkbox" style="width:20%; height:25px" name="perso_anciens_ok" t-att-checked="perso_anciens_ok or partner.perso_anciens_ok"/>
 										</div>
 										<div class="form-group col-lg-6">
-											<label for="pro_annuaire_ok">vos données professionelles</label>
+											<label for="pro_anciens_ok">vos données professionelles</label>
 											<input type="checkbox" style="width:20%; height:25px" name="pro_anciens_ok" t-att-checked="pro_anciens_ok or partner.pro_anciens_ok"/>
 										</div>
 										<div class="clearfix"/>
@@ -351,7 +355,7 @@ Autorisez vous l'Association à permettre à ce projet de vous adresser des dema
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<label for="pro_stage_ok">à votre email professional</label>
-											<input type="checkbox" style="width:20%; height:25px" name="perso_anciens_ok" t-att-checked="perso_anciens_ok or partner.perso_anciens_ok"/>
+											<input type="checkbox" style="width:20%; height:25px" name="pro_stage_ok" t-att-checked="pro_stage_ok or partner.pro_stage_ok"/>
 										</div>
 										<div class="form-group col-lg-6">
 											<label for="hr_stage_ok">à l'email du responsable RH de votre employeur</label>
@@ -367,11 +371,10 @@ Autorisez vous l'Association à permettre à ce projet de vous adresser des dema
 									</button>
 								</div>
 							</div>
-						<!--</div>-->
-					</form>
-				</div>
-			</div>
-		</t>
-	</template>
-</data>
+                        </form>
+                    </div>
+                </div>
+           </t>
+       </template>
+    </data>
 </openerp>
