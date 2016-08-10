@@ -8,7 +8,7 @@
 			<field name="arch" type="xml">
 				<xpath expr="//li[@class='dropdown']/ul/li[contains(.,'My Account')]" position="replace">
 					<li>
-						<a href="/diane/account_update" role="menuitem">Meine persönlichen Daten</a>
+						<a href="/diane/account_update" role="menuitem">Actualiser mes Données</a>
 					</li>
 				</xpath>
 			</field>
@@ -18,11 +18,11 @@
 				<t t-call="website.layout">
 					<div id="wrap">
 						<div class="container">
-							<h1>Gespeichert</h1>
+							<h1>Sauvegardé</h1>
 							<div class="row">
 								<div class="col-md-8">
 									<div class="alert alert-success">
-								Ihre Daten wurden gespeichert!
+										Merci d'avoir pris le temps d'actualiser vos données!
 										<button type="button" class="close" data-dismiss="alert">&amp;times;</button>
 									</div>
 								</div>

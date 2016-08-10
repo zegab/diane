@@ -1,13 +1,5 @@
 <openerp>
 	<data>
-		<!--<template id="portal_diane">
-			<title>Portal</title>
-			<t t-foreach="alumni" t-as="al">
-				<p>
-					<t t-esc="al"/>
-				</p>
-			</t>
-		</template>-->
 		<template id="details">
 			<t t-call="website.layout">
 				<t t-set="additional_title">Contact Details</t>
@@ -296,7 +288,7 @@
 										<div class="col-lg-6">
 											<h2>Publication dans l'Annuaire des Anciens</h2>
 											<span>
-                                            En complément des informations publiques et qui sont :<br/>
+                                            En complément des informations publiques qui sont:<br/>
                                                    1) votre nom et votre prénom<br/>
                                                    2) votre nom de jeune fille (si il y a lieu)<br/>
                                                    3) votre filière d'étude à l'ISFATES<br/>
@@ -318,10 +310,10 @@
 										</div>
 										<div class="clearfix"/>
 										<div class="col-lg-6">
-											<h2>Autorisations pour les DRH et Chasseurs de Têtes</h2>
-											<span>Les DRH de sociétés et les Chasseurs de Têtes qui en feront la demande obtiendront de pouvoir publier sur notre site leurs offres d'emplois. Vous en serez à chaque fois avertis par un email ou un SMS vous invitant à aller consulter cette offre.<br/>
-Nous proposerons également à ces professionnels un service plus performant consistant à vous adressez directement l'offre d'emploi au travers de notre système tout en respectant votre anonymat.<br/>
-Autoriser vous l'Association à permettre aux professionnels de vous adressez des offres d'emploi:</span>
+											<h2>Autorisations pour être contacté pour des offres d'emplois</h2>
+											<span>Nous publions sur notre site des offres d'emplois et de stage qui nous sont communiqués par les DRH de sociétés et les chasseurs de têtes.<br/>
+											Nous proposerons également à ces professionnels un service plus performant consistant à vous adressez directement l'offre d'emploi au travers de notre système tout en respectant votre anonymat.<br/>
+											Autorisez vous l'Association à permettre aux professionnels de vous adressez des offres d'emploi:</span>
 										</div>
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
@@ -330,9 +322,9 @@ Autoriser vous l'Association à permettre aux professionnels de vous adressez de
 										</div>
 										<div class="clearfix"/>
 										<div class="col-lg-6">
-											<h2>Publication dans les accès à la Banque de Données</h2>
+											<h2>Autorisations pour les autres Anciens / Visibilité sur la Carte</h2>
 											<span>
-                                            Les anciens qui comme vous participent à l'actualisation de la BDD y auront accès et y trouveront les informations publiques vous concernant (voir publication dans l'Annuaire). En complément de ces informations publiques autorisez vous l'Association à diffuser aux Anciens les informations suivantes :
+                                            Les anciens qui comme vous participent à l'actualisation de la BDD y auront accès et y trouveront les informations publiques vous concernant (voir publication dans l'Annuaire), soit par une recherche ciblée, soit en navigant sur la carte et en cliquant sur un emplacement. En complément de ces informations publiques autorisez vous l'Association à diffuser aux Anciens les informations suivantes:
 											</span>
 										</div>
 										<div class="clearfix"/>
@@ -349,7 +341,7 @@ Autoriser vous l'Association à permettre aux professionnels de vous adressez de
 											<h2>Autorisation pour les recherches de stages</h2>
 											<span>
                                             Nous avons lié un partenariat avec un projet étudiant de fin d'études devant faciliter la recherche de stage pour les Isfatessiens de 3ième année.<br/>
-Autorisez vous l'Association à permettre à ce projet de vous adresser des demandes de stages :
+											Autorisez vous l'Association à permettre à ce projet de vous adresser des demandes de stages :
 											</span>
 										</div>
 										<div class="clearfix"/>
@@ -365,10 +357,12 @@ Autorisez vous l'Association à permettre à ce projet de vous adresser des dema
 										<input type="hidden" name="redirect" t-att-value="redirect"/>
 									</div>
 									<div class="clearfix"/>
-									<button type="submit" class="btn btn-default btn-primary pull-right mb32 ">
-                                        Confirm
-										<span class="fa fa-long-arrow-right" />
-									</button>
+									<div class="col-md-12 text-center">
+										<button type="submit" class="btn btn-default btn-primary mb32 pull-left">
+											Sauvegarder
+											<span class="fa fa-long-arrow-right" />
+										</button>
+									</div>
 								</div>
 							</div>
                         </form>

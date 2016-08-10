@@ -11,8 +11,8 @@
 					<field name="opt_out" position="replace"/>
 					<xpath expr="//label[@for='street']/../.." position="before">
                         <group>
-                            <field name="forename"/>
-                            <field name="lastname"/>
+                            <field name="forename" class="oe_inline"/>
+                            <field name="lastname" class="oe_inline"/>
                         </group>
                     </xpath>
 					<field name="title" position="replace">
