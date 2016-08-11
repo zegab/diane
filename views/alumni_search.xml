@@ -17,12 +17,12 @@
                         </div>
                         <form action="/diane/alumni_search" method="post">
                             <h1>Diplome</h1>
-                            <div t-attf-class="form-group #{error.get('d_year') and 'has-error' or ''} col-lg-2">
+                            <div t-attf-class="form-group col-lg-2">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
                                        t-att-value="d_year or partner.d_year"/>
                             </div>
-                            <div t-attf-class="form-group #{error.get('section') and 'has-error' or ''} col-lg-3">
+                            <div t-attf-class="form-group col-lg-3">
                                 <label class="control-label" for="section">Filière</label>
                                 <select name="section" class="form-control">
                                     <option value="">Filière...</option>
@@ -34,7 +34,7 @@
                                     </t>
                                 </select>
                             </div>
-                            <div t-attf-class="form-group #{error.get('diploma') and 'has-error' or ''} col-lg-3">
+                            <div t-attf-class="form-group col-lg-3">
                                 <label class="control-label" for="diploma">Diplome</label>
                                 <select name="diploma" class="form-control">
                                     <option value="">Type de Diplome...</option>
@@ -59,7 +59,7 @@
         </template>
         <template id="alumni_search_result">
             <t t-call="website.layout">
-                <t t-call="diane.alumni_search_result">
+                <t t-call="diane.alumni_search_result"/>
                 <t t-set="additional_title">Search for Alumni</t>
                 <div id="wrap">
                     <div class="container">
@@ -75,12 +75,12 @@
                         </div>
                         <form action="/diane/alumni_search" method="post">
                             <h1>Diplome</h1>
-                            <div t-attf-class="form-group #{error.get('d_year') and 'has-error' or ''} col-lg-2">
+                            <div t-attf-class="form-group col-lg-2">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
                                        t-att-value="d_year or partner.d_year"/>
                             </div>
-                            <div t-attf-class="form-group #{error.get('section') and 'has-error' or ''} col-lg-3">
+                            <div t-attf-class="form-group col-lg-3">
                                 <label class="control-label" for="section">Filière</label>
                                 <select name="section" class="form-control">
                                     <option value="">Filière...</option>
@@ -92,7 +92,7 @@
                                     </t>
                                 </select>
                             </div>
-                            <div t-attf-class="form-group #{error.get('diploma') and 'has-error' or ''} col-lg-3">
+                            <div t-attf-class="form-group col-lg-3">
                                 <label class="control-label" for="diploma">Diplome</label>
                                 <select name="diploma" class="form-control">
                                     <option value="">Type de Diplome...</option>
