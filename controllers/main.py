@@ -6,6 +6,53 @@ from openerp.http import request
 from openerp import tools
 from openerp.tools.translate import _
 
+class website_diane_search(http.Controller):
+    @http.route(['/diane/alumni_search'], type='http', auth='user', website=True)
+    def search(self, redirect=None, **post):
+        partner = request.env['res.users'].browse(request.uid).partner_id
+        values = {}
+
+        if post:
+            diploma = request.env['diane.diploma'].search([('name','=',post['diploma'])])
+            section = request.env['diane.section'].search([('name','=',post['section'])])
+            try:
+                d_year = int(post['d_year'])
+            except:
+                d_year = 0
+            alumni = request.env['res.partner'].search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
+            ids = [a.id for a in alumni]
+            request.cr.execute("""
+                SELECT p.forename, p.lastname, p.m_name, s.name, d.name, d_year
+                FROM res_partner p
+                INNER JOIN diane_section s ON p.section = s.id
+                INNER JOIN diane_diploma d ON p.diploma = d.id
+                WHERE p.id IN %s
+            """,(ids) )
+            result = cr.fetchall()
+            return request.website.render("diane.search_result", result)
+
+        countries = request.env['res.country'].sudo().search([]).sorted(key=lambda r:r.display_name)
+        states = request.env['res.country.state'].sudo().search([])
+        titles = request.env['res.partner.title'].sudo().search([])
+        nace = request.env['diane.nace'].sudo().search([])
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
+
+        values.update({
+            'partner': partner,
+            'countries': countries,
+            'states': states,
+            'titles': titles,
+            'nace': nace,
+            'sections': sections,
+            'diplomas': diplomas,
+            'redirect': redirect,
+        })
+
+        return request.website.render("diane.details", values)
+
+
+
 class website_diane_account(http.Controller):
     @http.route(['/diane/account_update'], type='http', auth='user', website=True)
     def details(self, redirect=None, **post):
