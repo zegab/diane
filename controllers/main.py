@@ -8,8 +8,19 @@ from openerp.tools.translate import _
 
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_search'], type='http', auth='user', website=True)
+    @http.route(['/diane/alumni_search_result'], type='http', auth='user', website=True)
     def search(self, redirect=None, **post):
         partner = request.env['res.users'].browse(request.uid).partner_id
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
+
+        values={
+            'sections': sections,
+            'diplomas': diplomas,
+            'partner': partner,
+            'result':{},
+        }
+
         if post:
             #try:
             diploma = int(post['diploma'])
@@ -28,19 +39,10 @@ class website_diane_account(http.Controller):
                 #    WHERE p.id IN %s
                 #""",(alumni_ids) )
                 result = request.cr.fetchall()
-                return request.website.render("diane.alumni_search_result", result)
+                values.update({'result':result})
+                return request.website.render("diane.alumni_search_result", values)
             #except:
             #    pass
-
-        sections = request.env['diane.section'].sudo().search([])
-        diplomas = request.env['diane.diploma'].sudo().search([])
-
-        values={
-            'sections': sections,
-            'diplomas': diplomas,
-            'd_year': d_year,
-            'partner': partner,
-        }
 
         return request.website.render("diane.alumni_search", values)
 

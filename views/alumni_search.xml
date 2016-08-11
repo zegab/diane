@@ -59,7 +59,7 @@
         </template>
         <template id="alumni_search_result">
             <t t-call="website.layout">
-                <t t-call="diane.alumni_search_result"/>
+                <!--<t t-call="diane.alumni_search_result"/>-->
                 <t t-set="additional_title">Search for Alumni</t>
                 <div id="wrap">
                     <div class="container">
@@ -112,7 +112,7 @@
                             </div>
                         </form>
 
-                        <t t-esc="result"/>
+                       <!-- <t t-esc="request['result']"/>-->
 
                     </div>
                 </div>
