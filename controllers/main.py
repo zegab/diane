@@ -22,29 +22,26 @@ class website_diane_account(http.Controller):
         }
 
         if post:
-            #try:
-            diploma = int(post['diploma'])
-            section = int(post['section'])
-            d_year = int(post['d_year'])
+            try:
+                diploma = int(post['diploma']) if post['diploma'].isdigit() else False
+                section = int(post['section']) if post['section'].isdigit() else False
+                d_year = int(post['d_year']) if post['d_year'].isdigit() else False
 
-            if diploma and section and d_year:
-                alumni = request.env['res.partner'].search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
-                alumni_ids = [a.id for a in alumni]
-                #raise Warning("%s,%s,%s,%s" %(diploma,section,d_year,alumni))
-                #request.cr.execute("""
-                #    SELECT p.forename, p.lastname, p.m_name, s.name, d.name, d_year
-                #    FROM res_partner p
-                #    INNER JOIN diane_section s ON p.section = s.id
-                #    INNER JOIN diane_diploma d ON p.diploma = d.id
-                #    WHERE p.id IN %s
-                #""",(alumni_ids) )
-                result = request.cr.fetchall()
-                values.update({'result':result})
-                return request.website.render("diane.alumni_search_result", values)
-            #except:
-            #    pass
-
-        return request.website.render("diane.alumni_search", values)
+                if diploma and section and d_year:
+                    alumni = request.env['res.partner'].search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
+                    alumni_ids = [a.id for a in alumni]
+                    request.env.cr.execute("""
+                        SELECT forename, lastname, m_name, s.name AS section, d.name AS diploma, d_year
+                        FROM res_partner p
+                        INNER JOIN diane_section s ON p.section = s.id
+                        INNER JOIN diane_diploma d ON p.diploma = d.id
+                        WHERE p.id IN %s
+                    """,(tuple(alumni_ids),))
+                    result = request.env.cr.dictfetchall()
+                    values.update({'result':result})
+                    return request.website.render("diane.alumni_search_result", values)
+            except:
+                return request.website.render("diane.alumni_search", values)
 
 
     @http.route(['/diane/account_update'], type='http', auth='user', website=True)
