@@ -15,8 +15,16 @@
                                 </ol>
                             </div>
                         </div>
+                        <div t-if="message" class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <div class="alert alert-info">
+                                    <span><t t-esc="message"/></span>
+                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                                </div>
+                            </div>
+                        </div>
                         <form action="/diane/alumni_search" method="post">
-                            <h1>Diplome</h1>
+                            <h1>Recherche</h1>
                             <div t-attf-class="form-group col-lg-1">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
@@ -53,14 +61,6 @@
                                 </button>
                             </div>
                         </form>
-                        <div t-if="message" class="row">
-                            <div class="col-md-4 col-md-offset-4">
-                                <div class="alert alert-info">
-                                    <span><t t-esc="message"/></span>
-                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </t>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <form action="/diane/alumni_search" method="post">
-                            <h1>Diplome</h1>
+                            <h1>Recherche</h1>
                             <div t-attf-class="form-group col-lg-1">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
