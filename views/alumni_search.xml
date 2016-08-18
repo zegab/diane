@@ -9,7 +9,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb mt8">
                                     <li>
-                                        <a href="/">My Account</a>
+                                        <a href="/">Home</a>
                                     </li>
                                     <li>Search</li>
                                 </ol>
@@ -17,7 +17,7 @@
                         </div>
                         <form action="/diane/alumni_search" method="post">
                             <h1>Diplome</h1>
-                            <div t-attf-class="form-group col-lg-2">
+                            <div t-attf-class="form-group col-lg-1">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
                                        t-att-value="d_year or partner.d_year"/>
@@ -46,8 +46,8 @@
                                     </t>
                                 </select>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-default btn-primary mb32 pull-left">
+                            <div class="form-group col-lg-5 text-center" style="margin-top:25px">
+                                <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>
                                 </button>
@@ -67,7 +67,7 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb mt8">
                                     <li>
-                                        <a href="/">My Account</a>
+                                        <a href="/">Home</a>
                                     </li>
                                     <li>Search</li>
                                 </ol>
@@ -75,7 +75,7 @@
                         </div>
                         <form action="/diane/alumni_search" method="post">
                             <h1>Diplome</h1>
-                            <div t-attf-class="form-group col-lg-2">
+                            <div t-attf-class="form-group col-lg-1">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
                                        t-att-value="d_year or partner.d_year"/>
@@ -104,16 +104,34 @@
                                     </t>
                                 </select>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-default btn-primary mb32 pull-left">
+                            <div class="form-group col-lg-5 text-center" style="margin-top:25px">
+                                <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>
                                 </button>
                             </div>
                         </form>
 
-                       <!-- <t t-esc="request['result']"/>-->
-
+                        <div class="col-md-12">
+                            <table class="sortable table">
+                                <tr>
+                                    <th>Prénom</th>
+                                    <th>Nom</th>
+                                    <th>Nom de JF</th>
+                                    <th>Section</th>
+                                    <th>Diplôme</th>
+                                    <th>Promotion</th>
+                                </tr>
+                                <tr t-foreach="result or []" t-as="alumni">
+                                    <td><t t-esc="alumni['forename']"/></td>
+                                    <td><t t-esc="alumni['lastname']"/></td>
+                                    <td><t t-esc="alumni['m_name']"/></td>
+                                    <td><t t-esc="alumni['section']"/></td>
+                                    <td><t t-esc="alumni['diploma']"/></td>
+                                    <td><t t-esc="alumni['d_year']"/></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </t>
