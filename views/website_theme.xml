@@ -6,7 +6,7 @@
 			<field name="inherit_id" ref="website.theme_united"/>
 			<field eval="16" name="priority"/>
 			<field name="arch" type="xml">
-				<xpath expr="//link[@href='/website/static/src/css/bootswatch/united.min.css']" position="replace">
+				<xpath expr="//link[@href='/website/static/src/css/bootswatch/united.min.css']" position="after">
 					<link rel="stylesheet" href="/diane/static/src/css/united_diane.css" t-ignore="true"/>
 					<script src="/diane/static/src/js/sorttable.js"/>
 				</xpath>
