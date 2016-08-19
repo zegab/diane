@@ -7,6 +7,46 @@ from openerp import tools
 from openerp.tools.translate import _
 
 class website_diane_account(http.Controller):
+    @http.route(['/diane/alumni_search'], type='http', auth='user', website=True)
+    @http.route(['/diane/alumni_search_result'], type='http', auth='user', website=True)
+    def search(self, redirect=None, **post):
+        partner = request.env['res.users'].browse(request.uid).partner_id
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
+
+        values={
+            'sections': sections,
+            'diplomas': diplomas,
+            'partner': partner,
+            'result':{},
+            'message':"",
+        }
+
+        if post:
+                diploma = int(post['diploma']) if post['diploma'].isdigit() else False
+                section = int(post['section']) if post['section'].isdigit() else False
+                d_year = int(post['d_year']) if post['d_year'].isdigit() else False
+
+                if diploma and section and d_year:
+                    alumni = request.env['res.partner'].search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
+                    if alumni:
+                        alumni_ids = [a.id for a in alumni]
+                        request.env.cr.execute("""
+                            SELECT forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year
+                            FROM res_partner p
+                            INNER JOIN diane_section s ON p.section = s.id
+                            INNER JOIN diane_diploma d ON p.diploma = d.id
+                            WHERE p.id IN %s
+                        """,(tuple(alumni_ids),))
+                        result = request.env.cr.dictfetchall()
+                        values.update({'result':result})
+                        return request.website.render("diane.alumni_search_result", values)
+                else:
+                    values.update({'message':"Aucun Résultat!"})
+
+        return request.website.render("diane.alumni_search", values)
+
+
     @http.route(['/diane/account_update'], type='http', auth='user', website=True)
     def details(self, redirect=None, **post):
         partner = request.env['res.users'].browse(request.uid).partner_id
@@ -14,6 +54,24 @@ class website_diane_account(http.Controller):
             'error': {},
             'error_message': []
         }
+
+        countries = request.env['res.country'].sudo().search([]).sorted(key=lambda r:r.display_name)
+        states = request.env['res.country.state'].sudo().search([])
+        titles = request.env['res.partner.title'].sudo().search([])
+        nace = request.env['diane.nace'].sudo().search([])
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
+
+        values.update({
+            'partner': partner,
+            'countries': countries,
+            'states': states,
+            'titles': titles,
+            'nace': nace,
+            'sections': sections,
+            'diplomas': diplomas,
+            'redirect': redirect,
+        })
 
         if post:
             error, error_message = self.details_form_validate(post)
@@ -37,7 +95,8 @@ class website_diane_account(http.Controller):
                 post['pro_stage_ok']=False
             if not 'hr_stage_ok' in post:
                 post['hr_stage_ok']=False
-            #add here all the other checkboxes
+            if 'd_year'in post and not post['d_year'].isdigit():
+                post['d_year']=False
 
             values.update(post)
             if not error:
@@ -45,25 +104,9 @@ class website_diane_account(http.Controller):
                 partner.sudo().write(post)
                 if redirect:
                     return request.redirect(redirect)
-                return request.website.render("diane.thanks", values)
+                values.update({'message':"Merci d'avoir actualisé vos données!"})
+                return request.website.render("diane.alumni_search", values)
 
-        countries = request.env['res.country'].sudo().search([]).sorted(key=lambda r:r.display_name)
-        states = request.env['res.country.state'].sudo().search([])
-        titles = request.env['res.partner.title'].sudo().search([])
-        nace = request.env['diane.nace'].sudo().search([])
-        sections = request.env['diane.section'].sudo().search([])
-        diplomas = request.env['diane.diploma'].sudo().search([])
-
-        values.update({
-            'partner': partner,
-            'countries': countries,
-            'states': states,
-            'titles': titles,
-            'nace': nace,
-            'sections': sections,
-            'diplomas': diplomas,
-            'redirect': redirect,
-        })
 
         return request.website.render("diane.details", values)
 
@@ -77,6 +120,7 @@ class website_diane_account(http.Controller):
         #for field_name in mandatory_billing_fields:
         #    if not data.get(field_name):
         #        error[field_name] = 'missing'
+
 
         # email validation
         if data.get('email') and not tools.single_email_re.match(data.get('email')):

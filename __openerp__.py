@@ -26,6 +26,7 @@
         'views/website_theme.xml',
         'views/website_menu.xml',
         'views/account_update.xml',
+        'views/alumni_search.xml',
     ],
     'demo': [],
 
