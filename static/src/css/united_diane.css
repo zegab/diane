@@ -1,5 +1,10 @@
 .navbar-default {
-background-color:#F7C940;
+background:rgba(247, 201, 64, 0.5);
+}
+
+.navbar-default .navbar-nav>li>a {
+color:#DD4814;
+font-size:120%;
 }
 
 body {
