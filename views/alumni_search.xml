@@ -54,7 +54,7 @@
                                     </t>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-5 text-center" style="margin-top:25px">
+                            <div class="form-group col-lg-5 text-center" style="margin-top:25px;margin-bottom:150px">
                                 <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>
@@ -86,7 +86,7 @@
                             <div t-attf-class="form-group col-lg-1">
                                 <label class="control-label" for="d_year">Promotion</label>
                                 <input type="text" name="d_year" class="form-control"
-                                       t-att-value="d_year or partner.d_year"/>
+                                       t-att-value="result[0]['d_year']"/>
                             </div>
                             <div t-attf-class="form-group col-lg-3">
                                 <label class="control-label" for="section">Filière</label>
@@ -94,7 +94,7 @@
                                     <option value="">Filière...</option>
                                     <t t-foreach="sections or []" t-as="section">
                                         <option t-att-value="section.id"
-                                                t-att-selected="section.id == partner.section.id">
+                                                t-att-selected="section.id == result[0]['section_id']">
                                             <t t-esc="section.name"/>
                                         </option>
                                     </t>
@@ -106,7 +106,7 @@
                                     <option value="">Type de Diplome...</option>
                                     <t t-foreach="diplomas or []" t-as="diploma">
                                         <option t-att-value="diploma.id"
-                                                t-att-selected="diploma.id == partner.diploma.id">
+                                                t-att-selected="diploma.id == result[0]['diploma_id']">
                                             <t t-esc="diploma.name"/>
                                         </option>
                                     </t>
@@ -120,7 +120,7 @@
                             </div>
                         </form>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-bottom:150px">
                             <table class="sortable table">
                                 <tr>
                                     <th>Prénom</th>

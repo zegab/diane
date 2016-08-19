@@ -32,7 +32,7 @@ class website_diane_account(http.Controller):
                     if alumni:
                         alumni_ids = [a.id for a in alumni]
                         request.env.cr.execute("""
-                            SELECT forename, lastname, m_name, s.name AS section, d.name AS diploma, d_year
+                            SELECT forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year
                             FROM res_partner p
                             INNER JOIN diane_section s ON p.section = s.id
                             INNER JOIN diane_diploma d ON p.diploma = d.id
