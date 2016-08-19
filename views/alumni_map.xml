@@ -30,7 +30,7 @@ function initMap() {
 var marker = new google.maps.Marker({
     position: {lat: <t t-esc="alumni['lat']"/>, lng: <t t-esc="alumni['lng']"/>},
     map: map,
-    title: '<t t-esc="alumni['name']"/>,<t t-esc="alumni['section']"/>,<t t-esc="alumni['diploma']"/>,<t t-esc="alumni['d_year']"/>'
+    title: '<t t-esc="alumni['name'] if alumni['perso_anciens_ok'] else 'Anonymous'"/>'
   });
                             </t>
                         </t>

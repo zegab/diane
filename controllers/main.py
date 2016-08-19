@@ -14,7 +14,7 @@ class website_diane_account(http.Controller):
         }
 
         request.env.cr.execute("""
-            SELECT p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
+            SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
             FROM res_partner p
             LEFT JOIN diane_section s ON p.section = s.id
             LEFT JOIN diane_diploma d ON p.diploma = d.id
