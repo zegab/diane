@@ -16,6 +16,7 @@
                         </group>
                     </xpath>
 					<field name="title" position="replace">
+						<field name="gender"/>
 						<field name="x_title"/>
 						<field name="m_name"/>
 					</field>
@@ -24,6 +25,7 @@
 						<field name="diploma"/>
 						<field name="d_year"/>
 						<field name="d_other"/>
+						<field name="failed"/>
 					</field>
 					<page name="internal_notes" position="after">
 						<page name="additional" string="Additional Information">
@@ -31,9 +33,9 @@
 								<field name="birthday"/>
 							</group>
 							<group string="Origin, Nationalities, Languages">
-								<field name="o_country_id"/>
-								<!--<field name="nationality1"/>
-								<field name="nationality2"/>
+								<!--<field name="o_country_id"/>-->
+								<field name="nationality1"/>
+								<!--<field name="nationality2"/>
 								<field name="language1"/>
 								<field name="language2"/>-->
 							</group>
@@ -58,6 +60,7 @@
 								<group>
 									<field name="c_email"/>
 									<field name="c_phone"/>
+									<field name="c_mobile"/>
 									<field name="c_web"/>
 								</group>
 								<group string="HR Responsible">
@@ -97,6 +100,12 @@
 								<field name="pro_stage_ok"/>
 								<field name="hr_stage_ok"/>
 								<field name="opt_out"/>
+							</group>
+						</page>
+						<page name="dates" string="Dates">
+							<group>
+								<field name="date_entry"/>
+								<field name="date_exit"/>-->
 							</group>
 						</page>
 					</page>
