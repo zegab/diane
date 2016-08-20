@@ -12,9 +12,6 @@
 					<field name="function" position="replace"/>
 					<field name="lang" position="replace"/>
 					<field name="ref" position="replace"/>
-					<field name="parent_id" position="replace">
-							<field name="ref"/>
-					</field>
 
 					<xpath expr="//label[@for='street']/../.." position="before">
                         <group>
@@ -29,6 +26,7 @@
 						<field name="x_title"/>
 					</field>
 					<field name="website" position="replace">
+						<field name="ref" string="Matricule"/>
 						<field name="section"/>
 						<field name="diploma"/>
 						<field name="d_year"/>
