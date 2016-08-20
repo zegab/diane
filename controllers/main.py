@@ -45,7 +45,7 @@ class website_diane_account(http.Controller):
                 d_year = int(post['d_year']) if post['d_year'].isdigit() else False
 
                 if diploma and section and d_year:
-                    alumni = request.env['res.partner'].search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
+                    alumni = request.env['res.partner'].sudo().search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
                     if alumni:
                         alumni_ids = [a.id for a in alumni]
                         request.env.cr.execute("""
