@@ -32,6 +32,7 @@ class ResPartner(models.Model):
 	c_date_joined = fields.Date('Date Joined')
 	c_email = fields.Char('Company Email')
 	c_phone = fields.Char('Company Phone')
+	c_mobile = fields.Char('Company Mobile')
 	c_web = fields.Char('Company Website')
 	hr_name = fields.Char('HR Name')
 	hr_phone = fields.Char('HR Phone')
@@ -55,6 +56,10 @@ class ResPartner(models.Model):
 	pro_anciens_ok = fields.Boolean('Professional data available to Anciens')
 	pro_stage_ok = fields.Boolean('Professional Email for Stage Requests')
 	hr_stage_ok = fields.Boolean('HR Email for Stage Requests')
+	date_entry = fields.Date('Entry Date')
+	date_exit = fields.Date('Exit Date')
+	failed = fields.Boolean('No Diploma!')
+	gender = fields.Selection([('m', 'M'), ('f', 'F')], string='Gender')
 
 class ResPartnerTitle(models.Model):
 	_name = 'res.partner.title'

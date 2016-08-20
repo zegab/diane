@@ -1,17 +1,26 @@
 .navbar-default {
-background:rgba(247, 201, 64, 0.5);
+    background:rgba(247, 201, 64, 0.5);
 }
 
 .navbar-default .navbar-nav>li>a {
-color:#333333;
-font-size:105%;
+    color:#333333;
+    font-size:105%;
 }
 
 body {
-background-color:#FEF7E2;
-background-image: url('/diane/static/src/img/logo_trans.png');
+    background-color:#FEF7E2;
+    background-image: url('/diane/static/src/img/logo_trans.png');
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 footer {
-background: rgba(247, 201, 64, 0.25) !important;
+    background: rgba(247, 201, 64, 0.25) !important;
+}
+
+#map {
+    height: 100%;
+    position: inherit !important;
+    margin-top:50px;
 }

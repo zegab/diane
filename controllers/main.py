@@ -7,6 +7,23 @@ from openerp import tools
 from openerp.tools.translate import _
 
 class website_diane_account(http.Controller):
+    @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
+    def show_map(self, redirect=None, **post):
+        values={
+            'result':{},
+        }
+
+        request.env.cr.execute("""
+            SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
+            FROM res_partner p
+            LEFT JOIN diane_section s ON p.section = s.id
+            LEFT JOIN diane_diploma d ON p.diploma = d.id
+        """,)
+
+        result = request.env.cr.dictfetchall()
+        values.update({'result':result})
+        return request.website.render("diane.alumni_map", values)
+
     @http.route(['/diane/alumni_search'], type='http', auth='user', website=True)
     @http.route(['/diane/alumni_search_result'], type='http', auth='user', website=True)
     def search(self, redirect=None, **post):

@@ -64,7 +64,7 @@
                                         <select name="o_country_id" class="form-control">
                                             <option value="">Pays...</option>
                                             <t t-foreach="countries or []" t-as="country">
-                                                <option t-att-value="country.id" t-att-selected="country.id == partner.o_country_id.id">
+                                                <option t-att-value="country.id" t-att-selected="country.id == partner.nationality1.id">
                                                     <t t-esc="country.name" />
                                                 </option>
                                             </t>
@@ -196,10 +196,11 @@
 												</t>
 											</select>
 										</div>-->
-                                        <div t-attf-class="form-group col-lg-3">
+                                        <div t-attf-class="form-group col-lg-6">
 											<label class="control-label" for="c_nace_text">Domaine d'activité ou code NACE</label>
 											<input type="text" name="c_nace_text" class="form-control" t-att-value="c_nace_text or partner.c_nace_text" />
 										</div>
+										<div class="clearfix" />
 										<div t-attf-class="form-group col-lg-3">
 											<label class="control-label" for="c_email">Email</label>
 											<input type="email" name="c_email" class="form-control" t-att-value="c_email or partner.c_email" />
@@ -207,6 +208,10 @@
 										<div t-attf-class="form-group col-lg-3">
 											<label class="control-label" for="c_phone">Téléphone</label>
 											<input type="tel" name="c_phone" class="form-control" t-att-value="c_phone or partner.c_phone" />
+										</div>
+										<div t-attf-class="form-group col-lg-3">
+											<label class="control-label" for="c_mobile">Mobile</label>
+											<input type="tel" name="c_mobile" class="form-control" t-att-value="c_mobile or partner.c_mobile" />
 										</div>
 										<div t-attf-class="form-group col-lg-3">
 											<label class="control-label" for="c_web">Site Web</label>

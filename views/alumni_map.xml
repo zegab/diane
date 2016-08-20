@@ -1,0 +1,46 @@
+<openerp>
+    <data>
+        <template id="alumni_map">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Alumni Map</t>
+                <div id="wrap">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb mt8">
+                                    <li>
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li>Map</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div id="map" style="margin-bottom:600px"/>
+                        <script type="text/javascript">
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 49.45, lng: 6.515},
+    zoom: 8
+  });
+                        <t t-foreach="result or []" t-as="alumni">
+                            <t t-if="alumni['lat'] and alumni['lng']">
+
+var marker = new google.maps.Marker({
+    position: {lat: <t t-esc="alumni['lat']"/>, lng: <t t-esc="alumni['lng']"/>},
+    map: map,
+    title: '<t t-esc="alumni['name'] if alumni['perso_anciens_ok'] else 'Anonymous'"/>'
+  });
+                            </t>
+                        </t>
+}
+                        </script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmgOJxj5yXID065QjC7aTQLQ9_tzV0HAI&amp;callback=initMap">
+                        </script>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>
