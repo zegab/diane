@@ -4,7 +4,7 @@
 
 .navbar-default .navbar-nav>li>a {
     color:#333333;
-    font-size:105%;
+    font-size:102%;
 }
 
 body {
@@ -22,5 +22,12 @@ footer {
 #map {
     height: 100%;
     position: inherit !important;
-    margin-top:50px;
+    padding-top:50px;
+}
+.breadcrumb {
+    background-color:#f1ead6;
+}
+
+.fa-linkedin {
+    margin-left:15px;
 }
