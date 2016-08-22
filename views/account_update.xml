@@ -34,6 +34,10 @@
 											<label class="control-label" for="diploma">Diplome</label>
 											<br/><t t-esc="partner.diploma.name" />
 										</div>
+										<div t-attf-class="form-group col-lg-4">
+											<label class="control-label" for="d_other">Autres Diplomes</label>
+											<input type="text" name="d_other" class="form-control" t-att-value="d_other or partner.d_other" />
+										</div>
 										<div class="clearfix" />
 										<div class="col-md-4">
 											<div t-if="error_message" class="alert alert-danger">
@@ -84,11 +88,6 @@
                                             </t>
                                         </select>
                                     </div>
-										<div class="clearfix" />
-										<div t-attf-class="form-group #{error.get('d_other') and 'has-error' or ''} col-lg-4">
-											<label class="control-label" for="d_other">Autres Diplomes</label>
-											<input type="text" name="d_other" class="form-control" t-att-value="d_other or partner.d_other" />
-										</div>
 										<div class="clearfix" />
 										<h1>Adresse privée</h1>
 										<div t-attf-class="form-group #{error.get('email') and 'has-error' or ''} col-lg-4">
