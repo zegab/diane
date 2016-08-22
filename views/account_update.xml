@@ -21,7 +21,20 @@
 							<div class="row oe_website_portal">
 								<div class="col-md-12">
 									<div class="row">
-										<h1>Informations personnelles</h1>
+										<h1>Diplome</h1>
+										<div t-attf-class="form-group col-lg-2">
+											<label class="control-label" for="d_year">Promotion</label>
+											<br/><t t-esc="partner.d_year" />
+										</div>
+										<div t-attf-class="col-lg-3">
+											<label class="control-label" for="section">Filière</label>
+											<br/><t t-esc="partner.section.name" />
+										</div>
+										<div t-attf-class="form-group col-lg-3">
+											<label class="control-label" for="diploma">Diplome</label>
+											<br/><t t-esc="partner.diploma.name" />
+										</div>
+										<div class="clearfix" />
 										<div class="col-md-4">
 											<div t-if="error_message" class="alert alert-danger">
 												<t t-foreach="error_message" t-as="err">
@@ -30,6 +43,7 @@
 												</t>
 											</div>
 										</div>
+										<h1>Informations personnelles</h1>
 										<div class="clearfix" />
 										<div t-attf-class="form-group #{error.get('forename') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="contact_name">Prénom</label>
@@ -71,33 +85,6 @@
                                         </select>
                                     </div>
 										<div class="clearfix" />
-										<h1>Diplome</h1>
-										<div t-attf-class="form-group #{error.get('d_year') and 'has-error' or ''} col-lg-2">
-											<label class="control-label" for="d_year">Promotion</label>
-											<input type="text" name="d_year" class="form-control" t-att-value="d_year or partner.d_year" />
-										</div>
-										<div t-attf-class="form-group #{error.get('section') and 'has-error' or ''} col-lg-3">
-											<label class="control-label" for="section">Filière</label>
-											<select name="section" class="form-control">
-												<option value="">Filière...</option>
-												<t t-foreach="sections or []" t-as="section">
-													<option t-att-value="section.id" t-att-selected="section.id == partner.section.id">
-														<t t-esc="section.name" />
-													</option>
-												</t>
-											</select>
-										</div>
-										<div t-attf-class="form-group #{error.get('diploma') and 'has-error' or ''} col-lg-3">
-											<label class="control-label" for="diploma">Diplome</label>
-											<select name="diploma" class="form-control">
-												<option value="">Type de Diplome...</option>
-												<t t-foreach="diplomas or []" t-as="diploma">
-													<option t-att-value="diploma.id" t-att-selected="diploma.id == partner.diploma.id">
-														<t t-esc="diploma.name" />
-													</option>
-												</t>
-											</select>
-										</div>
 										<div t-attf-class="form-group #{error.get('d_other') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="d_other">Autres Diplomes</label>
 											<input type="text" name="d_other" class="form-control" t-att-value="d_other or partner.d_other" />
@@ -351,7 +338,7 @@
 										</div>
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
-											<label for="pro_stage_ok">à votre email professional</label>
+											<label for="pro_stage_ok">à votre email professionel</label>
 											<input type="checkbox" style="width:20%; height:25px" name="pro_stage_ok" t-att-checked="pro_stage_ok or partner.pro_stage_ok"/>
 										</div>
 										<div class="form-group col-lg-6">
