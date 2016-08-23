@@ -49,18 +49,18 @@
 										</div>
 										<h1>Informations personnelles</h1>
 										<div class="clearfix" />
-										<div t-attf-class="form-group #{error.get('forename') and 'has-error' or ''} col-lg-4">
-											<label class="control-label" for="contact_name">Prénom</label>
-											<input type="text" name="forename" class="form-control" t-att-value="forename or partner.forename" />
+										<div t-attf-class="form-group col-lg-4">
+											<label class="control-label">Nom</label>
+											<br/><t t-esc="partner.forename" /><span>    </span><t t-esc="partner.lastname" />    <t t-esc="partner.m_name" />
 										</div>
-										<div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-lg-4">
-											<label class="control-label" for="contact_name">Nom</label>
-											<input type="text" name="lastname" class="form-control" t-att-value="lastname or partner.lastname" />
+										<!--<div t-attf-class="form-group col-lg-4">
+											<label class="control-label">Nom</label>
+											<br/><t t-esc="partner.lastname" />
 										</div>
-										<div t-attf-class="form-group #{error.get('m_name') and 'has-error' or ''} col-lg-4">
-											<label class="control-label" for="contact_name">Nom de JF</label>
-											<input type="text" name="m_name" class="form-control" t-att-value="m_name or partner.m_name" />
-										</div>
+										<div t-attf-class="form-group col-lg-4">
+											<label class="control-label">Nom de JF</label>
+											<br/><t t-esc="partner.m_name" />
+										</div>-->
 										<div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="contact_name">Titre</label>
 											<input type="text" name="x_title" class="form-control" t-att-value="x_title or partner.x_title" />
