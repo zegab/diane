@@ -15,15 +15,21 @@
 
 					<xpath expr="//label[@for='street']/../.." position="before">
                         <group>
-							<field name="gender"/>
+							<field name="gender" class="oe_inline"/>
                             <field name="forename" class="oe_inline"/>
                             <field name="lastname" class="oe_inline"/>
-							<field name="m_name"/>
-							<field name="function"/>
+							<field name="m_name" class="oe_inline"/>
+							<field name="function" class="oe_inline"/>
                         </group>
                     </xpath>
 					<field name="title" position="replace">
 						<field name="x_title"/>
+						<field name="user_ids">
+							<tree>
+								<field name="login"/>
+								<field name="login_date"/>
+							</tree>
+						</field>
 					</field>
 					<field name="website" position="replace">
 						<field name="ref" string="Matricule"/>
