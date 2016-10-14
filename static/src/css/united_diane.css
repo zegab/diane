@@ -21,8 +21,8 @@ footer {
 
 #map {
     height: 100%;
-    position: inherit !important;
-    padding-top:50px;
+    width: 100%;
+    padding-top:0px;
 }
 .breadcrumb {
     background-color:#f1ead6;
