@@ -63,6 +63,10 @@
 									<field name="hr_phone"/>
 									<field name="hr_email"/>
 								</group>
+								<group>
+									<field name="c_latitude"/>
+									<field name="c_longitude"/>
+								</group>
 							</group>
 						</page>
 						<page name="home" string="Home Address">
@@ -79,6 +83,10 @@
 									<field name="h_phone"/>
 
 									<field name="h_mobile"/>
+								</group>
+								<group>
+									<field name="h_latitude"/>
+									<field name="h_longitude"/>
 								</group>
 							</group>
 						</page>

@@ -34,6 +34,8 @@ class ResPartner(models.Model):
 	c_phone = fields.Char('Company Phone')
 	c_mobile = fields.Char('Company Mobile')
 	c_web = fields.Char('Company Website')
+	c_latitude = fields.Float('Company Latitude')
+	c_longitude = fields.Float('Company Longitude')
 	hr_name = fields.Char('HR Name')
 	hr_phone = fields.Char('HR Phone')
 	hr_email = fields.Char('HR Email')
@@ -45,6 +47,8 @@ class ResPartner(models.Model):
 	h_email = fields.Char('Home Email')
 	h_phone = fields.Char('Home Phone')
 	h_mobile = fields.Char('Home Mobile')
+	h_latitude = fields.Float('Home Latitude')
+	h_longitude = fields.Float('Home Longitude')
 	annuaire_ok = fields.Boolean('Publication in Alumni directory')
 	sponsoring_ok = fields.Boolean('Allow to contact for sponsoring requests')
 	recruitment_ok = fields.Boolean('Allow recruiters to contact me')
@@ -66,3 +70,5 @@ class ResPartnerTitle(models.Model):
 	_inherit = 'res.partner.title'
 
 	website_published = fields.Boolean('Website Published')
+
+#class GeoLocalize()
