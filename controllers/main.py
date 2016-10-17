@@ -5,12 +5,14 @@ from openerp import http
 from openerp.http import request
 from openerp import tools
 from openerp.tools.translate import _
+import random
 
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
     def show_map(self, redirect=None, **post):
         values={
             'result':{},
+            'random':random,
         }
 
         request.env.cr.execute("""
