@@ -15,12 +15,36 @@ class website_diane_account(http.Controller):
             'random':random,
         }
 
-        request.env.cr.execute("""
-            SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
-            FROM res_partner p
-            LEFT JOIN diane_section s ON p.section = s.id
-            LEFT JOIN diane_diploma d ON p.diploma = d.id
-        """,)
+        if post:
+            if post['address'] == 'a':
+                request.env.cr.execute("""
+                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
+                    FROM res_partner p
+                    LEFT JOIN diane_section s ON p.section = s.id
+                    LEFT JOIN diane_diploma d ON p.diploma = d.id
+                """,)
+            if post['address'] == 'c':
+                request.env.cr.execute("""
+                    SELECT pro_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, c_latitude AS lat, c_longitude AS lng
+                    FROM res_partner p
+                    LEFT JOIN diane_section s ON p.section = s.id
+                    LEFT JOIN diane_diploma d ON p.diploma = d.id
+                """, )
+            if post['address'] == 'h':
+                request.env.cr.execute("""
+                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, h_latitude AS lat, h_longitude AS lng
+                    FROM res_partner p
+                    LEFT JOIN diane_section s ON p.section = s.id
+                    LEFT JOIN diane_diploma d ON p.diploma = d.id
+                """, )
+            values.update({'address': post['address']})
+        else:
+            request.env.cr.execute("""
+                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
+                FROM res_partner p
+                LEFT JOIN diane_section s ON p.section = s.id
+                LEFT JOIN diane_diploma d ON p.diploma = d.id
+            """, )
 
         result = request.env.cr.dictfetchall()
         values.update({'result':result})

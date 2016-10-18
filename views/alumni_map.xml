@@ -13,28 +13,29 @@
                                     </li>
                                     <li>Map</li>
                                 </ol>
-                            </div>
-                             <div t-attf-class="form-group col-md-3">
-                                <label class="control-label" for="diploma">Adresse</label>
-                                <select name="address" class="form-control">
-                                    <option value="">Adresse...</option>
-                                    <t t-foreach="diplomas or []" t-as="diploma">
-                                        <option t-att-value="diploma.id"
-                                                t-att-selected="diploma.id == result[0]['diploma_id']">
-                                            <t t-esc="diploma.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-5 text-center" style="margin-top:25px">
-                                <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
-                                    Chercher
-                                    <span class="fa fa-long-arrow-right"/>
-                                </button>
                             </div>-->
-                            <div class="col-md-4 col-md-offset-4">
-                                <div class="warning"><strong>Les marqueurs pointent vers une adresse approximative!</strong></div>
-                            </div>
+
+                            <form action="/diane/alumni_map" method="post">
+                                <div t-attf-class="form-group col-md-3">
+                                    <label class="control-label" for="address"></label>
+                                    <select name="address" class="form-control">
+                                        <option value="a" t-att-selected="address == 'a'">Adresse actuelle</option>
+                                        <option value="c" t-att-selected="address == 'c'">Adresse de l'employeur</option>
+                                        <option value="h" t-att-selected="address == 'h'">Adresse d'origine</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5 text-center" style="margin-top:20px">
+                                    <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
+                                        Actualiser
+                                        <span class="fa fa-long-arrow-right"/>
+                                    </button>
+                                </div>
+                                <div class="col-md-4" style="margin-top:30px">
+                                    <div class="warning"><strong>Les marqueurs pointent vers une adresse approximative!</strong></div>
+                                </div>
+                            </form>
+
+
                         </div>
                     </div>
                     <div style="height:800px">
@@ -52,7 +53,7 @@
                                     var marker = new google.maps.Marker({
                                     position: {lat: <t t-esc="alumni['lat']+random.uniform(-0.12,0.12)"/>, lng: <t t-esc="alumni['lng']+random.uniform(-0.12,0.12)"/>},
                                     map: map,
-                                    title: '<t t-esc="alumni['name'] if alumni['perso_anciens_ok'] else 'Anonymous'"/>'
+                                    title: ''
                                     });
                                 </t>
                             </t>
