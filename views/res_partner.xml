@@ -15,6 +15,7 @@
 
 					<xpath expr="//label[@for='street']/../.." position="before">
                         <group>
+							<field name="self_updated" class="oe_inline"/>
 							<field name="gender" class="oe_inline"/>
                             <field name="forename" class="oe_inline"/>
                             <field name="lastname" class="oe_inline"/>

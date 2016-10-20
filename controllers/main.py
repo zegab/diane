@@ -95,7 +95,7 @@ class website_diane_account(http.Controller):
         partner = request.env['res.users'].browse(request.uid).partner_id
         values = {
             'error': {},
-            'error_message': []
+            'error_message': [],
         }
 
         countries = request.env['res.country'].sudo().search([]).sorted(key=lambda r:r.display_name)
@@ -143,7 +143,8 @@ class website_diane_account(http.Controller):
 
             values.update(post)
             if not error:
-                post.update({'zip': post.pop('zipcode', '')})
+                post.update({'zip': post.pop('zipcode', ''),'self_updated':True})
+                #raise Warning(post)
                 partner.sudo().write(post)
                 if redirect:
                     return request.redirect(redirect)

@@ -102,6 +102,7 @@ class ResPartner(models.Model):
 	date_exit = fields.Date('Exit Date')
 	failed = fields.Boolean('No Diploma!')
 	gender = fields.Selection([('m', 'M'), ('f', 'F')], string='Gender')
+	self_updated = fields.Boolean('Self Updated')
 
 
 	def geo_localize(self, cr, uid, ids, context=None):
