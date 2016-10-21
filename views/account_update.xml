@@ -19,23 +19,27 @@
 						<form action="/diane/account_update" method="post">
 
 							<div class="row oe_website_portal">
-								<div class="col-md-12">
+								<div class="col-lg-12">
 									<div class="row">
-										<h1>Diplome</h1>
-										<div t-attf-class="form-group col-lg-2">
-											<label class="control-label" for="d_year">Promotion</label>
-											<br/><t t-esc="partner.d_year" />
+										<div t-attf-class="control-label">
+											<br/><h1><strong><t t-esc="partner.forename" /><span>    </span><t t-esc="partner.lastname" />    <t t-esc="partner.m_name" /></strong></h1>
 										</div>
+										<div class="clearfix" />
+										<!--<h3>Diplome</h3>-->
 										<div t-attf-class="col-lg-3">
-											<label class="control-label" for="section">Filière</label>
-											<br/><t t-esc="partner.section.name" />
+											<!--<label class="control-label" for="section">Filière</label>-->
+											<br/><h3><strong><t t-esc="partner.section.name" /></strong></h3>
 										</div>
-										<div t-attf-class="form-group col-lg-3">
-											<label class="control-label" for="diploma">Diplome</label>
-											<br/><t t-esc="partner.diploma.name" />
+										<div t-attf-class="form-group col-lg-2">
+											<!--<label class="control-label" for="diploma">Diplome</label>-->
+											<br/><h3><strong><t t-esc="partner.diploma.name" /></strong></h3>
 										</div>
-										<div t-attf-class="form-group col-lg-4">
-											<label class="control-label" for="d_other">Autres Diplomes</label>
+										<div t-attf-class="form-group col-lg-2">
+											<!--<label class="control-label" for="d_year">Promotion</label>-->
+											<br/><h3><strong><t t-esc="partner.d_year" /></strong></h3>
+										</div>
+										<div t-attf-class="form-group col-lg-5">
+											<label class="control-label" for="d_other">Autre(s) Diplome(s)</label>
 											<input type="text" name="d_other" class="form-control" t-att-value="d_other or partner.d_other" />
 										</div>
 										<div class="clearfix" />
@@ -47,39 +51,20 @@
 												</t>
 											</div>
 										</div>
-										<h1>Informations personnelles</h1>
+										<br/><br/>
+										<h3>Informations personnelles</h3>
 										<div class="clearfix" />
-										<div t-attf-class="form-group col-lg-4">
-											<label class="control-label">Nom</label>
-											<br/><t t-esc="partner.forename" /><span>    </span><t t-esc="partner.lastname" />    <t t-esc="partner.m_name" />
-										</div>
-										<!--<div t-attf-class="form-group col-lg-4">
-											<label class="control-label">Nom</label>
-											<br/><t t-esc="partner.lastname" />
-										</div>
-										<div t-attf-class="form-group col-lg-4">
-											<label class="control-label">Nom de JF</label>
-											<br/><t t-esc="partner.m_name" />
-										</div>-->
 										<div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="contact_name">Titre</label>
 											<input type="text" name="x_title" class="form-control" t-att-value="x_title or partner.x_title" />
 										</div>
-										<div t-attf-class="form-group #{error.get('m_name') and 'has-error' or ''} col-lg-4">
-											<label class="control-label" for="contact_name">Fonction</label>
-											<input type="text" name="function" class="form-control" t-att-value="function or partner.function" />
-										</div>
-
-
-
-
 										<!--<div t-attf-class="form-group #{error.get('birthday') and 'has-error' or ''} col-lg-6">
                                         <label class="control-label" for="birthday">Birthday</label>
                                         <input type="date" name="birthday" class="form-control" t-att-value="birthday or partner.birthday" />
-                                    </div>-->
-										<div t-attf-class="form-group #{error.get('o_country_id') and 'has-error' or ''} col-lg-6">
-                                        <label class="control-label" for="o_country_id">Nationalité</label>
-                                        <select name="o_country_id" class="form-control">
+                                    	</div>-->
+										<div t-attf-class="form-group #{error.get('o_country_id') and 'has-error' or ''} col-lg-4">
+                                        <label class="control-label" for="nationality1">Nationalité 1</label>
+                                        <select name="nationality1" class="form-control">
                                             <option value="">Pays...</option>
                                             <t t-foreach="countries or []" t-as="country">
                                                 <option t-att-value="country.id" t-att-selected="country.id == partner.nationality1.id">
@@ -87,9 +72,19 @@
                                                 </option>
                                             </t>
                                         </select>
-                                    </div>
+                                    	</div>
+										<div t-attf-class="form-group #{error.get('o_country_id') and 'has-error' or ''} col-lg-4">
+                                        <label class="control-label" for="nationality2">Nationalité 2</label>
+                                        <select name="nationality2" class="form-control">
+                                            <option value="">Pays...</option>
+                                            <t t-foreach="countries or []" t-as="country">
+                                                <option t-att-value="country.id" t-att-selected="country.id == partner.nationality2.id">
+                                                    <t t-esc="country.name" />
+                                                </option>
+                                            </t>
+                                        </select>
+                                    	</div>
 										<div class="clearfix" />
-										<h1>Adresse privée</h1>
 										<div t-attf-class="form-group #{error.get('email') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="contact_name">Email</label>
 											<input type="email" name="email" class="form-control" t-att-value="email or partner.email" />
@@ -103,6 +98,7 @@
 											<input type="tel" name="mobile" class="form-control" t-att-value="mobile or partner.mobile" />
 										</div>
 
+										<div class="clearfix" />
 										<div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-lg-6">
 											<label class="control-label" for="street">Rue</label>
 											<input type="text" name="street" class="form-control" t-att-value="street or partner.street" />
@@ -134,10 +130,37 @@
 											</select>
 										</div>
 										<div class="clearfix" />
-										<h1>Adresse professionnelle</h1>
+										<div t-attf-class="form-group #{error.get('social_network') and 'has-error' or ''} col-lg-12">
+											<label class="control-label" for="social_network">Site Web ou lien vers Réseau Social</label>
+											<input type="text" name="social_network" class="form-control" t-att-value="social_network or partner.social_network" />
+										</div>
+										<div class="clearfix" />
+										<h3>Informations professionnelles</h3>
+										<div t-attf-class="form-group #{error.get('m_name') and 'has-error' or ''} col-lg-6">
+											<label class="control-label" for="contact_name">Fonction</label>
+											<input type="text" name="function" class="form-control" t-att-value="function or partner.function" />
+										</div>
 										<div t-attf-class="form-group col-lg-6">
 											<label class="control-label" for="c_name">Nom de l'Entreprise</label>
 											<input type="text" name="c_name" class="form-control" t-att-value="c_name or partner.c_name" />
+										</div>
+										<div class="clearfix" />
+										<div t-attf-class="form-group #{error.get('c_date_joined') and 'has-error' or ''} col-lg-3">
+                                        	<label class="control-label" for="c_date_joined">Depuis le</label>
+                                        	<input type="date" name="c_date_joined" class="form-control" t-att-value="c_date_joined or partner.c_date_joined" />
+                                    	</div>
+										<div class="clearfix" />
+										<div t-attf-class="form-group col-lg-4">
+											<label class="control-label" for="c_email">Email</label>
+											<input type="email" name="c_email" class="form-control" t-att-value="c_email or partner.c_email" />
+										</div>
+										<div t-attf-class="form-group col-lg-4">
+											<label class="control-label" for="c_phone">Téléphone</label>
+											<input type="tel" name="c_phone" class="form-control" t-att-value="c_phone or partner.c_phone" />
+										</div>
+										<div t-attf-class="form-group col-lg-4">
+											<label class="control-label" for="c_mobile">Mobile</label>
+											<input type="tel" name="c_mobile" class="form-control" t-att-value="c_mobile or partner.c_mobile" />
 										</div>
 										<div class="clearfix" />
 										<div t-attf-class="form-group col-lg-6">
@@ -186,25 +209,14 @@
 											<label class="control-label" for="c_nace_text">Domaine d'activité ou code NACE</label>
 											<input type="text" name="c_nace_text" class="form-control" t-att-value="c_nace_text or partner.c_nace_text" />
 										</div>
-										<div class="clearfix" />
-										<div t-attf-class="form-group col-lg-3">
-											<label class="control-label" for="c_email">Email</label>
-											<input type="email" name="c_email" class="form-control" t-att-value="c_email or partner.c_email" />
-										</div>
-										<div t-attf-class="form-group col-lg-3">
-											<label class="control-label" for="c_phone">Téléphone</label>
-											<input type="tel" name="c_phone" class="form-control" t-att-value="c_phone or partner.c_phone" />
-										</div>
-										<div t-attf-class="form-group col-lg-3">
-											<label class="control-label" for="c_mobile">Mobile</label>
-											<input type="tel" name="c_mobile" class="form-control" t-att-value="c_mobile or partner.c_mobile" />
-										</div>
-										<div t-attf-class="form-group col-lg-3">
+
+										<div t-attf-class="form-group col-lg-6">
 											<label class="control-label" for="c_web">Site Web</label>
 											<input type="text" name="c_web" class="form-control" t-att-value="c_web or partner.c_web" />
 										</div>
 										<div class="clearfix" />
-										<h1>Contact RH de votre employeur</h1>
+
+										<h3>Contact RH de votre employeur</h3>
 										<div t-attf-class="form-group col-lg-4">
 											<label class="control-label" for="hr_name">Nom</label>
 											<input type="text" name="hr_name" class="form-control" t-att-value="hr_name or partner.hr_name" />
@@ -218,7 +230,7 @@
 											<input type="email" name="hr_email" class="form-control" t-att-value="hr_email or partner.hr_email" />
 										</div>
 										<div class="clearfix" />
-										<h1>Adresse d'Origine</h1>
+										<h3>Adresse d'Origine/de Contact</h3>
 										<div t-attf-class="form-group col-lg-6">
 											<label class="control-label" for="h_phone">Téléphone</label>
 											<input type="tel" name="h_phone" class="form-control" t-att-value="h_phone or partner.h_phone" />
@@ -258,11 +270,9 @@
 												</t>
 											</select>
 										</div>
-
-
-
 										<div class="clearfix" />
-										<h1>Réseaux sociaux</h1>
+
+										<!--<h1>Réseaux sociaux</h1>
 										<div t-attf-class="form-group #{error.get('xing') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="xing">Page Xing</label>
 											<input type="text" name="xing" class="form-control" t-att-value="xing or partner.xing" />
@@ -274,10 +284,10 @@
 										<div t-attf-class="form-group #{error.get('facebook') and 'has-error' or ''} col-lg-4">
 											<label class="control-label" for="facebook">Page Facebook</label>
 											<input type="text" name="facebook" class="form-control" t-att-value="facebook or partner.facebook" />
-										</div>
-										<h1>Options de confidentialité</h1>
-										<div class="col-lg-6">
-											<h2>Publication dans l'Annuaire des Anciens</h2>
+										</div>-->
+										<h2>Options de confidentialité</h2>
+										<div class="col-lg-12">
+											<h3>Publication dans l'Annuaire des Anciens</h3>
 											<span>
                                             En complément des informations publiques qui sont:<br/>
                                                    1) votre nom et votre prénom<br/>
@@ -300,8 +310,8 @@
 											<input type="checkbox" style="width:20%; height:25px" name="pro_annuaire_ok" t-att-checked="pro_annuaire_ok or partner.pro_annuaire_ok"/>
 										</div>
 										<div class="clearfix"/>
-										<div class="col-lg-6">
-											<h2>Autorisations pour être contacté pour des offres d'emplois</h2>
+										<div class="col-lg-12">
+											<h3>Autorisations pour être contacté pour des offres d'emplois</h3>
 											<span>Nous publions sur notre site des offres d'emplois et de stage qui nous sont communiqués par les DRH de sociétés et les chasseurs de têtes.<br/>
 											Nous proposerons également à ces professionnels un service plus performant consistant à vous adressez directement l'offre d'emploi au travers de notre système tout en respectant votre anonymat.<br/>
 											Autorisez vous l'Association à permettre aux professionnels de vous adressez des offres d'emploi:</span>
@@ -312,8 +322,8 @@
 											<input type="checkbox" style="width:20%; height:25px" name="hr_contact_ok" t-att-checked="hr_contact_ok or partner.hr_contact_ok"/>
 										</div>
 										<div class="clearfix"/>
-										<div class="col-lg-6">
-											<h2>Autorisations pour les autres Anciens / Visibilité sur la Carte</h2>
+										<div class="col-lg-12">
+											<h3>Autorisations pour les autres Anciens / Visibilité sur la Carte</h3>
 											<span>
                                             Les anciens qui comme vous participent à l'actualisation de la BDD y auront accès et y trouveront les informations publiques vous concernant (voir publication dans l'Annuaire), soit par une recherche ciblée, soit en navigant sur la carte et en cliquant sur un emplacement. En complément de ces informations publiques autorisez vous l'Association à diffuser aux Anciens les informations suivantes:
 											</span>
@@ -328,8 +338,8 @@
 											<input type="checkbox" style="width:20%; height:25px" name="pro_anciens_ok" t-att-checked="pro_anciens_ok or partner.pro_anciens_ok"/>
 										</div>
 										<div class="clearfix"/>
-										<div class="col-lg-6">
-											<h2>Autorisation pour les recherches de stages</h2>
+										<div class="col-lg-12">
+											<h3>Autorisation pour les recherches de stages</h3>
 											<span>
                                             Nous avons lié un partenariat avec un projet étudiant de fin d'études devant faciliter la recherche de stage pour les Isfatessiens de 3ième année.<br/>
 											Autorisez vous l'Association à permettre à ce projet de vous adresser des demandes de stages :
@@ -349,8 +359,8 @@
 									</div>
 									<div class="clearfix"/>
 									<div class="col-md-12 text-center">
-										<button type="submit" class="btn btn-default btn-primary mb32 pull-left">
-											Sauvegarder
+										<button type="submit" class="col-md-12 btn btn-default btn-primary mb32 pull-left">
+											<strong>Sauvegarder</strong>
 											<span class="fa fa-long-arrow-right" />
 										</button>
 									</div>

@@ -47,6 +47,7 @@ class ResPartner(models.Model):
 	m_name = fields.Char('Maiden Name')
 	x_title = fields.Char('Title')
 	birthday = fields.Date('Birthday')
+	social_network = fields.Char('Social Network Link')
 	facebook = fields.Char('Facebook Page')
 	xing = fields.Char('Xing Page')
 	linkedin = fields.Char('LinkedIn Page')

@@ -15,7 +15,7 @@
 
 					<xpath expr="//label[@for='street']/../.." position="before">
                         <group>
-							<field name="self_updated" class="oe_inline"/>
+							<field name="self_updated" class="oe_inline" readonly="True"/>
 							<field name="gender" class="oe_inline"/>
                             <field name="forename" class="oe_inline"/>
                             <field name="lastname" class="oe_inline"/>
@@ -54,6 +54,7 @@
 									<field name="c_country_id"/>
 								</group>
 								<group>
+									<field name="c_date_joined"/>
 									<field name="c_email"/>
 									<field name="c_phone"/>
 									<field name="c_mobile"/>
@@ -113,6 +114,7 @@
 							<group string="Nationalities, Languages">
 								<!--<field name="o_country_id"/>-->
 								<field name="nationality1"/>
+								<field name="nationality2"/>
 								<field name="lang"/>
 								<!--<field name="nationality2"/>
 								<field name="language1"/>

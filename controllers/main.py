@@ -122,6 +122,8 @@ class website_diane_account(http.Controller):
             #activate if birthday is needed
             #if post['birthday'] == "":
             #        post['birthday']=None
+            if post['c_date_joined'] == "":
+                    post['c_date_joined']=None
             if not 'recruitment_ok' in post:
                 post['recruitment_ok']=False
             if not 'hr_contact_ok' in post:
