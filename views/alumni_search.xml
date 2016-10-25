@@ -75,16 +75,42 @@
                           <div class="modal-dialog">
 
                             <!-- Modal content-->
-                            <div class="modal-content">
+                            <div class="modal-content col-md-12">
                               <div class="modal-header">
                                 <!--<button type="button" class="close" data-dismiss="modal">Envoi</button>-->
-                                <h4 class="modal-title">Modal Header</h4>
+                                <h4 class="modal-title">Votre Message</h4>
                               </div>
-                              <div class="modal-body">
-                                <p>Some text in the modal.</p>
+                              <div class="modal-body" style="min-height: 190px;">
+                                 <div t-attf-class="form-group">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" name="msg_body" style="min-height: 180px" required="True"></textarea>
+                                    </div>
+                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-default col-md-2" data-dismiss="modal">Fermer</button>
+                                  <button type="button" class="btn btn-default btn-primary col-md-9" style="float:right" data-dismiss="modal" data-toggle="modal" data-target="#confirmation">Envoyer</button>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div id="confirmation" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content col-md-12">
+                              <div class="modal-header">
+                                <!--<button type="button" class="close" data-dismiss="modal">Envoi</button>-->
+                                <h4 class="modal-title">Message envoyé</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="alert alert-success">
+                                    <p>Votre message a été envoyé avec succès!</p>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-default col-md-2" data-dismiss="modal">Fermer</button>
                               </div>
                             </div>
 
