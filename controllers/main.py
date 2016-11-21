@@ -75,7 +75,7 @@ class website_diane_account(http.Controller):
                     if alumni:
                         alumni_ids = [a.id for a in alumni]
                         request.env.cr.execute("""
-                            SELECT forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, email
+                            SELECT forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, email, p.id
                             FROM res_partner p
                             INNER JOIN diane_section s ON p.section = s.id
                             INNER JOIN diane_diploma d ON p.diploma = d.id
@@ -189,3 +189,32 @@ class website_diane_account(http.Controller):
             error_message.append(_('Some required fields are empty.'))
 
         return error, error_message
+
+
+@http.route(['/diane/send_message'], type='http', auth='user', website=True)
+def send_message(self, redirect=None, **post):
+    partner = request.env['res.users'].browse(request.uid).partner_id
+    template = int(env['ir.config_parameter'].get_param("alumni_message_template_id"))
+
+    values = {
+        'error': {},
+        'error_message': [],
+    }
+
+
+    if post:
+        if post['msg_body']:
+
+            mail_values = {
+                'subject': "% sent you a message!"%(partner.name),
+                'body': post['msg_body'],
+                'partner_ids': partner.id,
+                'author_id': partner.id,
+                'email_from': partner.email,
+                'record_name': 'mail.mail',
+                'no_auto_thread': False,
+                'auto_delete': False,
+                #'recipient_ids': [(4, Must come from modal)
+            }
+
+
