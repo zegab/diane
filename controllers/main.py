@@ -204,6 +204,8 @@ def send_message(self, redirect=None, **post):
 
     if post:
         if post['msg_body']:
+            rcp=[partner.id]
+            rcp.append(post['p_id'])
 
             mail_values = {
                 'subject': "% sent you a message!"%(partner.name),
@@ -214,7 +216,8 @@ def send_message(self, redirect=None, **post):
                 'record_name': 'mail.mail',
                 'no_auto_thread': False,
                 'auto_delete': False,
-                #'recipient_ids': [(4, Must come from modal)
+                'recipient_ids': [(4, rcp)],
             }
+            raise Warning(mail_values)
 
 

@@ -72,7 +72,7 @@
                 <div id="wrap">
                     <div class="container">
                         <div id="message" class="modal fade" role="dialog">
-                          <div class="modal-dialog">
+                          <div class="modal-dialog" id="sendmessage">
 
                             <!-- Modal content-->
                             <form action="/diane/send_message" method="post">
@@ -84,8 +84,9 @@
                               <div class="modal-body" style="min-height: 190px;">
                                  <div><span>De: </span><t t-esc="result[0]['email']"/></div>
                                  <div t-attf-class="form-group">
+                                     <input type="hidden" class="form-control" id="p_id"/>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" name="msg_body" style="min-height: 180px" required="True"></input>
+                                        <input type="text" class="form-control" name="msg_body" style="min-height: 180px" required="True"/>
                                     </div>
                                  </div>
                               </div>
@@ -189,7 +190,7 @@
                                     <td><t t-esc="alumni['d_year']"/></td>
                                     <td>
                                         <t t-if="alumni['email']">
-                                            <button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" data-target="#message" t-att-value="alumni['id']">Contact</button>
+                                            <button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" data-target="#message" t-att-data-id="alumni['id']" id="sendmessage">Contact</button>
                                         </t>
                                     </td>
                                 </tr>
