@@ -217,7 +217,9 @@ def send_message(self, redirect=None, **post):
                 'no_auto_thread': False,
                 'auto_delete': False,
                 'recipient_ids': [(4, rcp)],
+                #one mail 
             }
-            raise Warning(mail_values)
+            values.update({'message': "Votre message a été envoyé avec succès!"})
+            return request.website.render("diane.alumni_search", values)
 
 
