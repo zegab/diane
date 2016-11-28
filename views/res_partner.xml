@@ -126,7 +126,7 @@
 								<field name="linkedin"/>
 							</group>
 							<group>
-								<field name="dead"/>
+								<field name="deceased"/>
 							</group>
 						</page>
 						<page name="dates" string="Dates">
