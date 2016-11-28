@@ -104,6 +104,7 @@ class ResPartner(models.Model):
 	failed = fields.Boolean('No Diploma!')
 	gender = fields.Selection([('m', 'M'), ('f', 'F')], string='Gender')
 	self_updated = fields.Boolean('Self Updated')
+	dead = fields.Boolean('Dead')
 
 
 	def geo_localize(self, cr, uid, ids, context=None):
