@@ -64,8 +64,9 @@ class website_diane_account(http.Controller):
             'result':{},
             'message':"",
         }
-
-        if post:
+        import pdb; pdb.set_trace()
+        #continue here, handle error_message coming from message post
+        if post and 'msg_body' not in post:
                 diploma = int(post['diploma']) if post['diploma'].isdigit() else False
                 section = int(post['section']) if post['section'].isdigit() else False
                 d_year = int(post['d_year']) if post['d_year'].isdigit() else False
@@ -75,7 +76,19 @@ class website_diane_account(http.Controller):
                     if alumni:
                         alumni_ids = [a.id for a in alumni]
                         request.env.cr.execute("""
-                            SELECT forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, email, p.id
+                            SELECT
+                            forename,
+                            lastname,
+                            m_name,
+                            s.name AS section,
+                            section AS section_id,
+                            d.name AS diploma,
+                            diploma AS diploma_id,
+                            d_year,
+                            p.id,
+                            CASE WHEN p.email IS NOT NULL THEN True
+                                ELSE False
+                                END AS has_email
                             FROM res_partner p
                             INNER JOIN diane_section s ON p.section = s.id
                             INNER JOIN diane_diploma d ON p.diploma = d.id
@@ -191,35 +204,36 @@ class website_diane_account(http.Controller):
         return error, error_message
 
 
-@http.route(['/diane/send_message'], type='http', auth='user', website=True)
-def send_message(self, redirect=None, **post):
-    partner = request.env['res.users'].browse(request.uid).partner_id
-    template = int(env['ir.config_parameter'].get_param("alumni_message_template_id"))
+    @http.route(['/diane/send_message'], type='http', auth='user', website=True)
+    def send_message(self, redirect=None, **post):
+        partner = request.env['res.users'].browse(request.uid).partner_id
+        #template = int(env['ir.config_parameter'].get_param("alumni_message_template_id"))
 
-    values = {
-        'error': {},
-        'error_message': [],
-    }
+        values = {
+            'error': {},
+            'error_message': [],
+        }
+        #raise Warning('test')
 
+        if post:
+            if post['msg_body']:
+                rcp=[partner.id]
+                rcp.append(post['p_id'])
 
-    if post:
-        if post['msg_body']:
-            rcp=[partner.id]
-            rcp.append(post['p_id'])
-
-            mail_values = {
-                'subject': "% sent you a message!"%(partner.name),
-                'body': post['msg_body'],
-                'partner_ids': partner.id,
-                'author_id': partner.id,
-                'email_from': partner.email,
-                'record_name': 'mail.mail',
-                'no_auto_thread': False,
-                'auto_delete': False,
-                'recipient_ids': [(4, rcp)],
-                #one mail 
-            }
-            values.update({'message': "Votre message a été envoyé avec succès!"})
-            return request.website.render("diane.alumni_search", values)
+                mail_values = {
+                    'subject': "% sent you a message!"%(partner.name),
+                    'body': post['msg_body'],
+                    'partner_ids': partner.id,
+                    'author_id': partner.id,
+                    'email_from': partner.email,
+                    'record_name': 'mail.mail',
+                    'no_auto_thread': False,
+                    'auto_delete': False,
+                    'recipient_ids': [(4, rcp)],
+                    #one mail
+                }
+                values.update({'message': "Votre message a été envoyé avec succès!"})
+                #return request.website.render("diane.alumni_search", values)
+                return request.website.render("diane.alumni_search",values)
 
 
