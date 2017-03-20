@@ -125,6 +125,9 @@
 								<field name="xing"/>
 								<field name="linkedin"/>
 							</group>
+							<group>
+								<field name="deceased"/>
+							</group>
 						</page>
 						<page name="dates" string="Dates">
 							<group>
