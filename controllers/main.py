@@ -64,7 +64,7 @@ class website_diane_account(http.Controller):
             'result':{},
             'message':"",
         }
-        import pdb; pdb.set_trace()
+
         #continue here, handle error_message coming from message post
         if post and 'msg_body' not in post:
                 diploma = int(post['diploma']) if post['diploma'].isdigit() else False
@@ -207,33 +207,28 @@ class website_diane_account(http.Controller):
     @http.route(['/diane/send_message'], type='http', auth='user', website=True)
     def send_message(self, redirect=None, **post):
         partner = request.env['res.users'].browse(request.uid).partner_id
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
         #template = int(env['ir.config_parameter'].get_param("alumni_message_template_id"))
 
         values = {
             'error': {},
             'error_message': [],
+            'sections': sections,
+            'diplomas': diplomas,
+            'partner': partner,
         }
         #raise Warning('test')
 
         if post:
             if post['msg_body']:
                 rcp=[partner.id]
-                rcp.append(post['p_id'])
+                rcp.append(int(post['p_id']))
 
-                mail_values = {
-                    'subject': "% sent you a message!"%(partner.name),
-                    'body': post['msg_body'],
-                    'partner_ids': partner.id,
-                    'author_id': partner.id,
-                    'email_from': partner.email,
-                    'record_name': 'mail.mail',
-                    'no_auto_thread': False,
-                    'auto_delete': False,
-                    'recipient_ids': [(4, rcp)],
-                    #one mail
-                }
+                template = request.env.ref('diane.email_template_alumni_contact')
+                template.with_context(lang=partner.lang).send_mail(rcp[1], force_send=False, raise_exception=True)
+
                 values.update({'message': "Votre message a été envoyé avec succès!"})
-                #return request.website.render("diane.alumni_search", values)
                 return request.website.render("diane.alumni_search",values)
 
 

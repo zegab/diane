@@ -1,0 +1,13 @@
+<openerp>
+    <data>
+        <!-- Email tempalte -->
+        <record id="email_template_alumni_contact" model="email.template">
+            <field name="name">Alumni Contact</field>
+            <field name="email_from">info@isfates-dfhi-alumni.org</field>
+            <field name="subject">Un ancien ISFATESsien vous a envoyé un message!</field>
+            <field name="email_to">${(object.email or '')|safe}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="body_html">Bonjour...</field>
+        </record>
+    </data>
+</openerp>

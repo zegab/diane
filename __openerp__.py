@@ -18,7 +18,7 @@
     #'category': 'DIANE',
     'version': '0.1',
 
-    'depends': ['base','website','contacts','crm','association','website_blog','mass_mailing'],
+    'depends': ['base','website','contacts','crm','association','website_blog','mass_mailing','mail'],
 
     'data': [
         'views/res_partner.xml',
@@ -27,6 +27,7 @@
         'views/website_menu.xml',
         'views/account_update.xml',
         'views/alumni_search.xml',
+        'views/alumni_contact.xml',
         'views/alumni_map.xml',
     ],
     'demo': [],
