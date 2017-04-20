@@ -183,7 +183,7 @@
                                              <div t-attf-class="form-group">
                                                  <input type="hidden" class="form-control" name="p_id" t-att-value="alumni['id']"/>
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" name="msg_body" style="min-height: 180px" required="True"/>
+                                                    <textarea class="form-control" name="msg_body" style="min-height: 180px" required="True"/>
                                                 </div>
                                              </div>
                                           </div>

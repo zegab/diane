@@ -4,10 +4,20 @@
         <record id="email_template_alumni_contact" model="email.template">
             <field name="name">Alumni Contact</field>
             <field name="email_from">info@isfates-dfhi-alumni.org</field>
-            <field name="subject">Un ancien ISFATESsien vous a envoyé un message!</field>
+            <field name="subject">Un ancien ISFATESsien vous a envoyé un message</field>
             <field name="email_to">${(object.email or '')|safe}</field>
+            <field name="reply_to">${ctx['from_email']}</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="body_html">Bonjour...</field>
+            <field name="body_html"><![CDATA[
+                <p>Cher ${object.name},</p><br/>
+                <p><strong>${ctx['from_name']}</strong> vous a envoyé le message suivant par le biais du site des <a href="https://www.isfates-dfhi-alumni.org">Anciens Élèves de l'ISFATES</a></p>
+                <br/>
+                --------------------------------<br/>
+                <p>${ctx['body']}</p>
+                --------------------------------<br/>
+                <br/>
+                <p><a href="www.isfates-dfhi-alumni.org">https://www.isfates-dfhi-alumni.org</a></p>
+            ]]></field>
         </record>
     </data>
 </openerp>

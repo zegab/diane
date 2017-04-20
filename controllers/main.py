@@ -222,11 +222,18 @@ class website_diane_account(http.Controller):
 
         if post:
             if post['msg_body']:
-                rcp=[partner.id]
-                rcp.append(int(post['p_id']))
-
-                template = request.env.ref('diane.email_template_alumni_contact')
-                template.with_context(lang=partner.lang).send_mail(rcp[1], force_send=False, raise_exception=True)
+                send_to = request.env['res.partner'].sudo().browse(int(post['p_id']))
+                try:
+                    template = request.env.ref('diane.email_template_alumni_contact').sudo()
+                    template.with_context(
+                        lang=send_to.lang,
+                        body=post['msg_body'],
+                        from_email = partner.email,
+                        from_name = partner.name,
+                    ).send_mail(send_to.id, force_send=False, raise_exception=True)
+                except:
+                    values.update({'message': "Échec de l'envoi!"})
+                    return request.website.render("diane.alumni_search", values)
 
                 values.update({'message': "Votre message a été envoyé avec succès!"})
                 return request.website.render("diane.alumni_search",values)
