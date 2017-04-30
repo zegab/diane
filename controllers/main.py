@@ -65,7 +65,6 @@ class website_diane_account(http.Controller):
             'message':"",
         }
 
-        #continue here, handle error_message coming from message post
         if post and 'msg_body' not in post:
                 diploma = int(post['diploma']) if post['diploma'].isdigit() else False
                 section = int(post['section']) if post['section'].isdigit() else False
@@ -173,14 +172,6 @@ class website_diane_account(http.Controller):
         error = dict()
         error_message = []
 
-        #mandatory_billing_fields = ["name", "phone", "email", "street2", "city", "country_id"]
-
-        # Validation
-        #for field_name in mandatory_billing_fields:
-        #    if not data.get(field_name):
-        #        error[field_name] = 'missing'
-
-
         # email validation
         if data.get('email') and not tools.single_email_re.match(data.get('email')):
             error["email"] = 'error'
@@ -228,14 +219,28 @@ class website_diane_account(http.Controller):
                     template.with_context(
                         lang=send_to.lang,
                         body=post['msg_body'],
-                        from_email = partner.email,
-                        from_name = partner.name,
-                    ).send_mail(send_to.id, force_send=False, raise_exception=True)
+                        send_to_email = send_to.email,
+                        send_to_name = send_to.name,
+                        send_to_id= send_to.id,
+                    ).send_mail(partner.id, force_send=False, raise_exception=True)
                 except:
                     values.update({'message': "Échec de l'envoi!"})
                     return request.website.render("diane.alumni_search", values)
 
                 values.update({'message': "Votre message a été envoyé avec succès!"})
                 return request.website.render("diane.alumni_search",values)
+
+    @http.route(['/diane/alumni_message'], type='http', auth='user', website=True)
+    def message_read(self, redirect=None, **post):
+        partner = request.env['res.users'].browse(request.uid).partner_id
+        messages= request.env['mail.mail'].sudo().search([('model','=','res.partner'),('res_id','=',partner.id)])
+
+        values={
+            'messages': messages,
+            'partner': partner,
+            'message':"",
+        }
+        return request.website.render("diane.alumni_message", values)
+
 
 

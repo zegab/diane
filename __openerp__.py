@@ -28,6 +28,7 @@
         'views/account_update.xml',
         'views/alumni_search.xml',
         'views/alumni_contact.xml',
+        'views/alumni_message.xml',
         'views/alumni_map.xml',
     ],
     'demo': [],
