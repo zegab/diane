@@ -11,7 +11,7 @@
             <field name="email_cc">${(object.email or '')|safe}</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="body_html"><![CDATA[
-                <p>Cher ${ctx['send_to_name']},${ctx['send_to_id']}</p><br/>
+                <p>Cher ${ctx['send_to_name']},</p><br/>
                 <p><strong>${object.name}</strong> vous a envoyé le message suivant par le biais du site des <a href="https://www.isfates-dfhi-alumni.org">Anciens Élèves de l'ISFATES</a></p>
                 <br/>
                 --------------------------------<br/>

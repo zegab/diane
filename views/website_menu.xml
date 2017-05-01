@@ -10,6 +10,15 @@
 					<li>
 						<a href="/diane/account_update" role="menuitem">Actualiser mes Données</a>
 					</li>
+					<li>
+						<a href="/diane/alumni_message" role="menuitem">Mes messages envoyés</a>
+					</li>
+					<li>
+						<a href="/diane/alumni_search" role="menuitem">Recherche d'Anciens</a>
+					</li>
+					<li>
+						<a href="/diane/alumni_map" role="menuitem">Carte des Anciens</a>
+					</li>
 				</xpath>
 			</field>
 		</record>
