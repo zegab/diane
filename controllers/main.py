@@ -49,7 +49,7 @@ class website_diane_account(http.Controller):
             values.update({'address': post['address']})
         else:
             request.env.cr.execute("""
-                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id.
+                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id,
                 CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email
@@ -235,11 +235,17 @@ class website_diane_account(http.Controller):
                         send_to_id= send_to.id,
                     ).send_mail(partner.id, force_send=False, raise_exception=True)
                 except:
-                    values.update({'message': "Échec de l'envoi!"})
+                    values.update({'message': "Échec de l'envoi. Veuillez utiliser le formulaire de contact pour nous faire remonter le problème."})
                     return request.website.render("diane.alumni_search", values)
 
                 values.update({'message': "Votre message a été envoyé avec succès!"})
-                return request.website.render("diane.alumni_message",values)
+                messages = request.env['mail.mail'].sudo().search(
+                    [('model', '=', 'res.partner'), ('res_id', '=', partner.id)])
+                values.update({
+                    'messages': messages,
+                    'partner': partner,
+                })
+                return request.website.render("diane.alumni_message", values)
 
     @http.route(['/diane/alumni_message'], type='http', auth='user', website=True)
     def message_read(self, redirect=None, **post):
@@ -249,7 +255,6 @@ class website_diane_account(http.Controller):
         values={
             'messages': messages,
             'partner': partner,
-            'message':"",
         }
         return request.website.render("diane.alumni_message", values)
 
