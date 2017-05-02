@@ -2,6 +2,10 @@
 Thumbs.db
 ehthumbs.db
 
+# dotfiles
+.*
+!.gitignore
+
 # Folder config file
 Desktop.ini
 
@@ -51,3 +55,5 @@ Temporary Items
 .apdisk
 .idea/workspace.xml
 .idea/workspace.xml
+.idea/misc.xml
+.idea/misc.xml

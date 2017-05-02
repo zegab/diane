@@ -40,6 +40,38 @@
                     </div>
                     <div style="height:800px">
                         <div id="map"/>
+                        <t t-foreach="result or []" t-as="alumni">
+                            <div t-att-id="'message'+str(alumni['id'])" class="modal fade" role="dialog">
+                                      <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <form action="/diane/send_message" method="post">
+                                        <div class="modal-content col-md-12">
+                                          <div class="modal-header">
+                                            <h4 class="modal-title">Votre Message</h4>
+                                          </div>
+                                          <div class="modal-body" style="min-height: 230px;">
+                                             <div><span>De: </span><t t-esc="user_id.email"/></div>
+                                             <div t-attf-class="form-group">
+                                                 <input type="hidden" class="form-control" name="p_id" t-att-value="alumni['id']"/>
+                                                <div class="col-md-12">
+                                                    <textarea class="form-control" name="msg_body" style="min-height: 180px" required="True"/>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-default col-md-2" data-dismiss="modal">Fermer</button>
+                                              <!--<button type="submit" class="btn btn-default btn-primary col-md-9" style="float:right" data-dismiss="modal" data-toggle="modal">Envoyer</button>-->
+                                              <button type="submit" class="btn btn-default btn-primary col-md-9" style="float:right">Envoyer</button>
+                                          </div>
+                                        </div>
+                                        </form>
+
+
+                                      </div>
+                                    </div>
+                        </t>
+
                         <script type="text/javascript">
                             var map;
                             function initMap() {
@@ -50,11 +82,32 @@
                             <t t-foreach="result or []" t-as="alumni">
                                 <t t-if="alumni['lat'] and alumni['lng']">
 
+                                    var contentString = '<div id="content">'+
+                                    '<t t-esc="alumni['section']"/><br/>'+
+                                    '<t t-esc="alumni['diploma']"/><br/>'+
+                                    '<t t-esc="alumni['d_year']"/><br/>'+
+                                    '<t t-if="alumni['has_email']">'+
+                                    '<button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" t-att-data-target="'#message'+str(alumni['id'])">Contact</button>'+
+                                    '</t></div>';
+
+                                    var myinfowindow = new google.maps.InfoWindow({
+                                    content: contentString
+                                    });
+
                                     var marker = new google.maps.Marker({
                                     position: {lat: <t t-esc="alumni['lat']+random.uniform(-0.12,0.12)"/>, lng: <t t-esc="alumni['lng']+random.uniform(-0.12,0.12)"/>},
                                     map: map,
-                                    title: ''
+                                    title: '',
+                                    infowindow: myinfowindow,
                                     });
+
+                                    google.maps.event.addListener(marker, 'click', function() {
+                                    this.infowindow.open(map, this);
+                                    });
+
+
+
+
                                 </t>
                             </t>
                             }

@@ -18,21 +18,30 @@ class website_diane_account(http.Controller):
         if post:
             if post['address'] == 'a':
                 request.env.cr.execute("""
-                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
+                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id,
+                    CASE WHEN p.email IS NOT NULL THEN True
+                                ELSE False
+                                END AS has_email
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
                 """,)
             if post['address'] == 'c':
                 request.env.cr.execute("""
-                    SELECT pro_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, c_latitude AS lat, c_longitude AS lng
+                    SELECT pro_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, c_latitude AS lat, c_longitude AS lng, p.id,
+                    CASE WHEN p.email IS NOT NULL THEN True
+                                ELSE False
+                                END AS has_email
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
                 """, )
             if post['address'] == 'h':
                 request.env.cr.execute("""
-                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, h_latitude AS lat, h_longitude AS lng
+                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, h_latitude AS lat, h_longitude AS lng, p.id,
+                    CASE WHEN p.email IS NOT NULL THEN True
+                                ELSE False
+                                END AS has_email
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
@@ -40,7 +49,10 @@ class website_diane_account(http.Controller):
             values.update({'address': post['address']})
         else:
             request.env.cr.execute("""
-                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng
+                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id.
+                CASE WHEN p.email IS NOT NULL THEN True
+                                ELSE False
+                                END AS has_email
                 FROM res_partner p
                 LEFT JOIN diane_section s ON p.section = s.id
                 LEFT JOIN diane_diploma d ON p.diploma = d.id
@@ -209,7 +221,6 @@ class website_diane_account(http.Controller):
             'diplomas': diplomas,
             'partner': partner,
         }
-        #raise Warning('test')
 
         if post:
             if post['msg_body']:
@@ -228,7 +239,7 @@ class website_diane_account(http.Controller):
                     return request.website.render("diane.alumni_search", values)
 
                 values.update({'message': "Votre message a été envoyé avec succès!"})
-                return request.website.render("diane.alumni_search",values)
+                return request.website.render("diane.alumni_message",values)
 
     @http.route(['/diane/alumni_message'], type='http', auth='user', website=True)
     def message_read(self, redirect=None, **post):
