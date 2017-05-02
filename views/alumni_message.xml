@@ -34,10 +34,10 @@
                                     <td><t t-esc="msg['create_date']"/></td>
                                     <td>
                                         <t t-if="msg['recipient_ids']">
-                                            <t t-esc="[str(r.name) for r in msg['recipient_ids']][0]"/>
+                                            <t t-esc="[r.name for r in msg['recipient_ids']][0]"/>
                                         </t>
                                     </td>
-                                    <td><t t-esc="msg['body_html']"/></td>
+                                    <td><t t-raw="msg['body_html']"/></td>
                                 </tr>
                             </table>
                         </div>
