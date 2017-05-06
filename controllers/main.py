@@ -10,12 +10,50 @@ import random
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
     def show_map(self, redirect=None, **post):
+        partner = request.env['res.users'].browse(request.uid).partner_id
+        sections = request.env['diane.section'].sudo().search([])
+        diplomas = request.env['diane.diploma'].sudo().search([])
+
         values={
+            'sections': sections,
+            'diplomas': diplomas,
+            'partner': partner,
             'result':{},
-            'random':random,
+            'message':"",
+            'random': random,
+            'default_diploma': partner.diploma.id,
+            'default_section': partner.section.id,
+            'default_d_year': partner.d_year,
         }
 
         if post:
+            diploma = int(post['diploma']) if post['diploma'].isdigit() else False
+            section = int(post['section']) if post['section'].isdigit() else False
+            d_year = int(post['d_year']) if post['d_year'].isdigit() else False
+
+            values.update({
+                'default_diploma': diploma,
+                'default_section': section,
+                'default_d_year': d_year,
+            })
+
+            search_domain = []
+
+            if d_year:
+                search_domain.append(('d_year','=',d_year))
+            if diploma:
+                search_domain.append(('diploma', '=', diploma))
+            if section:
+                search_domain.append(('section', '=', section))
+
+
+            filtered = request.env['res.partner'].sudo().search(search_domain)
+            if filtered:
+                p_ids = [p.id for p in filtered]
+            else:
+                p_ids = [p.id for p in request.env['res.partner'].sudo().search([('alumni', '=', True)])]
+
+
             if post['address'] == 'a':
                 request.env.cr.execute("""
                     SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id,
@@ -25,8 +63,8 @@ class website_diane_account(http.Controller):
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
-                    WHERE p.alumni IS True
-                """,)
+                    WHERE p.id IN %s
+                """,[tuple(p_ids)])
             if post['address'] == 'c':
                 request.env.cr.execute("""
                     SELECT pro_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, c_latitude AS lat, c_longitude AS lng, p.id,
@@ -36,8 +74,8 @@ class website_diane_account(http.Controller):
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
-                    WHERE p.alumni IS True
-                """, )
+                    WHERE p.id IN %s
+                """,[tuple(p_ids)])
             if post['address'] == 'h':
                 request.env.cr.execute("""
                     SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, h_latitude AS lat, h_longitude AS lng, p.id,
@@ -47,8 +85,8 @@ class website_diane_account(http.Controller):
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
-                    WHERE p.alumni IS True
-                """, )
+                    WHERE p.id IN %s
+                """,[tuple(p_ids)])
             values.update({'address': post['address']})
         else:
             request.env.cr.execute("""
