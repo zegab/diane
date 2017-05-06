@@ -18,7 +18,7 @@
     #'category': 'DIANE',
     'version': '0.1',
 
-    'depends': ['base','website','contacts','crm','association','website_blog','mass_mailing'],
+    'depends': ['base','website','contacts','crm','association','website_blog','mass_mailing','hr_recruitment'],
 
     'data': [
         'views/res_partner.xml',

@@ -28,3 +28,11 @@ class NACE(models.Model):
 class Language(models.Model):
     _name = 'diane.language'
     name = fields.Char('Language', translate=True)
+
+class hr_job(models.Model):
+    _name = 'hr.job'
+    _inherit = 'hr.job'
+
+    _defaults = {
+        'address_id': False
+    }
