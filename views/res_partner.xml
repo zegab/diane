@@ -126,6 +126,10 @@
 								<field name="xing"/>
 								<field name="linkedin"/>
 							</group>
+							<group string="Alumni Contact">
+								<field name="messages_sent" readonly="1"/>
+								<field name="messages_limit"/>
+							</group>
 							<group>
 								<field name="deceased"/>
 							</group>
@@ -133,7 +137,7 @@
 						<page name="dates" string="Dates">
 							<group>
 								<field name="date_entry"/>
-								<field name="date_exit"/>-->
+								<field name="date_exit"/>
 							</group>
 						</page>
 					</page>

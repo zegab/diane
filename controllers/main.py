@@ -224,28 +224,37 @@ class website_diane_account(http.Controller):
 
         if post:
             if post['msg_body']:
-                send_to = request.env['res.partner'].sudo().browse(int(post['p_id']))
-                try:
-                    template = request.env.ref('diane.email_template_alumni_contact').sudo()
-                    template.with_context(
-                        lang=send_to.lang,
-                        body=post['msg_body'],
-                        send_to_email = send_to.email,
-                        send_to_name = send_to.name,
-                        send_to_id= send_to.id,
-                    ).send_mail(partner.id, force_send=False, raise_exception=True)
-                except:
-                    values.update({'message': "Échec de l'envoi. Veuillez utiliser le formulaire de contact pour nous faire remonter le problème."})
+                if not partner.alumni:
+                    values.update({'message': "Uniquement les Alumnis peuvent utiliser ce service!"})
                     return request.website.render("diane.alumni_search", values)
+                elif partner.messages_sent > 10:
+                    if partner.messages_sent > partner.messages_limit:
+                        values.update({'message': "Vous avez atteint la limite d'envoi, veuillez nous envoyer un message par le formulaire de contact pour augmenter votre limite!"})
+                        return request.website.render("diane.alumni_search", values)
+                else:
+                    send_to = request.env['res.partner'].sudo().browse(int(post['p_id']))
+                    try:
+                        template = request.env.ref('diane.email_template_alumni_contact').sudo()
+                        template.with_context(
+                            lang=send_to.lang,
+                            body=post['msg_body'],
+                            send_to_email = send_to.email,
+                            send_to_name = send_to.name,
+                            send_to_id= send_to.id,
+                        ).send_mail(partner.id, force_send=False, raise_exception=True)
+                        partner.write({'messages_sent':partner.messages_sent+1})
+                    except:
+                        values.update({'message': "Échec de l'envoi. Veuillez utiliser le formulaire de contact pour nous faire remonter le problème."})
+                        return request.website.render("diane.alumni_search", values)
 
-                values.update({'message': "Votre message a été envoyé avec succès!"})
-                messages = request.env['mail.mail'].sudo().search(
-                    [('model', '=', 'res.partner'), ('res_id', '=', partner.id)])
-                values.update({
-                    'messages': messages,
-                    'partner': partner,
-                })
-                return request.website.render("diane.alumni_message", values)
+                    values.update({'message': "Votre message a été envoyé avec succès!"})
+                    messages = request.env['mail.mail'].sudo().search(
+                        [('model', '=', 'res.partner'), ('res_id', '=', partner.id)])
+                    values.update({
+                        'messages': messages,
+                        'partner': partner,
+                    })
+                    return request.website.render("diane.alumni_message", values)
 
     @http.route(['/diane/alumni_message'], type='http', auth='user', website=True)
     def message_read(self, redirect=None, **post):

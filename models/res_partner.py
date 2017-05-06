@@ -106,6 +106,8 @@ class ResPartner(models.Model):
 	gender = fields.Selection([('m', 'M'), ('f', 'F')], string='Gender')
 	self_updated = fields.Boolean('Self Updated')
 	deceased = fields.Boolean('Deceased')
+	messages_sent = fields.Integer('Messages sent')
+	messages_limit = fields.Integer('Limit of messages')
 
 
 	def geo_localize(self, cr, uid, ids, context=None):
