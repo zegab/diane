@@ -215,7 +215,6 @@ class website_diane_account(http.Controller):
         partner = request.env['res.users'].browse(request.uid).partner_id
         sections = request.env['diane.section'].sudo().search([])
         diplomas = request.env['diane.diploma'].sudo().search([])
-        #template = int(env['ir.config_parameter'].get_param("alumni_message_template_id"))
 
         values = {
             'error': {},
@@ -230,10 +229,9 @@ class website_diane_account(http.Controller):
                 if not partner.alumni:
                     values.update({'message': "Uniquement les Alumnis peuvent utiliser ce service"})
                     return request.website.render("diane.alumni_search", values)
-                elif partner.messages_sent > 10:
-                    if partner.messages_sent > partner.messages_limit:
-                        values.update({'message': "Vous avez atteint la limite d'envoi, veuillez nous envoyer un message par le formulaire de contact pour augmenter votre limite!"})
-                        return request.website.render("diane.alumni_search", values)
+                if (partner.messages_sent > partner.messages_limit and partner.messages_limit != 0) or (partner.messages_sent > 10 and partner.messages_limit == 0):
+                    values.update({'message': "Vous avez atteint la limite d'envoi, veuillez nous envoyer un message par le formulaire de contact pour augmenter votre limite!"})
+                    return request.website.render("diane.alumni_search", values)
                 else:
                     send_to = request.env['res.partner'].sudo().browse(int(post['p_id']))
                     try:
