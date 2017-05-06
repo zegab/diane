@@ -281,7 +281,7 @@ class website_diane_account(http.Controller):
                             send_to_name = send_to.name,
                             send_to_id= send_to.id,
                         ).send_mail(partner.id, force_send=False, raise_exception=True)
-                        partner.write({'messages_sent':partner.messages_sent+1})
+                        partner.sudo().write({'messages_sent':partner.messages_sent+1})
                     except:
                         values.update({'message': "Échec de l'envoi. Veuillez utiliser le formulaire de contact pour nous faire remonter le problème."})
                         return request.website.render("diane.alumni_search", values)
