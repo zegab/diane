@@ -33,6 +33,7 @@
 						</field>
 					</field>
 					<field name="website" position="replace">
+						<field name="alumni"/>
 						<field name="ref" string="Matricule"/>
 						<field name="section"/>
 						<field name="diploma"/>

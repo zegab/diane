@@ -46,6 +46,7 @@ class ResPartner(models.Model):
 	lastname = fields.Char('Last name')
 	m_name = fields.Char('Maiden Name')
 	x_title = fields.Char('Title')
+	alumni = fields.Boolean('Alumni')
 	birthday = fields.Date('Birthday')
 	social_network = fields.Char('Social Network Link')
 	facebook = fields.Char('Facebook Page')
