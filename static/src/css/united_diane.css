@@ -10,6 +10,8 @@
 body {
     background-color:#FEF7E2;
     background-image: url('/diane/static/src/img/logo_trans.png');
+    background-size: cover;
+    background-attachment: fixed;
     height: 100%;
     margin: 0;
     padding: 0;
