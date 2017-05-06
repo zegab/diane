@@ -18,6 +18,7 @@
                 <p>${ctx['body']}</p>
                 --------------------------------<br/>
                 <br/>
+                <p>Vous pouvez répondre à ce message à l'adresse ${(object.email or '')|safe}</p>
                 <p><a href="www.isfates-dfhi-alumni.org">https://www.isfates-dfhi-alumni.org</a></p>
             ]]></field>
         </record>

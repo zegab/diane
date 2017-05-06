@@ -1,3 +1,4 @@
+
 <openerp>
     <data>
         <template id="alumni_search">
@@ -157,12 +158,12 @@
                                             <!--<button type="button" class="close" data-dismiss="modal">Envoi</button>-->
                                             <h4 class="modal-title">Votre Message à <t t-esc="alumni['forename']"/> <t t-esc="alumni['lastname']"/></h4>
                                           </div>
-                                          <div class="modal-body" style="min-height: 230px;">
-                                             <div><span>De: </span><t t-esc="user_id.email"/></div>
+                                          <div class="modal-body" style="min-height: 270px;">
+                                             <div class="col-md-12"><p>Ce message sera envoyé à l'adresse email email privée de l'Ancien. Il pourra ensuite répondre à votre adresse <t t-esc="user_id.email"/></p></div>
                                              <div t-attf-class="form-group">
                                                  <input type="hidden" class="form-control" name="p_id" t-att-value="alumni['id']"/>
                                                 <div class="col-md-12">
-                                                    <textarea class="form-control" name="msg_body" style="min-height: 180px" required="True"/>
+                                                    <textarea class="form-control" name="msg_body" style="min-height: 200px" required="True"/>
                                                 </div>
                                              </div>
                                           </div>

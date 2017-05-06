@@ -25,6 +25,7 @@ class website_diane_account(http.Controller):
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
+                    WHERE p.alumni IS True
                 """,)
             if post['address'] == 'c':
                 request.env.cr.execute("""
@@ -35,6 +36,7 @@ class website_diane_account(http.Controller):
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
+                    WHERE p.alumni IS True
                 """, )
             if post['address'] == 'h':
                 request.env.cr.execute("""
@@ -45,6 +47,7 @@ class website_diane_account(http.Controller):
                     FROM res_partner p
                     LEFT JOIN diane_section s ON p.section = s.id
                     LEFT JOIN diane_diploma d ON p.diploma = d.id
+                    WHERE p.alumni IS True
                 """, )
             values.update({'address': post['address']})
         else:
@@ -225,7 +228,7 @@ class website_diane_account(http.Controller):
         if post:
             if post['msg_body']:
                 if not partner.alumni:
-                    values.update({'message': "Uniquement les Alumnis peuvent utiliser ce service!"})
+                    values.update({'message': "Uniquement les Alumnis peuvent utiliser ce service"})
                     return request.website.render("diane.alumni_search", values)
                 elif partner.messages_sent > 10:
                     if partner.messages_sent > partner.messages_limit:
