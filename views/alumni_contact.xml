@@ -1,0 +1,26 @@
+<openerp>
+    <data>
+        <!-- Email template -->
+        <record id="email_template_alumni_contact" model="email.template">
+            <field name="name">Alumni Contact</field>
+            <field name="email_from">info@isfates-dfhi-alumni.org</field>
+            <field name="subject">Un ISFATESsien vous a envoyé un message</field>
+            <field name="email_to">${ctx['send_to_email']}</field>
+            <field name="partner_to">${ctx['send_to_id']}</field>
+            <field name="reply_to">${(object.email or '')|safe}</field>
+            <field name="email_cc">${(object.email or '')|safe}</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="body_html"><![CDATA[
+                <p>Cher ${ctx['send_to_name']},</p><br/>
+                <p><strong>${object.name}</strong> vous a envoyé le message suivant par le biais du site des <a href="https://www.isfates-dfhi-alumni.org">Anciens Élèves de l'ISFATES</a></p>
+                <br/>
+                --------------------------------<br/>
+                <p>${ctx['body']}</p>
+                --------------------------------<br/>
+                <br/>
+                <p>Vous pouvez répondre à ce message à l'adresse ${(object.email or '')|safe}</p>
+                <p><a href="www.isfates-dfhi-alumni.org">https://www.isfates-dfhi-alumni.org</a></p>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

@@ -1,3 +1,4 @@
+
 <openerp>
     <data>
         <template id="alumni_search">
@@ -71,6 +72,7 @@
                 <t t-set="additional_title">Search for Alumni</t>
                 <div id="wrap">
                     <div class="container">
+
                         <div class="row">
                             <div class="col-sm-6">
                                 <ol class="breadcrumb mt8">
@@ -129,6 +131,7 @@
                                     <th>Section</th>
                                     <th>Diplôme</th>
                                     <th>Promotion</th>
+                                    <th/>
                                 </tr>
                                 <tr t-foreach="result or []" t-as="alumni">
                                     <td><t t-esc="alumni['forename']"/></td>
@@ -137,6 +140,49 @@
                                     <td><t t-esc="alumni['section']"/></td>
                                     <td><t t-esc="alumni['diploma']"/></td>
                                     <td><t t-esc="alumni['d_year']"/></td>
+                                    <td>
+                                        <t t-if="alumni['has_email']">
+                                            <button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" t-att-data-target="'#message'+str(alumni['id'])">Contact</button>
+                                        </t>
+
+
+
+
+                                    <div t-att-id="'message'+str(alumni['id'])" class="modal fade" role="dialog">
+                                      <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <form action="/diane/send_message" method="post">
+                                        <div class="modal-content col-md-12">
+                                          <div class="modal-header">
+                                            <!--<button type="button" class="close" data-dismiss="modal">Envoi</button>-->
+                                            <h4 class="modal-title">Votre Message à <t t-esc="alumni['forename']"/> <t t-esc="alumni['lastname']"/></h4>
+                                          </div>
+                                          <div class="modal-body" style="min-height: 270px;">
+                                             <div class="col-md-12"><p>Ce message sera envoyé à l'adresse email email privée de l'Ancien. Il pourra ensuite répondre à votre adresse <t t-esc="user_id.email"/></p></div>
+                                             <div t-attf-class="form-group">
+                                                 <input type="hidden" class="form-control" name="p_id" t-att-value="alumni['id']"/>
+                                                <div class="col-md-12">
+                                                    <textarea class="form-control" name="msg_body" style="min-height: 200px" required="True"/>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-default col-md-2" data-dismiss="modal">Fermer</button>
+                                              <!--<button type="submit" class="btn btn-default btn-primary col-md-9" style="float:right" data-dismiss="modal" data-toggle="modal">Envoyer</button>-->
+                                              <button type="submit" class="btn btn-default btn-primary col-md-9" style="float:right">Envoyer</button>
+                                          </div>
+                                        </div>
+                                        </form>
+
+
+                                      </div>
+                                    </div>
+
+
+
+
+                                    </td>
                                 </tr>
                             </table>
                         </div>
