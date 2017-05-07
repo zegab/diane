@@ -51,6 +51,7 @@ class ResPartner(models.Model):
 	social_network = fields.Char('Social Network Link')
 	facebook = fields.Char('Facebook Page')
 	xing = fields.Char('Xing Page')
+	social = fields.Char('Other Social Network')
 	linkedin = fields.Char('LinkedIn Page')
 	o_country_id = fields.Many2one('res.country', 'Country of Origin', ondelete='restrict')
 	nationality1 = fields.Many2one('res.country', 'Nationality 1', ondelete='restrict')
