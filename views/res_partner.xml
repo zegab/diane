@@ -125,7 +125,7 @@
 								<field name="facebook"/>
 								<field name="xing"/>
 								<field name="linkedin"/>
-								<field name="social"/>
+								<field name="social_network"/>
 							</group>
 							<group string="Alumni Contact">
 								<field name="messages_sent" readonly="1"/>
