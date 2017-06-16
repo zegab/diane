@@ -373,7 +373,7 @@ class website_hr_recruitment(http.Controller):
             'country_id': country,
             'department_id': department,
             'office_id': office_id,
-            'tag_ids': tags,
+            'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
         })
 
 
