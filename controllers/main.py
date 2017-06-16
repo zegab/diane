@@ -325,7 +325,7 @@ class website_hr_recruitment(http.Controller):
 
         Country = env['res.country']
         Jobs = env['hr.job']
-        Tags = env['x_job.tag']
+        #Tags = env['x_job.tag']
 
         # List jobs available to current UID
         job_ids = Jobs.search([], order="create_date desc").ids
@@ -336,7 +336,16 @@ class website_hr_recruitment(http.Controller):
         departments = set(j.department_id for j in jobs if j.department_id)
         offices = set(j.address_id for j in jobs if j.address_id)
         countries = set(o.country_id for o in offices if o.country_id)
-        tags = set(j.x_tag_ids for j in jobs if j.x_tag_ids)
+        #tags = set(j.x_tag_ids for j in jobs if j.x_tag_ids)
+        tags = {}
+        for j in jobs:
+            for t in j.x_tag_ids:
+                if j.website_published:
+                    if t.x_name in tags:
+                        tags[t.x_name] += 1
+                    else:
+                        tags[t.x_name] = 1
+
 
         # Default search by user country
         if not (country or department or office_id or kwargs.get('all_countries')):
