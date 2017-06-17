@@ -7,7 +7,7 @@
 					<t t-foreach="tag_ids" t-as="tag_id">
 						<li t-att-class="'active' if tag and tag.id == tag_id[0].id else ''">
 							<a t-attf-href="/jobs#{ '/tag/%s' % slug(tag_id[0]) if tag_id[0] else '' }">
-								<span t-esc="tag_id[0].x_name"/>   <strong style="text-align:right" t-esc="tag_id[1]"/>
+								<span t-esc="tag_id[0].x_name"/>   <strong style="position: absolute;right:4px;" t-esc="tag_id[1]"/>
 							</a>
 						</li>
 					</t>
