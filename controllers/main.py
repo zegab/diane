@@ -340,11 +340,10 @@ class website_hr_recruitment(http.Controller):
         tags = {}
         for j in jobs:
             for t in j.x_tag_ids:
-                if j.website_published:
-                    if t.x_name in tags:
-                        tags[t.x_name] += 1
-                    else:
-                        tags[t.x_name] = 1
+                if t in tags:
+                    tags[t] += 1
+                else:
+                    tags[t] = 1
 
 
         # Default search by user country
@@ -363,6 +362,8 @@ class website_hr_recruitment(http.Controller):
             jobs = (j for j in jobs if j.department_id and j.department_id.id == department.id)
         if office_id:
             jobs = (j for j in jobs if j.address_id and j.address_id.id == office_id)
+        if tag:
+            jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
 
         # Render page
         return request.website.render("website_hr_recruitment.index", {
@@ -370,10 +371,11 @@ class website_hr_recruitment(http.Controller):
             'countries': countries,
             'departments': departments,
             'offices': offices,
+            'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
             'country_id': country,
             'department_id': department,
             'office_id': office_id,
-            'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
+            'tag': tag,
         })
 
 
