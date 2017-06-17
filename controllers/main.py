@@ -6,6 +6,7 @@ from openerp.http import request
 from openerp import tools
 from openerp.tools.translate import _
 import random
+from openerp.addons.website.models.website import slug
 
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
@@ -306,5 +307,75 @@ class website_diane_account(http.Controller):
         }
         return request.website.render("diane.alumni_message", values)
 
+
+class website_hr_recruitment(http.Controller):
+    @http.route([
+        '/jobs',
+        '/jobs/country/<model("res.country"):country>',
+        '/jobs/department/<model("hr.department"):department>',
+        '/jobs/tag/<model("x_job.tag"):tag>',
+        '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>',
+        '/jobs/office/<int:office_id>',
+        '/jobs/country/<model("res.country"):country>/office/<int:office_id>',
+        '/jobs/department/<model("hr.department"):department>/office/<int:office_id>',
+        '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>/office/<int:office_id>',
+    ], type='http', auth="public", website=True)
+    def jobs(self, country=None, department=None, office_id=None, tag=None, **kwargs):
+        env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
+
+        Country = env['res.country']
+        Jobs = env['hr.job']
+        #Tags = env['x_job.tag']
+
+        # List jobs available to current UID
+        job_ids = Jobs.search([], order="create_date desc").ids
+        # Browse jobs as superuser, because address is restricted
+        jobs = Jobs.sudo().browse(job_ids)
+
+        # Deduce departments and offices of those jobs
+        departments = set(j.department_id for j in jobs if j.department_id)
+        offices = set(j.address_id for j in jobs if j.address_id)
+        countries = set(o.country_id for o in offices if o.country_id)
+        #tags = set(j.x_tag_ids for j in jobs if j.x_tag_ids)
+        tags = {}
+        for j in jobs:
+            for t in j.x_tag_ids:
+                if t in tags:
+                    tags[t] += 1
+                else:
+                    tags[t] = 1
+
+
+        # Default search by user country
+        if not (country or department or office_id or kwargs.get('all_countries')):
+            country_code = request.session['geoip'].get('country_code')
+            if country_code:
+                countries_ = Country.search([('code', '=', country_code)])
+                country = countries_[0] if countries_ else None
+                if not any(j for j in jobs if j.address_id and j.address_id.country_id == country):
+                    country = False
+
+        # Filter the matching one
+        if country and not kwargs.get('all_countries'):
+            jobs = (j for j in jobs if j.address_id is None or j.address_id.country_id and j.address_id.country_id.id == country.id)
+        if department:
+            jobs = (j for j in jobs if j.department_id and j.department_id.id == department.id)
+        if office_id:
+            jobs = (j for j in jobs if j.address_id and j.address_id.id == office_id)
+        if tag:
+            jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
+
+        # Render page
+        return request.website.render("website_hr_recruitment.index", {
+            'jobs': jobs,
+            'countries': countries,
+            'departments': departments,
+            'offices': offices,
+            'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
+            'country_id': country,
+            'department_id': department,
+            'office_id': office_id,
+            'tag': tag,
+        })
 
 
