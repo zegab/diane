@@ -4,12 +4,10 @@
 		<template id="job_tags" inherit_id="website_hr_recruitment.index" active="True" customize_show="True" name="Filter by Tag">
 			<xpath expr="//div[@id='jobs_grid_left']" position="inside">
 				<ul class="nav nav-pills nav-stacked mb32">
-					<!--<li t-att-class=" '' if tag_ids else 'active' "><a t-attf-href="/jobs#{ '/tag/%s' % slug(tag_id[0]) if tag_id else '' }?all_tags=1">All Tags</a></li>-->
-
 					<t t-foreach="tag_ids" t-as="tag_id">
 						<li t-att-class="'active' if tag and tag.id == tag_id[0].id else ''">
 							<a t-attf-href="/jobs#{ '/tag/%s' % slug(tag_id[0]) if tag_id[0] else '' }">
-								<span t-esc="tag_id[0].x_name"/> (<span style="text-align:right" t-esc="tag_id[1]"/> offers)
+								<span t-esc="tag_id[0].x_name"/>   <strong style="text-align:right" t-esc="tag_id[1]"/>
 							</a>
 						</li>
 					</t>
