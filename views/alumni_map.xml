@@ -24,7 +24,7 @@
                                 <div t-attf-class="form-group col-lg-3">
                                     <label class="control-label" for="section">Filière</label>
                                     <select name="section" class="form-control">
-                                        <option value="">Filière...</option>
+                                        <option value="">Toutes les Filières</option>
                                         <t t-foreach="sections or []" t-as="section">
                                             <option t-att-value="section.id"
                                                     t-att-selected="section.id ==default_section">
@@ -36,7 +36,7 @@
                                 <div t-attf-class="form-group col-lg-2">
                                     <label class="control-label" for="diploma">Diplome</label>
                                     <select name="diploma" class="form-control">
-                                        <option value="">Type de Diplome...</option>
+                                        <option value="">Tous les Diplomes</option>
                                         <t t-foreach="diplomas or []" t-as="diploma">
                                             <option t-att-value="diploma.id"
                                                     t-att-selected="diploma.id == default_diploma">
@@ -54,7 +54,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3 text-center" style="margin-top:25px">
-                                    <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
+                                    <button type="submit" class="form-control btn btn-default btn-primary pull-left">
                                         Actualiser
                                         <span class="fa fa-long-arrow-right"/>
                                     </button>
@@ -67,7 +67,7 @@
 
                         </div>
                     </div>
-                    <div style="height:800px">
+                    <div style="height:450px">
                         <div id="map"/>
                         <t t-foreach="result or []" t-as="alumni">
                             <div t-att-id="'message'+str(alumni['id'])" class="modal fade" role="dialog">
@@ -110,11 +110,16 @@
                             });
                             <t t-foreach="result or []" t-as="alumni">
                                 <t t-if="alumni['lat'] and alumni['lng']">
-
                                     var contentString = '<div id="content">'+
                                     '<t t-esc="alumni['section']"/><br/>'+
                                     '<t t-esc="alumni['diploma']"/><br/>'+
                                     '<t t-esc="alumni['d_year']"/><br/>'+
+                                    '<t t-if="alumni['function']">'+
+                                    '<t t-esc="alumni['function']"/><br/>'+
+                                    '</t>'+
+                                    '<t t-if="alumni['c_name']">'+
+                                    '<t t-esc="alumni['c_name']"/><br/>'+
+                                    '</t>'+
                                     '<t t-if="alumni['has_email']">'+
                                     '<button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" t-att-data-target="'#message'+str(alumni['id'])">Contact</button>'+
                                     '</t></div>';

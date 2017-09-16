@@ -131,6 +131,8 @@
                                     <th>Section</th>
                                     <th>Diplôme</th>
                                     <th>Promotion</th>
+                                    <th>Fonction</th>
+                                    <th>Compagnie</th>
                                     <th/>
                                 </tr>
                                 <tr t-foreach="result or []" t-as="alumni">
@@ -140,6 +142,16 @@
                                     <td><t t-esc="alumni['section']"/></td>
                                     <td><t t-esc="alumni['diploma']"/></td>
                                     <td><t t-esc="alumni['d_year']"/></td>
+                                    <td>
+                                        <t t-if="alumni['function']">
+                                            <t t-esc="alumni['function']"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-if="alumni['c_name']">
+                                            <t t-esc="alumni['c_name']"/>
+                                        </t>
+                                    </td>
                                     <td>
                                         <t t-if="alumni['has_email']">
                                             <button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" t-att-data-target="'#message'+str(alumni['id'])">Contact</button>
