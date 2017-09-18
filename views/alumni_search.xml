@@ -43,7 +43,7 @@
                                     </t>
                                 </select>
                             </div>
-                            <div t-attf-class="form-group col-lg-3">
+                            <div t-attf-class="form-group col-lg-2">
                                 <label class="control-label" for="diploma">Diplome</label>
                                 <select name="diploma" class="form-control">
                                     <option value="">Type de Diplome...</option>
@@ -55,7 +55,11 @@
                                     </t>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-5 text-center" style="margin-top:25px;margin-bottom:150px">
+                            <div t-attf-class="form-group col-lg-3">
+                                <label class="control-label" for="d_year">Entreprise</label>
+                                <input type="text" name="company" class="form-control"/>
+                            </div>
+                            <div class="form-group col-lg-3 text-center" style="margin-top:25px;margin-bottom:150px">
                                 <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>
@@ -102,7 +106,7 @@
                                     </t>
                                 </select>
                             </div>
-                            <div t-attf-class="form-group col-lg-3">
+                            <div t-attf-class="form-group col-lg-2">
                                 <label class="control-label" for="diploma">Diplome</label>
                                 <select name="diploma" class="form-control">
                                     <option value="">Type de Diplome...</option>
@@ -114,7 +118,11 @@
                                     </t>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-5 text-center" style="margin-top:25px">
+                            <div t-attf-class="form-group col-lg-3">
+                                <label class="control-label" for="d_year">Entreprise</label>
+                                <input type="text" name="company" class="form-control"/>
+                            </div>
+                            <div class="form-group col-lg-3 text-center" style="margin-top:25px">
                                 <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>

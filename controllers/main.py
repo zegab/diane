@@ -124,6 +124,36 @@ class website_diane_account(http.Controller):
                 diploma = int(post['diploma']) if post['diploma'].isdigit() else False
                 section = int(post['section']) if post['section'].isdigit() else False
                 d_year = int(post['d_year']) if post['d_year'].isdigit() else False
+                company = post['company'] if post['company'] else False
+
+                if company:
+                    alumni = request.env['res.partner'].sudo().search([('c_name','in',company)])
+                    if alumni:
+                        alumni_ids = [a.id for a in alumni]
+                        request.env.cr.execute("""
+                            SELECT
+                            forename,
+                            lastname,
+                            m_name,
+                            function,
+                            c_name,
+                            s.name AS section,
+                            section AS section_id,
+                            d.name AS diploma,
+                            diploma AS diploma_id,
+                            d_year,
+                            p.id,
+                            CASE WHEN p.email IS NOT NULL THEN True
+                                ELSE False
+                                END AS has_email
+                            FROM res_partner p
+                            INNER JOIN diane_section s ON p.section = s.id
+                            INNER JOIN diane_diploma d ON p.diploma = d.id
+                            WHERE p.id IN %s
+                        """,(tuple(alumni_ids),))
+                        result = request.env.cr.dictfetchall()
+                        values.update({'result':result})
+                        return request.website.render("diane.alumni_search_result", values)
 
                 if diploma and section and d_year:
                     alumni = request.env['res.partner'].sudo().search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
