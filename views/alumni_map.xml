@@ -115,10 +115,10 @@
                                     '<t t-esc="alumni['diploma']"/><br/>'+
                                     '<t t-esc="alumni['d_year']"/><br/>'+
                                     '<t t-if="alumni['function']">'+
-                                    '<t t-esc="alumni['function']"/><br/>'+
+                                    '<t t-esc="alumni['function'].encode('utf8').replace('?','').replace('\'',' ')"/><br/>'+
                                     '</t>'+
                                     '<t t-if="alumni['c_name']">'+
-                                    '<t t-esc="alumni['c_name']"/><br/>'+
+                                    '<t t-esc="alumni['c_name'].encode('utf8').replace('?','').replace('\'',' ')"/><br/>'+
                                     '</t>'+
                                     '<t t-if="alumni['has_email']">'+
                                     '<button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" t-att-data-target="'#message'+str(alumni['id'])">Contact</button>'+
