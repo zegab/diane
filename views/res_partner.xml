@@ -121,11 +121,20 @@
 								<field name="language1"/>
 								<field name="language2"/>-->
 							</group>
-							<group string="Social Networks">
-								<field name="facebook"/>
-								<field name="xing"/>
-								<field name="linkedin"/>
-								<field name="social_network"/>
+							<group>
+								<group string="Social Networks">
+									<field name="xing"/>
+									<field name="linkedin"/>
+									<field name="viadeo"/>
+									<field name="facebook"/>
+									<field name="social_network"/>
+								</group>
+								<group string="Social Network Search">
+									<button name="search_xing" type="object" string="Search Xing" class="oe_inline"/>
+									<button name="search_linkedin" type="object" string="Search LinkedIn"/>
+									<button name="search_viadeo" type="object" string="Search Viadeo"/>
+									<button name="search_facebook" type="object" string="Search Facebook"/>
+								</group>
 							</group>
 							<group string="Alumni Contact">
 								<field name="messages_sent" readonly="1"/>

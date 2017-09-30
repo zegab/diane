@@ -48,10 +48,11 @@ class ResPartner(models.Model):
 	x_title = fields.Char('Title')
 	alumni = fields.Boolean('Alumni')
 	birthday = fields.Date('Birthday')
-	social_network = fields.Char('Social Network Link')
+	social_network = fields.Char('Other Social Network Link')
 	facebook = fields.Char('Facebook Page')
 	xing = fields.Char('Xing Page')
 	linkedin = fields.Char('LinkedIn Page')
+	viadeo = fields.Char('Viadeo Page')
 	o_country_id = fields.Many2one('res.country', 'Country of Origin', ondelete='restrict')
 	nationality1 = fields.Many2one('res.country', 'Nationality 1', ondelete='restrict')
 	nationality2 = fields.Many2one('res.country', 'Nationality 2', ondelete='restrict')
@@ -148,6 +149,38 @@ class ResPartner(models.Model):
 						'h_longitude': h_result[1],
 					}, context=context)
 		return True
+
+	def search_xing(self, cr, uid, ids, context=None):
+		url = "https://www.xing.com/search/members?hdr=1&keywords=%s" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '+'))
+		return {'type': 'ir.actions.act_url',
+				  'name': "Social Network",
+				  'target': 'new',
+				  'url': url,
+				  }
+
+	def search_linkedin(self, cr, uid, ids, context=None):
+		url = "https://www.linkedin.com/search/results/index/?keywords=%s&origin=GLOBAL_SEARCH_HEADER" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '%20'))
+		return {'type': 'ir.actions.act_url',
+				  'name': "Social Network",
+				  'target': 'new',
+				  'url': url,
+				  }
+
+	def search_viadeo(self, cr, uid, ids, context=None):
+		url = "http://www.viadeo.com/en/search/#/?q=%s" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '%20'))
+		return {'type': 'ir.actions.act_url',
+				  'name': "Social Network",
+				  'target': 'new',
+				  'url': url,
+				  }
+
+	def search_facebook(self, cr, uid, ids, context=None):
+		url = "https://www.facebook.com/search/top/?q=%s" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '%20'))
+		return {'type': 'ir.actions.act_url',
+				  'name': "Social Network",
+				  'target': 'new',
+				  'url': url,
+				  }
 
 class ResPartnerTitle(models.Model):
 	_name = 'res.partner.title'
