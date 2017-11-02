@@ -124,10 +124,10 @@ class website_diane_account(http.Controller):
                 diploma = int(post['diploma']) if post['diploma'].isdigit() else False
                 section = int(post['section']) if post['section'].isdigit() else False
                 d_year = int(post['d_year']) if post['d_year'].isdigit() else False
-                company = post['company'].encode('utf8') if post['company'] else False
+                company = str(post['company'].encode('utf8')).strip('_') if post['company'] else False
 
-                if company:
-                    alumni = request.env['res.partner'].sudo().search([('c_name','ilike',str(company))])
+                if company and len(company) > 2:
+                    alumni = request.env['res.partner'].sudo().search([('c_name','ilike',company)])
                     if alumni:
                         alumni_ids = [a.id for a in alumni]
                         request.env.cr.execute("""
