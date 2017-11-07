@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
 	<data>
 	<record id="reset_password_diane" model="ir.ui.view">
 			<field name="name">reset.passwort.diane</field>
@@ -14,4 +14,4 @@
             </field>
         </record>
 	</data>
-</openerp>
+</odoo>

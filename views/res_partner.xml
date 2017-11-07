@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
 	<data>
 		<record id="view_partners_form_diane" model="ir.ui.view">
 			<field name="name">view.res.partner.form.diane</field>
@@ -162,15 +162,15 @@
 			<field eval="50" name="priority"/>
 			<field name="arch" type="xml">
 				<data>
-                    <tree string="Partner Titles" position="attributes">
+                    <!--<tree string="Partner Titles" position="attributes">
                         <attribute name="editable">True</attribute>
                     </tree>
                     <field name="shortcut" position="after">
                         <field name="website_published"/>
-                    </field>
+                    </field>-->
 				</data>
 			</field>
 		</record>
 
 	</data>
-</openerp>
+</odoo>

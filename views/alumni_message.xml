@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <template id="alumni_message">
             <t t-call="website.layout">
@@ -47,4 +47,4 @@
             </t>
         </template>
     </data>
-</openerp>
+</odoo>

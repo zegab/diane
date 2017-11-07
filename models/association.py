@@ -1,4 +1,4 @@
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 
 class Diploma(models.Model):
     _name = 'diane.diploma'

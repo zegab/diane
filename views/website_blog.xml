@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
 	<data>
 		<record id="blog_post_diane" model="ir.ui.view">
 			<field name="name">diane.blog.post</field>
 			<field name="inherit_id" ref="website_blog.blog_post_complete"/>
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
-				<xpath expr="//div[@id='blog_angle_down']" position="replace"/>
+				<data/>
+				<!--<xpath expr="//div[@id='blog_angle_down']" position="replace"/>
 				<xpath expr="//span[@t-field='blog_post.author_id']/.." position="replace"/>
 				<xpath expr="//span[@t-field='next_post.author_avatar']" position="replace">
 					<span t-field="next_post.author_avatar" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle&quot;, &quot;style&quot;:&quot;width: 80px; margin-right: 10px; display:inline&quot;}"/>
 				</xpath>
-				<xpath expr="//span[@t-field='next_post.author_id']" position="replace"/>
+				<xpath expr="//span[@t-field='next_post.author_id']" position="replace"/>-->
 			</field>
 		</record>
 
@@ -31,7 +32,8 @@
 			<field name="inherit_id" ref="website_blog.blog_post_short"/>
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
-				<xpath expr="//div[@name='blog_post_data']/../.." position="replace">
+				<data/>
+				<!--<xpath expr="//div[@name='blog_post_data']/../.." position="replace">
 					<div t-foreach="blog_posts.sorted(key=lambda r: r.sequence)" t-as="blog_post">
 						<span t-field="blog_post.author_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle pull-right media-object&quot;, &quot;style&quot;:&quot;width:60px&quot;}"/>
 						<a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/post/#{ slug(blog_post) }">
@@ -55,7 +57,7 @@
 						</div>
 					</div>
 				</xpath>
-				<!--<xpath expr="//span[@t-field='blog_post.author_avatar']" position="replace">
+				<xpath expr="//span[@t-field='blog_post.author_avatar']" position="replace">
 					<span t-field="blog_post.author_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle pull-right mt16 media-object&quot;, &quot;style&quot;:&quot;width:60px&quot;}"/>
 				</xpath>-->
 			</field>
@@ -74,4 +76,4 @@
 		</record>
 
 	</data>
-</openerp>
+</odoo>

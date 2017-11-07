@@ -5,9 +5,9 @@ except ImportError:
 import urllib
 import datetime
 
-from openerp.osv import osv, fields
-from openerp import tools,api, fields, models, _
-from openerp.tools.translate import _
+from odoo import osv, fields
+from odoo import tools,api, fields, models, _
+from odoo.tools.translate import _
 
 def geo_find(addr):
 	url = 'https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='

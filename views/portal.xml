@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
 	<data>
 		<!--<template id="portal_diane">
 			<title>Portal</title>
@@ -154,4 +154,4 @@
     </template>
 
 	</data>
-</openerp>
+</odoo>

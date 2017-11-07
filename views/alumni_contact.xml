@@ -1,4 +1,4 @@
-<openerp>
+<odoo>
     <data>
         <!-- Email template -->
         <record id="email_template_alumni_contact" model="email.template">
@@ -23,4 +23,4 @@
             ]]></field>
         </record>
     </data>
-</openerp>
+</odoo>

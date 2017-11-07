@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
 	<data>
 		<record id="website_assets_diane" model="ir.ui.view">
 			<field name="name">diane.website.assets.theme</field>
-			<field name="inherit_id" ref="website.theme_united"/>
+			<field name="inherit_id" ref="web.assets_frontend"/>
 			<field eval="16" name="priority"/>
 			<field name="arch" type="xml">
-				<xpath expr="//link[@href='/website/static/src/css/bootswatch/united.min.css']" position="after">
+				<data/>
+				<xpath expr="//link[last()]" position="after">
 					<link rel="stylesheet" href="/diane/static/src/css/united_diane.css" t-ignore="true"/>
 					<script src="/diane/static/src/js/sorttable.js"/>
 					<script src="/diane/static/src/js/messaging.js"/>
@@ -15,7 +16,7 @@
 		</record>
 		<record id="main_layout_diane" model="ir.ui.view">
 			<field name="name">diane.website.layout</field>
-			<field name="inherit_id" ref="website.layout"/>
+			<field name="inherit_id" ref="web.layout"/>
 			<field eval="16" name="priority"/>
 			<field name="arch" type="xml">
 				<xpath expr="//head" position="inside">
@@ -24,4 +25,4 @@
 			</field>
 		</record>
 	</data>
-</openerp>
+</odoo>

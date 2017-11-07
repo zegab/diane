@@ -1,12 +1,8 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
 	<data>
-		<record id="diane_website_menu" model="ir.ui.view">
-			<field name="name">diane.website.menu</field>
-			<field name="inherit_id" ref="website.layout"/>
-			<field eval="16" name="priority"/>
-			<field name="arch" type="xml">
-				<xpath expr="//li[@class='dropdown']/ul/li[contains(.,'My Account')]" position="replace">
+		<template id="diane_website_menu" inherit_id="website_portal.my_account_link" active="False">
+				<xpath expr="//a[@href='/my/home']" position="replace">
 					<li>
 						<a href="/diane/alumni_search" role="menuitem">Recherche d'Anciens</a>
 					</li>
@@ -20,8 +16,7 @@
 						<a href="/diane/alumni_message" role="menuitem">Mes messages envoyés</a>
 					</li>
 				</xpath>
-			</field>
-		</record>
+		</template>
 
 		<template id="thanks">
 				<t t-call="website.layout">
@@ -41,4 +36,4 @@
 				</t>
 		</template>
 	</data>
-</openerp>
+</odoo>

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from openerp import http
-from openerp.http import request
-from openerp import tools
-from openerp.tools.translate import _
+from odoo import http
+from odoo.http import request
+from odoo import tools
+from odoo.tools.translate import _
 import random
-from openerp.addons.website.models.website import slug
+from odoo.addons.website.models.website import slug
 
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
