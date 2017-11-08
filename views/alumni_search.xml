@@ -64,7 +64,7 @@
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>
                                 </button>
-                            </div>
+                            </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         </form>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                                     Chercher
                                     <span class="fa fa-long-arrow-right"/>
                                 </button>
-                            </div>
+                            </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         </form>
 
                         <div class="col-md-12" style="margin-bottom:150px">
@@ -192,7 +192,7 @@
                                               <!--<button type="submit" class="btn btn-default btn-primary col-md-9" style="float:right" data-dismiss="modal" data-toggle="modal">Envoyer</button>-->
                                               <button type="submit" class="btn btn-default btn-primary col-md-9" style="float:right">Envoyer</button>
                                           </div>
-                                        </div>
+                                        </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                         </form>
 
 

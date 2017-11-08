@@ -103,7 +103,7 @@ class website_diane_account(http.Controller):
 
         result = request.env.cr.dictfetchall()
         values.update({'result':result})
-        return request.website.render("diane.alumni_map", values)
+        return request.render("diane.alumni_map", values)
 
     @http.route(['/diane/alumni_search'], type='http', auth='user', website=True)
     @http.route(['/diane/alumni_search_result'], type='http', auth='user', website=True)
@@ -153,7 +153,7 @@ class website_diane_account(http.Controller):
                         """,(tuple(alumni_ids),))
                         result = request.env.cr.dictfetchall()
                         values.update({'result':result})
-                        return request.website.render("diane.alumni_search_result", values)
+                        return request.render("diane.alumni_search_result", values)
 
                 if diploma and section and d_year:
                     alumni = request.env['res.partner'].sudo().search([('diploma','=',diploma),('section','=',section),('d_year','=',d_year)])
@@ -182,11 +182,11 @@ class website_diane_account(http.Controller):
                         """,(tuple(alumni_ids),))
                         result = request.env.cr.dictfetchall()
                         values.update({'result':result})
-                        return request.website.render("diane.alumni_search_result", values)
+                        return request.render("diane.alumni_search_result", values)
                 else:
                     values.update({'message':"Aucun Résultat!"})
 
-        return request.website.render("diane.alumni_search", values)
+        return request.render("diane.alumni_search", values)
 
 
     @http.route(['/diane/account_update'], type='http', auth='user', website=True)
@@ -250,10 +250,10 @@ class website_diane_account(http.Controller):
                 if redirect:
                     return request.redirect(redirect)
                 values.update({'message':"Merci d'avoir actualisé vos données!"})
-                return request.website.render("diane.alumni_search", values)
+                return request.render("diane.alumni_search", values)
 
 
-        return request.website.render("diane.details", values)
+        return request.render("diane.details", values)
 
     def details_form_validate(self, data):
         error = dict()
@@ -266,7 +266,7 @@ class website_diane_account(http.Controller):
 
         # vat validation
         if data.get("vat") and hasattr(request.env["res.partner"], "check_vat"):
-            if request.website.company_id.vat_check_vies:
+            if request.company_id.vat_check_vies:
                 # force full VIES online check
                 check_func = request.env["res.partner"].vies_vat_check
             else:
@@ -300,10 +300,10 @@ class website_diane_account(http.Controller):
             if post['msg_body']:
                 if not partner.alumni:
                     values.update({'message': "Uniquement les Alumnis peuvent utiliser ce service"})
-                    return request.website.render("diane.alumni_search", values)
+                    return request.render("diane.alumni_search", values)
                 if (partner.messages_sent > partner.messages_limit and partner.messages_limit != 0) or (partner.messages_sent > 10 and partner.messages_limit == 0):
                     values.update({'message': "Vous avez atteint la limite d'envoi, veuillez nous envoyer un message par le formulaire de contact pour augmenter votre limite!"})
-                    return request.website.render("diane.alumni_search", values)
+                    return request.render("diane.alumni_search", values)
                 else:
                     send_to = request.env['res.partner'].sudo().browse(int(post['p_id']))
                     try:
@@ -318,7 +318,7 @@ class website_diane_account(http.Controller):
                         partner.sudo().write({'messages_sent':partner.messages_sent+1})
                     except:
                         values.update({'message': "Échec de l'envoi. Veuillez utiliser le formulaire de contact pour nous faire remonter le problème."})
-                        return request.website.render("diane.alumni_search", values)
+                        return request.render("diane.alumni_search", values)
 
                     values.update({'message': "Votre message a été envoyé avec succès!"})
                     messages = request.env['mail.mail'].sudo().search(
@@ -327,7 +327,7 @@ class website_diane_account(http.Controller):
                         'messages': messages,
                         'partner': partner,
                     })
-                    return request.website.render("diane.alumni_message", values)
+                    return request.render("diane.alumni_message", values)
 
     @http.route(['/diane/alumni_message'], type='http', auth='user', website=True)
     def message_read(self, redirect=None, **post):
@@ -338,7 +338,7 @@ class website_diane_account(http.Controller):
             'messages': messages,
             'partner': partner,
         }
-        return request.website.render("diane.alumni_message", values)
+        return request.render("diane.alumni_message", values)
 
 
 class website_hr_recruitment(http.Controller):
@@ -399,7 +399,7 @@ class website_hr_recruitment(http.Controller):
             jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
 
         # Render page
-        return request.website.render("website_hr_recruitment.index", {
+        return request.render("website_hr_recruitment.index", {
             'jobs': jobs,
             'countries': countries,
             'departments': departments,
