@@ -8,6 +8,7 @@
 }
 
 body {
+    font-family: "Ubuntu",Tahoma,"Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color:#FEF7E2;
     background-image: url('/diane/static/src/img/logo_trans.png');
     background-size: 100%;
@@ -17,6 +18,10 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+a {
+    color: #dd4814;
 }
 
 footer {
@@ -35,3 +40,17 @@ footer {
 .fa-linkedin {
     margin-left:15px;
 }
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #dd4814;
+    border-color: #dd4814;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Ubuntu",Tahoma,Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
