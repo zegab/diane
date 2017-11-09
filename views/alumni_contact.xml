@@ -9,6 +9,7 @@
             <field name="partner_to">${ctx['send_to_id']}</field>
             <field name="reply_to">${(object.email or '')|safe}</field>
             <field name="email_cc">${(object.email or '')|safe}</field>
+            <field name="auto_delete">False</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="body_html"><![CDATA[
                 <p>Cher ${ctx['send_to_name']},</p><br/>
