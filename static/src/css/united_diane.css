@@ -1,3 +1,20 @@
+header a.navbar-brand img {
+    max-height: 50px;
+    margin-top: 2px;
+}
+
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #dd4814;
+    border-color: #dd4814;
+}
+
+.oe_website_login_container {
+    width: 400px;
+    margin: 40px auto;
+}
+
+
 .navbar-default {
     background:rgba(247, 201, 64, 0.5);
 }
@@ -5,6 +22,31 @@
 .navbar-default .navbar-nav>li>a {
     color:#333333;
     font-size:102%;
+}
+
+.dropdown-menu {
+    z-index: 10000;
+    background-color: #FFFBF1;
+}
+
+.dropdown-menu > .active > a:focus {
+    color: #fff;
+    background-color: #dd4814;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #dd4814;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #FFFBF1;
+    color: #555555;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #dd4814;
 }
 
 body {
@@ -22,6 +64,11 @@ body {
 
 a {
     color: #dd4814;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    color: #ffffff;
+    background-color: #dd4814;
 }
 
 footer {
@@ -53,4 +100,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     line-height: 1.1;
     color: inherit;
 }
+
+.website_blog .o_blog_cover_container.cover_footer {
+    background-color: #000;
+}
+
 

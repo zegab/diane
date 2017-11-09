@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <!-- Email template -->
-        <record id="email_template_alumni_contact" model="email.template">
+        <record id="email_template_alumni_contact" model="mail.template">
             <field name="name">Alumni Contact</field>
             <field name="email_from">info@isfates-dfhi-alumni.org</field>
             <field name="subject">Un ISFATESsien vous a envoyé un message</field>

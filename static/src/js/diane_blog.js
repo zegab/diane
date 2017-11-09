@@ -1,6 +1,5 @@
 $(document).ready(function() {
     if ($('.website_blog').length) {
-        $('.js_fullheight').css('min-height', "220px");
+        $('.website_blog .o_blog_cover_container.cover_full').css('height', "55vh");
     }
-
 });

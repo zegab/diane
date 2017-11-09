@@ -6,13 +6,31 @@
 			<field name="inherit_id" ref="website_blog.blog_post_complete"/>
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
-				<data/>
-				<!--<xpath expr="//div[@id='blog_angle_down']" position="replace"/>
-				<xpath expr="//span[@t-field='blog_post.author_id']/.." position="replace"/>
-				<xpath expr="//span[@t-field='next_post.author_avatar']" position="replace">
-					<span t-field="next_post.author_avatar" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle&quot;, &quot;style&quot;:&quot;width: 80px; margin-right: 10px; display:inline&quot;}"/>
+				<xpath expr="//div[@id='title']" position="inside">
+					<div class="col-md-12 text-center">
+					<h1 t-field="blog_post.name" id="blog_post_name" t-att-data-blog-id="blog_post.id" placeholder="Blog Post Title"/>
+                    <h2 t-field="blog_post.subtitle" placeholder="Subtitle"/>
+                    <p class="post-meta text-muted text-center" name="blog_post_data"/>
+                    <p class="post-meta text-muted text-center" t-if="len(blog_post.tag_ids)">
+                        <span class="fa fa-tags"/>
+                        <t t-foreach="blog_post.tag_ids" t-as="one_tag">
+                            <a class="label label-primary mr8" t-attf-href="#{blog_url(tag=one_tag.id)}" t-esc="one_tag.name"/>
+                        </t>
+                    </p>
+					</div>
 				</xpath>
-				<xpath expr="//span[@t-field='next_post.author_id']" position="replace"/>-->
+				<xpath expr="//div[@class='o_blog_post_complete o_sharing_links']" position="replace"/>
+			</field>
+		</record>
+
+		<record id="blog_post_cover_diane" model="ir.ui.view">
+			<field name="name">diane.blog.post.cover</field>
+			<field name="inherit_id" ref="website_blog.blog_cover"/>
+			<field eval="100" name="priority"/>
+			<field name="arch" type="xml">
+				<xpath expr="//t[@t-name='website_blog.blog_cover']" position="replace">
+					<t t-name="website_blog.blog_cover"></t>
+				</xpath>
 			</field>
 		</record>
 
@@ -32,8 +50,7 @@
 			<field name="inherit_id" ref="website_blog.blog_post_short"/>
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
-				<data/>
-				<!--<xpath expr="//div[@name='blog_post_data']/../.." position="replace">
+				<xpath expr="//div[@name='blog_post']" position="replace">
 					<div t-foreach="blog_posts.sorted(key=lambda r: r.sequence)" t-as="blog_post">
 						<span t-field="blog_post.author_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle pull-right media-object&quot;, &quot;style&quot;:&quot;width:60px&quot;}"/>
 						<a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/post/#{ slug(blog_post) }">
@@ -57,9 +74,6 @@
 						</div>
 					</div>
 				</xpath>
-				<xpath expr="//span[@t-field='blog_post.author_avatar']" position="replace">
-					<span t-field="blog_post.author_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle pull-right mt16 media-object&quot;, &quot;style&quot;:&quot;width:60px&quot;}"/>
-				</xpath>-->
 			</field>
 		</record>
 
