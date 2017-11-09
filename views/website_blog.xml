@@ -52,7 +52,7 @@
 			<field name="arch" type="xml">
 				<xpath expr="//div[@name='blog_post']" position="replace">
 					<div t-foreach="blog_posts.sorted(key=lambda r: r.sequence)" t-as="blog_post">
-						<span t-field="blog_post.author_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle pull-right media-object&quot;, &quot;style&quot;:&quot;width:60px&quot;}"/>
+						<span t-field="blog_post.author_avatar" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-circle pull-right media-object&quot;, &quot;style&quot;:&quot;width:60px&quot;}"/>
 						<a t-attf-href="/blog/#{ slug(blog_post.blog_id) }/post/#{ slug(blog_post) }">
 							<h2 t-field="blog_post.name" class="mb4"/>
 						</a>
