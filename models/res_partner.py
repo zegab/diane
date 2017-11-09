@@ -111,11 +111,9 @@ class ResPartner(models.Model):
 	messages_limit = fields.Integer('Limit of messages')
 
 
-	def geo_localize(self, cr, uid, ids, context=None):
+	def geo_localize(self, context=None):
 		# Don't pass context to browse()! We need country names in english below
-		for partner in self.browse(cr, uid, ids):
-			if not partner:
-				continue
+		for partner in self:
 			if partner.city:
 				result = geo_find(geo_query_address(street=partner.street,
 													zip=partner.zip,
@@ -123,59 +121,59 @@ class ResPartner(models.Model):
 													state=partner.state_id.name,
 													country=partner.country_id.name))
 				if result:
-					self.write(cr, uid, [partner.id], {
+					partner.write({
 						'partner_latitude': result[0],
 						'partner_longitude': result[1],
 						'date_localization': datetime.date.today(),
-					}, context=context)
+					})
 			if partner.c_city:
 				c_result = geo_find(geo_query_address(street=partner.c_street,
 													zip=partner.c_zip,
 													city=partner.c_city,
 													country=partner.c_country_id.name))
 				if c_result:
-					self.write(cr, uid, [partner.id], {
+					partner.write({
 						'c_latitude': c_result[0],
 						'c_longitude': c_result[1],
-					}, context=context)
+					})
 			if partner.h_city:
 				h_result = geo_find(geo_query_address(street=partner.h_street,
 													  zip=partner.h_zip,
 													  city=partner.h_city,
 													  country=partner.h_country_id.name))
 				if h_result:
-					self.write(cr, uid, [partner.id], {
+					partner.write({
 						'h_latitude': h_result[0],
 						'h_longitude': h_result[1],
-					}, context=context)
+					})
 		return True
 
-	def search_xing(self, cr, uid, ids, context=None):
-		url = "https://www.xing.com/search/members?hdr=1&keywords=%s" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '+'))
+	def search_xing(self):
+		url = "https://www.xing.com/search/members?hdr=1&keywords=%s" % (self.name.replace(' ', '+'))
 		return {'type': 'ir.actions.act_url',
 				  'name': "Social Network",
 				  'target': 'new',
 				  'url': url,
 				  }
 
-	def search_linkedin(self, cr, uid, ids, context=None):
-		url = "https://www.linkedin.com/search/results/index/?keywords=%s&origin=GLOBAL_SEARCH_HEADER" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '%20'))
+	def search_linkedin(self):
+		url = "https://www.linkedin.com/search/results/index/?keywords=%s&origin=GLOBAL_SEARCH_HEADER" % (self.name.replace(' ', '%20'))
 		return {'type': 'ir.actions.act_url',
 				  'name': "Social Network",
 				  'target': 'new',
 				  'url': url,
 				  }
 
-	def search_viadeo(self, cr, uid, ids, context=None):
-		url = "http://www.viadeo.com/en/search/#/?q=%s" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '%20'))
+	def search_viadeo(self):
+		url = "http://www.viadeo.com/en/search/#/?q=%s" % (self.name.replace(' ', '%20'))
 		return {'type': 'ir.actions.act_url',
 				  'name': "Social Network",
 				  'target': 'new',
 				  'url': url,
 				  }
 
-	def search_facebook(self, cr, uid, ids, context=None):
-		url = "https://www.facebook.com/search/top/?q=%s" % (self.browse(cr, uid, ids, context=context).name.replace(' ', '%20'))
+	def search_facebook(self):
+		url = "https://www.facebook.com/search/top/?q=%s" % (self.name.replace(' ', '%20'))
 		return {'type': 'ir.actions.act_url',
 				  'name': "Social Network",
 				  'target': 'new',
