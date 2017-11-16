@@ -32,6 +32,7 @@
         'views/alumni_message.xml',
         'views/alumni_map.xml',
         'views/website_jobs.xml',
+        'views/hr_recruitment.xml',
     ],
     'demo': [],
 
