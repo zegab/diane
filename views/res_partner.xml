@@ -60,9 +60,7 @@
 									<field name="c_web"/>
 								</group>
 								<group string="NACE">
-									<group>
 										<field name="c_nace_text"/>
-									</group>
 									<br/>
 									<group>
 										<div style="border:1px solid black;">
@@ -74,9 +72,7 @@
 										</div>
 									</group>
 									<br/>
-									<group>
 										<field name="c_nace" options="{'no_create': True}"/>
-									</group>
 								</group>
 								<group string="HR Responsible">
 									<field name="hr_name"/>

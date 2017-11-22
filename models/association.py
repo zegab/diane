@@ -19,10 +19,17 @@ class NACE(models.Model):
     _parent_store = True
     parent_left = fields.Integer(index=True)
     parent_right = fields.Integer(index=True)
+
     @api.constrains('parent_id')
     def _check_hierarchy(self):
         if not self._check_recursion():
             raise models.ValidationError('Error! You cannot create recursive categories.')
+
+    @api.multi
+    def name_get(self):
+        return [(nace.id, '%s%s' % (nace.code and '[%s] ' % nace.code or '', nace.name))
+                for nace in self]
+
 
 
 class Language(models.Model):
