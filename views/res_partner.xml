@@ -15,6 +15,7 @@
 
 					<xpath expr="//label[@for='street']/../.." position="before">
                         <group>
+							<field name="alumni"/>
 							<field name="self_updated" class="oe_inline" readonly="True"/>
 							<field name="gender" class="oe_inline"/>
                             <field name="forename" class="oe_inline"/>
@@ -33,7 +34,6 @@
 						</field>
 					</field>
 					<field name="website" position="replace">
-						<field name="alumni"/>
 						<field name="ref" string="Matricule"/>
 						<field name="section"/>
 						<field name="diploma"/>
@@ -44,50 +44,66 @@
 					<page name="internal_notes" position="after">
 						<page name="company" string="Company Address">
 							<group>
-								<group>
+								<group string="Company Address">
 									<field name="c_name"/>
-									<field name="c_nace"/>
-                                    <field name="c_nace_text"/>
 									<field name="c_street"/>
 									<field name="c_street2"/>
 									<field name="c_zip"/>
 									<field name="c_city"/>
 									<field name="c_country_id"/>
 								</group>
-								<group>
+								<group string="Contact Details">
 									<field name="c_date_joined"/>
 									<field name="c_email"/>
 									<field name="c_phone"/>
 									<field name="c_mobile"/>
 									<field name="c_web"/>
 								</group>
+								<group string="NACE">
+									<group>
+										<field name="c_nace_text"/>
+									</group>
+									<br/>
+									<group>
+										<div style="border:1px solid black;">
+											<strong>Sélectionneur NACE</strong>
+											<field name="c_nace1" label="NACE1" domain="[('parent_id','=',False)]"  options="{'no_create': True}"/>
+											<field name="c_nace2" label="NACE2" options="{'no_create': True}"/>
+											<field name="c_nace3" label="NACE3" options="{'no_create': True}"/>
+											<field name="c_nace4" label="NACE4" options="{'no_create': True}"/>
+										</div>
+									</group>
+									<br/>
+									<group>
+										<field name="c_nace" options="{'no_create': True}"/>
+									</group>
+								</group>
 								<group string="HR Responsible">
 									<field name="hr_name"/>
 									<field name="hr_phone"/>
 									<field name="hr_email"/>
 								</group>
-								<group>
+								<group string="Geolocalization">
 									<field name="c_latitude"/>
 									<field name="c_longitude"/>
 								</group>
 							</group>
 						</page>
-						<page name="home" string="Home Address">
+						<page name="home" string="First/Origin Address">
 							<group>
-								<group>
+								<group string="First/Origin Address">
 									<field name="h_street"/>
 									<field name="h_street2"/>
 									<field name="h_zip"/>
 									<field name="h_city"/>
 									<field name="h_country_id"/>
 								</group>
-								<group>
+								<group string="Contact Details">
 									<field name="h_email"/>
 									<field name="h_phone"/>
-
 									<field name="h_mobile"/>
 								</group>
-								<group>
+								<group string="Geolocalization">
 									<field name="h_latitude"/>
 									<field name="h_longitude"/>
 								</group>
@@ -105,7 +121,7 @@
 								<field name="pro_anciens_ok"/>
 								<field name="pro_stage_ok"/>
 								<field name="hr_stage_ok"/>
-								<!--<field name="opt_out"/>-->
+								<field name="opt_out"/>
 							</group>
 						</page>
 						<page name="additional" string="Additional Information">
