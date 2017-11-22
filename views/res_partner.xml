@@ -64,7 +64,7 @@
 									<br/>
 									<group>
 										<div style="border:1px solid black;">
-											<strong>Sélectionneur NACE</strong>
+											<strong>Sélectionneur NACE</strong><br/>
 											<field name="c_nace1" label="NACE1" domain="[('parent_id','=',False)]"  options="{'no_create': True}"/>
 											<field name="c_nace2" label="NACE2" options="{'no_create': True}"/>
 											<field name="c_nace3" label="NACE3" options="{'no_create': True}"/>

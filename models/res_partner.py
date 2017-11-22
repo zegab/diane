@@ -114,25 +114,34 @@ class ResPartner(models.Model):
 	messages_sent = fields.Integer('Messages sent')
 	messages_limit = fields.Integer('Limit of messages')
 
-	@api.onchange('c_nace1','c_nace2','c_nace3','c_nace4',)
-	def _onchange_nace(self):
-		if self.c_nace4:
-			self.c_nace = self.c_nace4
-		if self.c_nace3:
-			self.c_nace = self.c_nace3
-			self.c_nace4 = False
-			return {'domain': {'c_nace4': [('parent_id', '=', self.c_nace3.id)]}}
-		if self.c_nace2:
-			self.c_nace = self.c_nace2
-			self.c_nace3 = False
-			self.c_nace4 = False
-			return {'domain': {'c_nace3': [('parent_id', '=', self.c_nace2.id)]}}
+
+	@api.onchange('c_nace1')
+	def _onchange_nace1(self):
 		if self.c_nace1:
 			self.c_nace = self.c_nace1
 			self.c_nace2 = False
 			self.c_nace3 = False
 			self.c_nace4 = False
 			return {'domain': {'c_nace2': [('parent_id', '=', self.c_nace1.id)]}}
+	@api.onchange('c_nace2')
+	def _onchange_nace2(self):
+		if self.c_nace2:
+			self.c_nace = self.c_nace2
+			self.c_nace3 = False
+			self.c_nace4 = False
+			return {'domain': {'c_nace3': [('parent_id', '=', self.c_nace2.id)]}}
+
+	@api.onchange('c_nace3')
+	def _onchange_nace3(self):
+		if self.c_nace3:
+			self.c_nace = self.c_nace3
+			self.c_nace4 = False
+			return {'domain': {'c_nace4': [('parent_id', '=', self.c_nace3.id)]}}
+
+	@api.onchange('c_nace4')
+	def _onchange_nace4(self):
+		if self.c_nace4:
+			self.c_nace = self.c_nace4
 
 	def geo_localize(self, context=None):
 		# Don't pass context to browse()! We need country names in english below
