@@ -161,7 +161,7 @@
                                         </t>
                                     </td>
                                     <td>
-                                        <t t-if="alumni['has_email']">
+                                        <t t-if="alumni['has_email'] and alumni['rgpd_alumni_contact'] != 'no'">
                                             <button class="btn btn-default btn-primary" style="padding:1px 20px" data-toggle="modal" t-att-data-target="'#message'+str(alumni['id'])">Contact</button>
                                         </t>
 

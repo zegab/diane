@@ -57,7 +57,7 @@ class website_diane_account(http.Controller):
 
             if post['address'] == 'a':
                 request.env.cr.execute("""
-                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id,
+                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id, rgpd_alumni_contact,
                     CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email
@@ -68,7 +68,7 @@ class website_diane_account(http.Controller):
                 """,[tuple(p_ids)])
             if post['address'] == 'c':
                 request.env.cr.execute("""
-                    SELECT pro_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, c_latitude AS lat, c_longitude AS lng, p.id,
+                    SELECT pro_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, c_latitude AS lat, c_longitude AS lng, p.id, rgpd_alumni_contact,
                     CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email
@@ -79,7 +79,7 @@ class website_diane_account(http.Controller):
                 """,[tuple(p_ids)])
             if post['address'] == 'h':
                 request.env.cr.execute("""
-                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, h_latitude AS lat, h_longitude AS lng, p.id,
+                    SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, h_latitude AS lat, h_longitude AS lng, p.id, rgpd_alumni_contact,
                     CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email
@@ -91,7 +91,7 @@ class website_diane_account(http.Controller):
             values.update({'address': post['address']})
         else:
             request.env.cr.execute("""
-                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id,
+                SELECT perso_anciens_ok, p.name as name, forename, lastname, m_name, function, c_name, s.name AS section, section AS section_id, d.name AS diploma,diploma AS diploma_id, d_year, partner_latitude AS lat, partner_longitude AS lng, p.id, rgpd_alumni_contact,
                 CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email
@@ -143,6 +143,7 @@ class website_diane_account(http.Controller):
                             diploma AS diploma_id,
                             d_year,
                             p.id,
+                            rgpd_alumni_contact,
                             CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email
@@ -172,6 +173,7 @@ class website_diane_account(http.Controller):
                             diploma AS diploma_id,
                             d_year,
                             p.id,
+                            rgpd_alumni_contact,
                             CASE WHEN p.email IS NOT NULL THEN True
                                 ELSE False
                                 END AS has_email

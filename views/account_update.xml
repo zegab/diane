@@ -295,8 +295,8 @@
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<fieldset>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_perso_data" value="yes" t-att-checked="partner.rgpd_perso_data == 'yes'">Oui</input>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_perso_data" value="no" t-att-checked="partner.rgpd_perso_data == 'no'">Non</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_perso_data" required="" value="yes" t-att-checked="partner.rgpd_perso_data == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_perso_data" required="" value="no" t-att-checked="partner.rgpd_perso_data == 'no'">Non</input>
 											</fieldset>
 										</div>
 										<div class="clearfix"/>
@@ -309,8 +309,8 @@
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<fieldset>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_prof_data" value="yes" t-att-checked="partner.rgpd_prof_data == 'yes'">Oui</input>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_prof_data" value="no" t-att-checked="partner.rgpd_prof_data == 'no'">Non</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_prof_data" required="" value="yes" t-att-checked="partner.rgpd_prof_data == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_prof_data" required="" value="no" t-att-checked="partner.rgpd_prof_data == 'no'">Non</input>
 											</fieldset>
 										</div>
 										<div class="clearfix"/>
@@ -329,8 +329,8 @@
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<fieldset>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_isfates_info" value="yes" t-att-checked="partner.rgpd_isfates_info == 'yes'">Oui</input>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_isfates_info" value="no" t-att-checked="partner.rgpd_isfates_info == 'no'">Non</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_isfates_info" required="" value="yes" t-att-checked="partner.rgpd_isfates_info == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_isfates_info" required="" value="no" t-att-checked="partner.rgpd_isfates_info == 'no'">Non</input>
 											</fieldset>
 										</div>
 										<div class="clearfix"/>
@@ -343,8 +343,8 @@
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<fieldset>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_stage" value="yes" t-att-checked="partner.rgpd_stage == 'yes'">Oui</input>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_stage" value="no" t-att-checked="partner.rgpd_stage == 'no'">Non</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_stage" value="yes" required="" t-att-checked="partner.rgpd_stage == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_stage" value="no" required="" t-att-checked="partner.rgpd_stage == 'no'">Non</input>
 											</fieldset>
 										</div>
 										<div class="clearfix"/>
@@ -357,8 +357,8 @@
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<fieldset>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_emp_offer" value="yes" t-att-checked="partner.rgpd_emp_offer == 'yes'">Oui</input>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_emp_offer" value="no" t-att-checked="partner.rgpd_emp_offer == 'no'">Non</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_emp_offer" value="yes" required="" t-att-checked="partner.rgpd_emp_offer == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_emp_offer" value="no" required="" t-att-checked="partner.rgpd_emp_offer == 'no'">Non</input>
 											</fieldset>
 										</div>
 										<div class="clearfix"/>
@@ -371,49 +371,29 @@
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
 											<fieldset>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_publication_annuaire" value="yes" t-att-checked="partner.rgpd_publication_annuaire == 'yes'">Oui</input>
-												<input type="radio" style="width:10%; height:15px" name="rgpd_publication_annuaire" value="no" t-att-checked="partner.rgpd_publication_annuaire == 'no'">Non</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_publication_annuaire" value="yes" required="" t-att-checked="partner.rgpd_publication_annuaire == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_publication_annuaire" value="no" required="" t-att-checked="partner.rgpd_publication_annuaire == 'no'">Non</input>
 											</fieldset>
 										</div>
 										<div class="clearfix"/>
 										<div class="col-lg-12">
-											<h3>Autorisations pour les autres Anciens / Visibilité sur la Carte</h3>
+											<h3>Contact direct</h3>
 											<span>
-                                            Les anciens qui comme vous participent à l'actualisation de la BDD y auront accès et y trouveront les informations publiques vous concernant (voir publication dans l'Annuaire), soit par une recherche ciblée, soit en navigant sur la carte et en cliquant sur un emplacement. En complément de ces informations publiques autorisez vous l'Association à diffuser aux Anciens les informations suivantes:
+                                            7) Acceptez vous ou non d'être contacté au travers de notre plateforme par les autres anciens élèves de notre école?
 											</span>
 										</div>
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
-											<label for="perso_anciens_ok">vos données personnelles</label>
-											<input type="checkbox" style="width:20%; height:25px" name="perso_anciens_ok" t-att-checked="perso_anciens_ok or partner.perso_anciens_ok"/>
-										</div>
-										<div class="form-group col-lg-6">
-											<label for="pro_anciens_ok">vos données professionelles</label>
-											<input type="checkbox" style="width:20%; height:25px" name="pro_anciens_ok" t-att-checked="pro_anciens_ok or partner.pro_anciens_ok"/>
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_alumni_contact" value="yes" required="" t-att-checked="partner.rgpd_alumni_contact == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_alumni_contact" value="no" required="" t-att-checked="partner.rgpd_alumni_contact == 'no'">Non</input>
+											</fieldset>
 										</div>
 										<div class="clearfix"/>
-										<div class="col-lg-12">
-											<h3>Autorisation pour les recherches de stages</h3>
-											<span>
-                                            Nous avons lié un partenariat avec un projet étudiant de fin d'études devant faciliter la recherche de stage pour les Isfatessiens de 3ième année.<br/>
-											Autorisez vous l'Association à permettre à ce projet de vous adresser des demandes de stages :
-											</span>
-										</div>
-										<div class="clearfix"/>
-										<div class="form-group col-lg-6">
-											<label for="pro_stage_ok">à votre email professionel</label>
-											<input type="checkbox" style="width:20%; height:25px" name="pro_stage_ok" t-att-checked="pro_stage_ok or partner.pro_stage_ok"/>
-										</div>
-										<div class="form-group col-lg-6">
-											<label for="hr_stage_ok">à l'email du responsable RH de votre employeur</label>
-											<input type="checkbox" style="width:20%; height:25px" name="hr_stage_ok" t-att-checked="hr_stage_ok or partner.hr_stage_ok"/>
-										</div>
-										<div class="clearfix"/>
-										<input type="hidden" name="redirect" t-att-value="redirect"/>
 									</div>
-									<div class="clearfix"/>
 									<br/><br/>
 									<div class="col-md-12 text-center">
+									<input type="hidden" name="redirect" t-att-value="redirect"/>
 										<button type="submit" class="col-md-12 btn btn-default btn-primary mb32 pull-left">
 											<strong>Sauvegarder</strong>
 											<span class="fa fa-long-arrow-right" />

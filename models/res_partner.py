@@ -125,6 +125,7 @@ class ResPartner(models.Model):
 	rgpd_stage = fields.Selection([('yes', 'yes'), ('no', 'no')],string='4. You can ask for practicals for actual students')
 	rgpd_emp_offer = fields.Selection([('yes', 'yes'), ('no', 'no')],string='5. Propose me job offers')
 	rgpd_publication_annuaire = fields.Selection([('yes', 'yes'), ('no', 'no')],string='6. Publish my employment information on the Annuaire')
+	rgpd_alumni_contact = fields.Selection([('yes', 'yes'), ('no', 'no')],string='7. Be contacted by Alumni')
 
 	@api.onchange('c_nace1')
 	def _onchange_nace1(self):

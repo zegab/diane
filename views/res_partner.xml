@@ -134,6 +134,7 @@
 									<field name="rgpd_stage"/>
 									<field name="rgpd_emp_offer"/>
 									<field name="rgpd_publication_annuaire"/>
+									<field name="rgpd_alumni_contact"/>
 								</group>
 								<group string="Mass Mailing">
 									<field name="opt_out"/>
