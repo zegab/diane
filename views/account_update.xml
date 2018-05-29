@@ -285,41 +285,95 @@
 											<label class="control-label" for="facebook">Page Facebook</label>
 											<input type="text" name="facebook" class="form-control" t-att-value="facebook or partner.facebook" />
 										</div>-->
-										<h2>Options de confidentialité</h2>
+										<h2>Options de confidentialité / RGPD</h2>
 										<div class="col-lg-12">
-											<h3>Publication dans l'Annuaire des Anciens</h3>
+											<h3>Données personnelles</h3>
 											<span>
-                                            En complément des informations publiques qui sont:<br/>
-                                                   1) votre nom et votre prénom<br/>
-                                                   2) votre nom de jeune fille (si il y a lieu)<br/>
-                                                   3) votre filière d'étude à l'ISFATES<br/>
-                                                   4) votre diplôme<br/>
-                                                   5) votre année de promotion<br/>
-                                                   6) les informations publiques que vous publiez sur les réseaux sociaux, si c'est le cas<br/>
-												<br/>
-                                            autorisez vous l'Association à publier dans sa prochaine édition de l'Annuaire des Anciens les informations suivantes :
+                                            	1) Acceptez vous ou non que vos données personnelles soient conservées dans la banque de données de l’Association des anciens élèves de l’ISFATES DFHI?
 											</span>
 										</div>
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
-											<label for="perso_annuaire_ok">vos données personnelles</label>
-											<input type="checkbox" style="width:20%; height:25px" name="perso_annuaire_ok" t-att-checked="perso_annuaire_ok or partner.perso_annuaire_ok"/>
-										</div>
-										<div class="form-group col-lg-6">
-											<label for="pro_annuaire_ok">vos données professionelles</label>
-											<input type="checkbox" style="width:20%; height:25px" name="pro_annuaire_ok" t-att-checked="pro_annuaire_ok or partner.pro_annuaire_ok"/>
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_perso_data" value="yes" t-att-checked="partner.rgpd_perso_data == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_perso_data" value="no" t-att-checked="partner.rgpd_perso_data == 'no'">Non</input>
+											</fieldset>
 										</div>
 										<div class="clearfix"/>
 										<div class="col-lg-12">
-											<h3>Autorisations pour être contacté pour des offres d'emplois</h3>
-											<span>Nous publions sur notre site des offres d'emploi et de stage qui nous sont communiquées par les DRH de sociétés et les chasseurs de têtes.<br/>
-											Nous proposerons également à ces professionnels un service plus performant consistant à vous adresser directement l'offre d'emploi au travers de notre système, tout en respectant votre anonymat.<br/>
-											Autorisez-vous l'Association à permettre aux professionnels de vous adresser des offres d'emploi:</span>
+											<h3>Données professionnelles</h3>
+											<span>
+                                            	2) Acceptez vous ou non que vos données professionnelles soient conservées dans la banque de données de l’Association des anciens élèves de l’ISFATES DFHI?
+											</span>
 										</div>
 										<div class="clearfix"/>
 										<div class="form-group col-lg-6">
-											<label for="hr_contact_ok">sur mon Email personnel</label>
-											<input type="checkbox" style="width:20%; height:25px" name="hr_contact_ok" t-att-checked="hr_contact_ok or partner.hr_contact_ok"/>
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_prof_data" value="yes" t-att-checked="partner.rgpd_prof_data == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_prof_data" value="no" t-att-checked="partner.rgpd_prof_data == 'no'">Non</input>
+											</fieldset>
+										</div>
+										<div class="clearfix"/>
+										<div class="form-group col-lg-12">
+											<p class="text-danger">
+											<strong>Si vous avez répondu non à ces deux questions toutes vos information personnelles et professionnelles seront effacées de notre banque de données et à notre regret nous ne pourrons plus communiquer avec vous au travers de la plateforme de l’Association.</strong>
+											</p>
+										</div>
+										<div class="clearfix"/>
+										<div class="col-lg-12">
+											<h3>Contact par l'Institut</h3>
+											<span>
+												3) Acceptez vous ou non de recevoir au travers de la plateforme de l’Association des informations émanant et concernant les activités de notre école?
+											</span>
+										</div>
+										<div class="clearfix"/>
+										<div class="form-group col-lg-6">
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_isfates_info" value="yes" t-att-checked="partner.rgpd_isfates_info == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_isfates_info" value="no" t-att-checked="partner.rgpd_isfates_info == 'no'">Non</input>
+											</fieldset>
+										</div>
+										<div class="clearfix"/>
+										<div class="col-lg-12">
+											<h3>Offres de Stage</h3>
+											<span>
+                                            4) Acceptez vous ou non de recevoir au travers de la plateforme de l’Association des informations concernant des demandes de stages pour des étudiants de notre école.
+											</span>
+										</div>
+										<div class="clearfix"/>
+										<div class="form-group col-lg-6">
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_stage" value="yes" t-att-checked="partner.rgpd_stage == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_stage" value="no" t-att-checked="partner.rgpd_stage == 'no'">Non</input>
+											</fieldset>
+										</div>
+										<div class="clearfix"/>
+										<div class="col-lg-12">
+											<h3>Offres d'Emploi</h3>
+											<span>
+                                            5) Acceptez vous ou non de recevoir au travers de la plateforme de l’Association des informations concernant des offres d’emploi émanant de recruteurs ou de société recherchant de nouveaux collaborateurs.
+											</span>
+										</div>
+										<div class="clearfix"/>
+										<div class="form-group col-lg-6">
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_emp_offer" value="yes" t-att-checked="partner.rgpd_emp_offer == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_emp_offer" value="no" t-att-checked="partner.rgpd_emp_offer == 'no'">Non</input>
+											</fieldset>
+										</div>
+										<div class="clearfix"/>
+										<div class="col-lg-12">
+											<h3>Annuaire</h3>
+											<span>
+                                            6) Acceptez vous ou non que dans la prochaine édition de notre annuaire des anciens paraissent votre fonction, le nom de votre employeur et le nom de la ville dans laquelle l’entreprise qui vous emploie est localisée. (Aucune autre information pouvant directement ou indirectement établir un contact direct avec vous ne sera publiée dans l’annuaire des Anciens)?
+											</span>
+										</div>
+										<div class="clearfix"/>
+										<div class="form-group col-lg-6">
+											<fieldset>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_publication_annuaire" value="yes" t-att-checked="partner.rgpd_publication_annuaire == 'yes'">Oui</input>
+												<input type="radio" style="width:10%; height:15px" name="rgpd_publication_annuaire" value="no" t-att-checked="partner.rgpd_publication_annuaire == 'no'">Non</input>
+											</fieldset>
 										</div>
 										<div class="clearfix"/>
 										<div class="col-lg-12">

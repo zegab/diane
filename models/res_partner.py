@@ -109,11 +109,22 @@ class ResPartner(models.Model):
 	date_exit = fields.Date('Exit Date')
 	failed = fields.Boolean('No Diploma!')
 	gender = fields.Selection([('m', 'M'), ('f', 'F')], string='Gender')
+
 	self_updated = fields.Boolean('Self Updated')
+
 	deceased = fields.Boolean('Deceased')
+
+	#Alumni Contact
 	messages_sent = fields.Integer('Messages sent')
 	messages_limit = fields.Integer('Limit of messages')
 
+	#RGPD
+	rgpd_perso_data = fields.Selection([('yes', 'yes'), ('no', 'no')],string='1. Keep personal data?')
+	rgpd_prof_data = fields.Selection([('yes', 'yes'), ('no', 'no')],string='2. Keep professional data?')
+	rgpd_isfates_info = fields.Selection([('yes', 'yes'), ('no', 'no')],string='3. The School shall contact me')
+	rgpd_stage = fields.Selection([('yes', 'yes'), ('no', 'no')],string='4. You can ask for practicals for actual students')
+	rgpd_emp_offer = fields.Selection([('yes', 'yes'), ('no', 'no')],string='5. Propose me job offers')
+	rgpd_publication_annuaire = fields.Selection([('yes', 'yes'), ('no', 'no')],string='6. Publish my employment information on the Annuaire')
 
 	@api.onchange('c_nace1')
 	def _onchange_nace1(self):

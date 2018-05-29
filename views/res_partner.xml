@@ -125,9 +125,20 @@
 								</group>
 							</group>
 						</page>
-						<page name="privacy" string="Privacy Information">
+						<page name="privacy" string="Privacy Information/RGPD/DSGVO">
 							<group>
-								<group string="Privacy Settings">
+								<group string="RGPD/DSGVO Settings">
+									<field name="rgpd_perso_data"/>
+									<field name="rgpd_prof_data"/>
+									<field name="rgpd_isfates_info"/>
+									<field name="rgpd_stage"/>
+									<field name="rgpd_emp_offer"/>
+									<field name="rgpd_publication_annuaire"/>
+								</group>
+								<group string="Mass Mailing">
+									<field name="opt_out"/>
+								</group>
+								<group string="OLD (!) Privacy Settings (Unpublished from Website)">
 									<!--<field name="annuaire_ok"/>
 									<field name="sponsoring_ok"/>-->
 									<field name="recruitment_ok"/>
