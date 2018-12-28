@@ -30,6 +30,7 @@
 								<field name="section"/>
 								<field name="diploma"/>
 								<field name="d_year"/>
+								<field name="p_year"/>
 								<field name="d_other"/>
 								<field name="failed"/>
 								<field name="date_entry"/>

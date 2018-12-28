@@ -61,6 +61,7 @@ class ResPartner(models.Model):
 	diploma = fields.Many2one('diane.diploma', 'Diploma', ondelete='restrict')
 	section = fields.Many2one('diane.section', 'Section', ondelete='restrict')
 	d_year = fields.Integer('Diploma Year')
+	p_year = fields.Integer('Promotion Year')
 	d_other = fields.Char('Other Diplomas')
 	c_name = fields.Char('Company Name')
 	c_nace = fields.Many2one('diane.nace', 'NACE Code', ondelete='restrict')

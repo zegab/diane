@@ -206,6 +206,13 @@ class website_diane_account(http.Controller):
         sections = request.env['diane.section'].sudo().search([])
         diplomas = request.env['diane.diploma'].sudo().search([])
 
+        #fills a list with possible promotion dates
+        p_years = []
+        i = 0
+        while i < 5:
+            p_years.append(partner.d_year + 1 - i)
+            i += 1
+
         values.update({
             'partner': partner,
             'countries': countries,
@@ -215,6 +222,7 @@ class website_diane_account(http.Controller):
             'sections': sections,
             'diplomas': diplomas,
             'redirect': redirect,
+            'p_years': p_years,
         })
 
         if post:
@@ -228,6 +236,8 @@ class website_diane_account(http.Controller):
                     post['c_date_joined']=None
             if 'd_year'in post and not post['d_year'].isdigit():
                 post['d_year']=False
+            if 'p_year'in post and not post['p_year'].isdigit():
+                post['p_year']=False
 
             values.update(post)
             if not error:

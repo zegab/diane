@@ -25,20 +25,32 @@
 											<br/><h1><strong><t t-esc="partner.forename" /><span>    </span><t t-esc="partner.lastname" />    <t t-esc="partner.m_name" /></strong></h1>
 										</div>
 										<div class="clearfix" />
-										<!--<h3>Diplome</h3>-->
+										<!--<h3>Diplome / Promotion</h3>-->
 										<div t-attf-class="col-lg-3">
-											<!--<label class="control-label" for="section">Filière</label>-->
-											<br/><h3><strong><t t-esc="partner.section.name" /></strong></h3>
+											<label class="control-label" for="section">Filière</label>
+											<h3><strong><t t-esc="partner.section.name" /></strong></h3>
 										</div>
 										<div t-attf-class="form-group col-lg-2">
-											<!--<label class="control-label" for="diploma">Diplome</label>-->
-											<br/><h3><strong><t t-esc="partner.diploma.name" /></strong></h3>
+											<label class="control-label" for="diploma">Diplome</label>
+											<h3><strong><t t-esc="partner.diploma.name" /></strong></h3>
 										</div>
 										<div t-attf-class="form-group col-lg-2">
-											<!--<label class="control-label" for="d_year">Promotion</label>-->
-											<br/><h3><strong><t t-esc="partner.d_year" /></strong></h3>
+											<label class="control-label" for="d_year">Année d'obtention</label>
+											<h3><strong><t t-esc="partner.d_year" /></strong></h3>
 										</div>
-										<div t-attf-class="form-group col-lg-5">
+										<div t-attf-class="form-group col-lg-2" style="border-style:solid;border-width:thin;border-color:#dd4814">
+											<label class="control-label" for="p_year">Promotion</label>
+											<h3><select name="p_year" class="form-control">
+                                            <option value="">Année...</option>
+                                            <t t-foreach="p_years or []" t-as="p_year">
+                                                <option t-att-value="p_year" t-att-selected="p_year == partner.p_year">
+                                                    <t t-esc="p_year" />
+                                                </option>
+                                            </t>
+                                        </select></h3>
+										</div>
+										<div class="clearfix" />
+										<div t-attf-class="form-group col-lg-9">
 											<label class="control-label" for="d_other">Autre(s) Diplome(s)</label>
 											<input type="text" name="d_other" class="form-control" t-att-value="d_other or partner.d_other" />
 										</div>
