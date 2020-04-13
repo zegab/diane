@@ -16,12 +16,13 @@
     'website': "http://www.isfates-dfhi-alumni.com",
 
     #'category': 'DIANE',
-    'version': '0.1',
+    'version': '0.2',
 
     'depends': ['base','website','crm','association','website_blog','mass_mailing','hr_recruitment','website_hr_recruitment','mail','auth_signup','website_form_recaptcha'],
 
 
     'data': [
+        'data/portal_data.xml',
         'views/res_partner.xml',
         'views/website_blog.xml',
         'views/website_theme.xml',
