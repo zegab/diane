@@ -30,6 +30,12 @@
                     <span>Je confirme que je suis un étudiant actuel de l'ISFATES</span>
                 </label>
             </div>
+            <div class="form-group row form-field o_website_form_required_custom">
+                <label class="col-lg-3 col-md-4 col-form-label" for="g-recaptcha-response">Humain?</label>
+                <div class="col-lg-7 col-md-8">
+                    <span class="o_website_form_recaptcha" required=""/>
+                </div>
+            </div>
         </xpath>
     </template>
 </odoo>
