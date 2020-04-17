@@ -17,6 +17,7 @@
 							<group string="Basic Info">
 								<field name="type" incisible="1"/>
 								<field name="alumni"/>
+								<field name="student"/>
 								<field name="self_updated" class="oe_inline" readonly="True"/>
 								<field name="gender" class="oe_inline"/>
 								<field name="x_title" class="oe_inline"/>

@@ -7,6 +7,8 @@ from odoo import tools
 from odoo.tools.translate import _
 import random
 from odoo.addons.website.models.website import slug
+from odoo.addons.web.controllers.main import ensure_db, Home
+from odoo.addons.auth_signup.models.res_users import SignupError
 
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
@@ -429,4 +431,39 @@ class website_hr_recruitment(http.Controller):
                 'tag': tag,
             })
 
+
+
+class AuthSignupHome(Home):
+
+    def do_signup(self, qcontext):
+        """ Shared helper that creates a res.partner out of a token """
+        ###BEGIN CUSTO
+        values = { key: qcontext.get(key) for key in ('login', 'name', 'password', 'section', 'date_entry', 'student') }
+        ###END CUSTO
+        assert values.values(), "The form was not properly filled in."
+        assert values.get('student') == '1'
+        assert values.get('password') == qcontext.get('confirm_password'), "Passwords do not match; please retype them."
+        supported_langs = [lang['code'] for lang in request.env['res.lang'].sudo().search_read([], ['code'])]
+        if request.lang in supported_langs:
+            values['lang'] = request.lang
+        self._signup_with_values(qcontext.get('token'), values)
+        request.env.cr.commit()
+
+    @http.route('/web/signup', type='http', auth='public', website=True)
+    def web_auth_signup(self, *args, **kw):
+
+        sections = request.env['diane.section'].sudo().search([])
+
+        # fills a list with possible promotion dates
+        p_years = []
+        i = 0
+        while i < 5:
+            p_years.append(int(datetime.date.today().strftime('%Y')) - i)
+            i += 1
+
+        request.params.update({
+            'sections': sections,
+            'p_years': p_years,
+        })
+        return super(AuthSignupHome, self).web_auth_signup(*args, **kw)
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="auth_signup.fields_student" inherit_id="auth_signup.fields" name="Auth Signup/ResetPassword form fields for Students">
+        <xpath expr="//div/input[@name='name']/.." position="after">
+            <div class="form-group field-login">
+                <label class="control-label" for="country_id">Section</label>
+                <select name="section" class="form-control">
+                    <option value="">Section...</option>
+                    <t t-foreach="sections or []" t-as="section">
+                        <option t-att-value="section.id">
+                            <t t-esc="section.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div class="form-group field-login">
+                <label class="control-label" for="date_entry">Année d'entrée à l'ISFATES</label>
+                <select name="date_entry" class="form-control">
+                <option value="">Année...</option>
+                <t t-foreach="p_years or []" t-as="p_year">
+                    <option t-att-value="datetime.datetime(p_year,1,1)">
+                        <t t-esc="p_year"/>
+                    </option>
+                </t>
+                </select>
+            </div>
+            <div class="form-group field-login">
+                <label class="control-label" for="student">
+                    <input type="checkbox" name="student" value="1" />
+                    <span>Je confirme que je suis un étudiant actuel de l'ISFATES</span>
+                </label>
+            </div>
+        </xpath>
+        <xpath expr="//div/input[@name='confirm_password']/.." position="after">
+            <script src="https://www.google.com/recaptcha/api.js"></script>
+            <div class="g-recaptcha" data-sitekey="6LeEOekUAAAAAMiRIrrFe6qRtVlBSXDMCHfCe_Tw"></div>
+            <br/>
+        </xpath>
+    </template>
+</odoo>
