@@ -31,5 +31,10 @@
                 </label>
             </div>
         </xpath>
+        <xpath expr="//div/input[@name='confirm_password']/.." position="after">
+            <script src="https://www.google.com/recaptcha/api.js"></script>
+            <div class="g-recaptcha" data-sitekey="6LeEOekUAAAAAMiRIrrFe6qRtVlBSXDMCHfCe_Tw"></div>
+            <br/>
+        </xpath>
     </template>
 </odoo>
