@@ -371,7 +371,8 @@ class website_hr_recruitment(http.Controller):
     def jobs(self, country=None, department=None, office_id=None, tag=None, **kwargs):
         env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
 
-        is_user = request.env.user.sudo().has_group('diane.group_alumni') or request.env.user.sudo().has_group('diane.group_student')
+        is_user = request.env.user.sudo().has_group('diane.group_alumni') or request.env.user.sudo().has_group('diane.group_student') or request.env.user.sudo().has_group('base.group_user')
+        is_user = True # to remove for Golive
         if not is_user:
             return request.render("website.403")
         else:
