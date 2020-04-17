@@ -18,7 +18,7 @@
     #'category': 'DIANE',
     'version': '0.2',
 
-    'depends': ['base','website','crm','association','website_blog','mass_mailing','hr_recruitment','website_hr_recruitment','mail','auth_signup','website_form_recaptcha'],
+    'depends': ['base','website','crm','association','website_blog','mass_mailing','hr_recruitment','website_hr_recruitment','mail','auth_signup'],
 
 
     'data': [
@@ -35,7 +35,6 @@
         'views/website_jobs.xml',
         'views/hr_recruitment.xml',
         'views/signup_template.xml',
-        #'data/ir_model_data.xml',
     ],
     'demo': [],
 
