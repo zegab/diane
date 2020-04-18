@@ -446,8 +446,8 @@ class website_job_notification(http.Controller):
             if post.get('send_job_ok', ''):
                 if post['send_job_ok'] == 'on':
                     partner.sudo().write({'send_job_notification': True})
-                else:
-                    partner.sudo().write({'send_job_notification': False})
+            else:
+                partner.sudo().write({'send_job_notification': False})
             if post['send_job_section']:
                 partner.sudo().write({'send_job_section': post['send_job_section']})
             else:

@@ -3,7 +3,7 @@
 	<data>
 		<template id="job_tags" inherit_id="website_hr_recruitment.index" active="True" customize_show="True" name="Filter by Tag">
 			<xpath expr="//div[@id='jobs_grid_left']" position="before">
-				<!--<script src="/diane/static/src/js/diane_job.js"/>-->
+				<script src="/diane/static/src/js/diane_job.js"/>
 				<form action="/diane/job_notification" method="post">
 					<div class="form-group col-lg-6" id="send_job_notification_div">
 						<label class="control-label" for="send_job_ok">
@@ -36,7 +36,7 @@
 				</form>
 			</xpath>
 			<xpath expr="//div[@id='jobs_grid_left']" position="inside">
-				<ul class="nav nav-pills nav-stacked mb32">
+				<!--<ul class="nav nav-pills nav-stacked mb32">
 					<t t-foreach="sections" t-as="section_id">
 						<li t-att-class=" 'active' if section_id == section_id.id else None ">
 							<a t-attf-href="/jobs#{ '/section/%s' % slug(section_id) if section_id else ''}" >
@@ -44,7 +44,7 @@
 							</a>
 						</li>
 					</t>
-				</ul>
+				</ul>-->
 				<ul class="nav nav-pills nav-stacked mb32">
 					<t t-foreach="tag_ids" t-as="tag_id">
 						<li t-att-class="'active' if tag and tag.id == tag_id[0].id else ''">
