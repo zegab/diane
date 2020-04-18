@@ -3,11 +3,11 @@
 	<data>
 		<template id="job_tags" inherit_id="website_hr_recruitment.index" active="True" customize_show="True" name="Filter by Tag">
 			<xpath expr="//div[@id='jobs_grid_left']" position="before">
-				<script src="/diane/static/src/js/diane_job.js"/>
-				<form action="/diane/jobs" method="post">
+				<!--<script src="/diane/static/src/js/diane_job.js"/>-->
+				<form action="/diane/job_notification" method="post">
 					<div class="form-group col-lg-6" id="send_job_notification_div">
 						<label class="control-label" for="send_job_ok">
-							<input type="checkbox" name="send_job_ok" id="send_job" t-att-value="partner.send_job_notification"/>
+							<input type="checkbox" name="send_job_ok" id="send_job" t-att-checked="partner.send_job_notification"/>
 							<span>Je souhaite être notifié par email lors de la publication de nouvelles offres</span>
 						</label>
 					</div>
@@ -24,8 +24,9 @@
 					</select>
 					</div>
 					<div class="clearfix"/>
+					<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 					<div class="col-md-3 text-center" name="submit" id="submit">
-					<input type="hidden" name="redirect" t-att-value="redirect"/>
+					<!--<input type="hidden" name="redirect" value="redirect"/>-->
 						<button type="submit" class="col-md-12 btn btn-default btn-primary mb32 pull-left">
 							<strong>Sauvegarder</strong>
 							<span class="fa fa-long-arrow-right" />
