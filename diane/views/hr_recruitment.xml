@@ -8,6 +8,9 @@
             <field eval="100" name="priority"/>
             <field name="arch" type="xml">
                 <data>
+                    <button name="set_open" position="after">
+                        <button name="send_job_notification" string="Send Job notification to followers" states="recruit" type="object" groups="base.group_user"/>
+                    </button>
                     <group name="employee_data" position="replace">
                         <group>
                             <field name="address_id" context="{'show_address': 1}" domain="[('is_company', '=', True )]" options="{'always_reload': True}"/>
@@ -26,6 +29,9 @@
                     </div>
                     <xpath expr="//field[@name='description']/.." position="attributes">
                         <attribute name="invisible">1</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='message_follower_ids']" position="after">
+                        <field name="message_ids" widget="mail_thread"/>
                     </xpath>
                 </data>
             </field>
