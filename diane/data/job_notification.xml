@@ -4,19 +4,23 @@
         <record id="email_template_alumni_job_notification" model="mail.template">
             <field name="name">New Job Notification</field>
             <field name="email_from">info@isfates-dfhi-alumni.org</field>
-            <field name="subject">ISFATES Alumni: nouvelle offre de stage publiée sur le site</field>
-            <field name="email_to">${ctx['send_to_email']}</field>
-            <field name="partner_to">${ctx['send_to_id']}</field>
+            <field name="subject">ISFATES Alumni: nouvelle offre publiée -${(object.department_id.name or '')|safe}-(${(object.address_id.name or '')|safe})</field>
             <field name="reply_to">info@isfates-dfhi-alumni.org</field>
             <field name="auto_delete">False</field>
             <field name="model_id" ref="hr.model_hr_job"/>
             <field name="body_html"><![CDATA[
-                <p>Cher Étudiant, Cher Alumni,</p><br/>
+                <p><span>Cher Étudiant, Cher Alumni,<br/><br/>
 
-                <p>Une nouvelle offre d'emploi a été publiée qui correspond à votre critère de recherche.<br/>
+                Une nouvelle offre d'emploi a été publiée qui correspond à votre critère de recherche.<br/>
+                ${(object.name or '')|safe}<br/>
+                ${(object.address_id.name or '')|safe}<br/>
+                <br/>
+                Vous pouvez la consulter en accédant à <a href="www.isfates-dfhi-alumni.org/jobs">https://www.isfates-dfhi-alumni.org/jobs</a>
+                <br/><br/>
 
-                <p><a href="www.isfates-dfhi-alumni.org">https://www.isfates-dfhi-alumni.org</a></p>
-
+                Bonne journée à vous et du succès pour votre recherche d'emploi ou de stage!<br/>
+                Votre Association des Anciens Élèves de l'ISFATES<br/>
+                </span></p>
             ]]></field>
         </record>
     </data>

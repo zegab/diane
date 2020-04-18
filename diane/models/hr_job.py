@@ -20,16 +20,12 @@ class hr_job(models.Model):
                 ('send_job_section', '=', self.section_id.id),
                 ('send_job_section', '=', False),
         ])
-        for send_to in partners:
-            template = self.env.ref('diane.email_template_alumni_job_notification')
-            template.with_context(
-                lang=send_to.lang,
-                send_to_email=send_to.email,
-                send_to_name=send_to.name,
-                send_to_id=send_to.id,
-            ).send_mail(self.id, force_send=False, raise_exception=True)
 
-        body = "The job notification has been sent following %s partners: %s" %(len(partners), [p.name for p in partners])
+        template = self.env.ref('diane.email_template_alumni_job_notification')
+        template.send_mail(self.id, force_send=False, raise_exception=True, email_values={'recipient_ids': [(4, pid) for pid in [p.id for p in partners]]})
+
+        partner_string = '<br/>'.join([p.name for p in partners])
+        body = "<p>The job notification has been sent to the following %s partners: <br/> %s</p>" %(len(partners), partner_string)
 
         values = {
             'author_id': self.env.uid,
