@@ -3,15 +3,16 @@
 	<data>
 		<template id="job_tags" inherit_id="website_hr_recruitment.index" active="True" customize_show="True" name="Filter by Tag">
 			<xpath expr="//div[@id='jobs_grid_left']" position="before">
+				<script src="/diane/static/src/js/diane_job.js"/>
 				<form action="/diane/jobs" method="post">
-					<div class="form-group col-lg-6" name="send_job_section">
-						<label class="control-label" for="send_job">
-							<input type="checkbox" name="send_job" t-att-value="partner.send_job_notification"/>
+					<div class="form-group col-lg-6" id="send_job_notification_div">
+						<label class="control-label" for="send_job_ok">
+							<input type="checkbox" name="send_job_ok" id="send_job" t-att-value="partner.send_job_notification"/>
 							<span>Je souhaite être notifié par email lors de la publication de nouvelles offres</span>
 						</label>
 					</div>
 					<div class="clearfix"/>
-					<div t-attf-class="form-group col-lg-6" name="send_job_section">
+					<div t-attf-class="form-group col-lg-6" id="send_job_section_div">
 					<label class="control-label" for="send_job_section">Seulement recevoir les offres de la section:</label>
 					<select name="send_job_section" class="form-control">
 						<option value="">Laisser vide pour toutes les offres</option>
@@ -23,7 +24,7 @@
 					</select>
 					</div>
 					<div class="clearfix"/>
-					<div class="col-md-3 text-center" name="submit">
+					<div class="col-md-3 text-center" name="submit" id="submit">
 					<input type="hidden" name="redirect" t-att-value="redirect"/>
 						<button type="submit" class="col-md-12 btn btn-default btn-primary mb32 pull-left">
 							<strong>Sauvegarder</strong>

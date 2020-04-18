@@ -373,6 +373,7 @@ class website_hr_recruitment(http.Controller):
         env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
 
         is_user = request.env.user.sudo().has_group('diane.group_alumni') or request.env.user.sudo().has_group('diane.group_student')
+        is_user = 1
         if not is_user:
             return request.render("website.403")
         else:
