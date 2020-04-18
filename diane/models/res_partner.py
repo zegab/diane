@@ -116,6 +116,10 @@ class ResPartner(models.Model):
 
 	deceased = fields.Boolean('Deceased')
 
+	#Job notifications
+	send_job_notification = fields.Boolean('Send email at new job publication')
+	send_job_section = fields.Many2one('diane.section', 'Section for job notification (empty for all)', ondelete='restrict')
+
 	#Alumni Contact
 	messages_sent = fields.Integer('Messages sent')
 	messages_limit = fields.Integer('Limit of messages')

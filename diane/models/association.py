@@ -43,3 +43,5 @@ class hr_job(models.Model):
     _defaults = {
         'address_id': False
     }
+
+    section_id = fields.Many2one('diane.section', 'Section', ondelete='restrict')

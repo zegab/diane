@@ -13,6 +13,7 @@
                             <field name="address_id" context="{'show_address': 1}" domain="[('is_company', '=', True )]" options="{'always_reload': True}"/>
                             <field name="department_id" string="Type" class="oe_inline"/>
                             <field name="x_pdf_url" readonly="False" widget="url"/>
+                            <field name="section_id" string="Section" class="oe_inline" required="1"/>
                             <field name="x_tag_ids" widget="many2many_tags" class="oe_inline"/>
                         </group>
                     </group>

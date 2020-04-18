@@ -362,13 +362,14 @@ class website_hr_recruitment(http.Controller):
         '/jobs/country/<model("res.country"):country>',
         '/jobs/department/<model("hr.department"):department>',
         '/jobs/tag/<model("x_job.tag"):tag>',
+        '/jobs/section/<model("diane.section"):section>',
         '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>',
         '/jobs/office/<int:office_id>',
         '/jobs/country/<model("res.country"):country>/office/<int:office_id>',
         '/jobs/department/<model("hr.department"):department>/office/<int:office_id>',
         '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>/office/<int:office_id>',
     ], type='http', auth="public", website=True)
-    def jobs(self, country=None, department=None, office_id=None, tag=None, **kwargs):
+    def jobs(self, country=None, department=None, office_id=None, tag=None, section=None, **kwargs):
         env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
 
         is_user = request.env.user.sudo().has_group('diane.group_alumni') or request.env.user.sudo().has_group('diane.group_student')
@@ -389,7 +390,7 @@ class website_hr_recruitment(http.Controller):
             departments = set(j.department_id for j in jobs if j.department_id)
             offices = set(j.address_id for j in jobs if j.address_id)
             countries = set(o.country_id for o in offices if o.country_id)
-            #tags = set(j.x_tag_ids for j in jobs if j.x_tag_ids)
+            sections = set(o.section_id for o in jobs if o.section_id)
             tags = {}
             for j in jobs:
                 for t in j.x_tag_ids:
@@ -415,6 +416,8 @@ class website_hr_recruitment(http.Controller):
                 jobs = (j for j in jobs if j.department_id and j.department_id.id == department.id)
             if office_id:
                 jobs = (j for j in jobs if j.address_id and j.address_id.id == office_id)
+            if section:
+                jobs = (j for j in jobs if j.section_id and j.section_id.id == section.id)
             if tag:
                 jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
 
@@ -424,11 +427,13 @@ class website_hr_recruitment(http.Controller):
                 'countries': countries,
                 'departments': departments,
                 'offices': offices,
+                'sections': sections,
                 'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
                 'country_id': country,
                 'department_id': department,
                 'office_id': office_id,
                 'tag': tag,
+                'partner': request.env.user.partner_id,
             })
 
 

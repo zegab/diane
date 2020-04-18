@@ -2,7 +2,47 @@
 <odoo>
 	<data>
 		<template id="job_tags" inherit_id="website_hr_recruitment.index" active="True" customize_show="True" name="Filter by Tag">
+			<xpath expr="//div[@id='jobs_grid_left']" position="before">
+				<form action="/diane/jobs" method="post">
+					<div class="form-group col-lg-6" name="send_job_section">
+						<label class="control-label" for="send_job">
+							<input type="checkbox" name="send_job" t-att-value="partner.send_job_notification"/>
+							<span>Je souhaite être notifié par email lors de la publication de nouvelles offres</span>
+						</label>
+					</div>
+					<div class="clearfix"/>
+					<div t-attf-class="form-group col-lg-6" name="send_job_section">
+					<label class="control-label" for="send_job_section">Seulement recevoir les offres de la section:</label>
+					<select name="send_job_section" class="form-control">
+						<option value="">Laisser vide pour toutes les offres</option>
+						<t t-foreach="sections or []" t-as="section">
+							<option t-att-value="section.id" t-att-selected="section.id == partner.send_job_section.id">
+								<t t-esc="section.name" />
+							</option>
+						</t>
+					</select>
+					</div>
+					<div class="clearfix"/>
+					<div class="col-md-3 text-center" name="submit">
+					<input type="hidden" name="redirect" t-att-value="redirect"/>
+						<button type="submit" class="col-md-12 btn btn-default btn-primary mb32 pull-left">
+							<strong>Sauvegarder</strong>
+							<span class="fa fa-long-arrow-right" />
+						</button>
+					</div>
+					<div class="clearfix"/>
+				</form>
+			</xpath>
 			<xpath expr="//div[@id='jobs_grid_left']" position="inside">
+				<ul class="nav nav-pills nav-stacked mb32">
+					<t t-foreach="sections" t-as="section_id">
+						<li t-att-class=" 'active' if section_id == section_id.id else None ">
+							<a t-attf-href="/jobs#{ '/section/%s' % slug(section_id) if section_id else ''}" >
+								<span t-field="section_id.name"/>
+							</a>
+						</li>
+					</t>
+				</ul>
 				<ul class="nav nav-pills nav-stacked mb32">
 					<t t-foreach="tag_ids" t-as="tag_id">
 						<li t-att-class="'active' if tag and tag.id == tag_id[0].id else ''">
