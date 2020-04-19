@@ -192,6 +192,12 @@
 								<field name="deceased"/>
 							</group>
 						</page>
+						<page name="send_job" string="New Job Notification">
+							<group>
+								<field name="send_job_notification"/>
+								<field name="send_job_section" attrs="{'invisible': [('send_job_notification','=',False)]}" class="oe_inline"/>
+							</group>
+						</page>
 					</page>
 				</data>
 			</field>

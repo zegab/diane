@@ -3,3 +3,4 @@
 import res_partner
 import association
 import website_blog
+import hr_job

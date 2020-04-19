@@ -23,13 +23,14 @@
 
     'data': [
         'data/portal_data.xml',
+        'data/job_notification.xml',
         'views/res_partner.xml',
         'views/website_blog.xml',
         'views/website_theme.xml',
         'views/website_menu.xml',
         'views/account_update.xml',
         'views/alumni_search.xml',
-        'views/alumni_contact.xml',
+        'data/alumni_contact.xml',
         'views/alumni_message.xml',
         'views/alumni_map.xml',
         'views/website_jobs.xml',

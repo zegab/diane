@@ -362,13 +362,14 @@ class website_hr_recruitment(http.Controller):
         '/jobs/country/<model("res.country"):country>',
         '/jobs/department/<model("hr.department"):department>',
         '/jobs/tag/<model("x_job.tag"):tag>',
+        '/jobs/section/<model("diane.section"):section>',
         '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>',
         '/jobs/office/<int:office_id>',
         '/jobs/country/<model("res.country"):country>/office/<int:office_id>',
         '/jobs/department/<model("hr.department"):department>/office/<int:office_id>',
         '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>/office/<int:office_id>',
-    ], type='http', auth="public", website=True)
-    def jobs(self, country=None, department=None, office_id=None, tag=None, **kwargs):
+    ], type='http', auth="user", website=True)
+    def jobs(self, country=None, department=None, office_id=None, tag=None, section=None, **kwargs):
         env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
 
         is_user = request.env.user.sudo().has_group('diane.group_alumni') or request.env.user.sudo().has_group('diane.group_student') or request.env.user.sudo().has_group('base.group_user')
@@ -379,7 +380,6 @@ class website_hr_recruitment(http.Controller):
 
             Country = env['res.country']
             Jobs = env['hr.job']
-            #Tags = env['x_job.tag']
 
             # List jobs available to current UID
             job_ids = Jobs.search([], order="create_date desc").ids
@@ -390,7 +390,7 @@ class website_hr_recruitment(http.Controller):
             departments = set(j.department_id for j in jobs if j.department_id)
             offices = set(j.address_id for j in jobs if j.address_id)
             countries = set(o.country_id for o in offices if o.country_id)
-            #tags = set(j.x_tag_ids for j in jobs if j.x_tag_ids)
+            sections = env['diane.section'].search([])
             tags = {}
             for j in jobs:
                 for t in j.x_tag_ids:
@@ -416,6 +416,8 @@ class website_hr_recruitment(http.Controller):
                 jobs = (j for j in jobs if j.department_id and j.department_id.id == department.id)
             if office_id:
                 jobs = (j for j in jobs if j.address_id and j.address_id.id == office_id)
+            if section:
+                jobs = (j for j in jobs if j.section_id and j.section_id == section)
             if tag:
                 jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
 
@@ -425,12 +427,36 @@ class website_hr_recruitment(http.Controller):
                 'countries': countries,
                 'departments': departments,
                 'offices': offices,
+                'section': section,
+                'sections': sections,
                 'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
+                'tag': tag,
                 'country_id': country,
                 'department_id': department,
                 'office_id': office_id,
-                'tag': tag,
+                'partner': request.env.user.partner_id,
             })
+
+
+class website_job_notification(http.Controller):
+    @http.route(['/diane/job_notification'], type='http', auth='user', website=True)
+    def job_notification(self, redirect=None, **post):
+        # write job notification values on the partner
+        partner = request.env.user.partner_id
+        if post:
+            if post.get('send_job_ok', ''):
+                if post['send_job_ok'] == 'on':
+                    partner.sudo().write({'send_job_notification': True})
+            else:
+                partner.sudo().write({'send_job_notification': False})
+            if post['send_job_section']:
+                partner.sudo().write({'send_job_section': post['send_job_section']})
+            else:
+                partner.sudo().write({'send_job_section': False})
+
+        return request.redirect('/jobs')
+
+
 
 
 
