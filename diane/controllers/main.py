@@ -368,7 +368,7 @@ class website_hr_recruitment(http.Controller):
         '/jobs/country/<model("res.country"):country>/office/<int:office_id>',
         '/jobs/department/<model("hr.department"):department>/office/<int:office_id>',
         '/jobs/country/<model("res.country"):country>/department/<model("hr.department"):department>/office/<int:office_id>',
-    ], type='http', auth="public", website=True)
+    ], type='http', auth="user", website=True)
     def jobs(self, country=None, department=None, office_id=None, tag=None, section=None, **kwargs):
         env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
 
@@ -417,7 +417,7 @@ class website_hr_recruitment(http.Controller):
             if office_id:
                 jobs = (j for j in jobs if j.address_id and j.address_id.id == office_id)
             if section:
-                jobs = (j for j in jobs if j.section_id and j.section_id == section.id)
+                jobs = (j for j in jobs if j.section_id and j.section_id == section)
             if tag:
                 jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
 
@@ -427,12 +427,13 @@ class website_hr_recruitment(http.Controller):
                 'countries': countries,
                 'departments': departments,
                 'offices': offices,
+                'section': section,
                 'sections': sections,
                 'tag_ids': sorted(tags.items(), key=lambda x: x[1], reverse=True),
+                'tag': tag,
                 'country_id': country,
                 'department_id': department,
                 'office_id': office_id,
-                'tag': tag,
                 'partner': request.env.user.partner_id,
             })
 

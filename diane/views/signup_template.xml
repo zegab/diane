@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="auth_signup.fields_student" inherit_id="auth_signup.fields" name="Auth Signup/ResetPassword form fields for Students">
+    <template id="diane.fields_student" inherit_id="auth_signup.fields" name="Auth Signup/ResetPassword form fields for Students">
         <xpath expr="//div/input[@name='name']/.." position="after">
             <div class="form-group field-login">
                 <label class="control-label" for="country_id">Section</label>
@@ -37,4 +37,95 @@
             <br/>
         </xpath>
     </template>
+
+    <!-- inherit doesn't work in this login page for some ominous reason, adding manually in the mainpage, not a too good element to make through code anyways
+    <template id="diane.signup_student" inherit_id="auth_signup.signup" name="Signup Information">
+        <xpath expr="form" position="inside">
+          <div class="well s_well clearfix">
+            <p>
+              <b>Ce service est réservé exclusivement aux étudiants et alumni de l'ISFATES. </b>
+            </p>
+          </div>
+            <section class="s_feature_grid">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                  <div class="col-md-12 mt16 mb16">
+                    <h3 class="mb0">ALUMNI</h3>
+                    <h5 class="text-muted mb16">Cet accès vous donne la possibilité de:</h5>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="fa fa-2x fa-comment pull-left mb16"/>
+                    <h4 class="mb0 mt0">Contacter d'autres alumni</h4>
+                    <p>Soit en les recherchants directement, soit par la carte interactive</p>
+                    <br/>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="pull-left mb16 fa fa-file-o fa-2x" data-original-title="" title=""/>
+                    <h4 class="mb0 mt0">Consulter les offres d'emploi</h4>
+                    <p>...qui nous sont communiquées directement par les entreprises et les recruteurs</p>
+                    <br/>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="fa fa-2x fa-user pull-left mb16" data-original-title="" title=""/>
+                    <h4 class="mt0 mb0">Mettre à jour vos données personelles</h4>
+                    <p>Pour définir en quelle mesure vous souhaitez être contacté par l'Association ou l'ISFATES.&amp;nbsp;</p>
+                    <p>
+                      <br/>
+                    </p>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="pull-left mb16 fa fa-map-o fa-2x" data-original-title="" title=""/>
+                    <h4 class="mb0 mt0">Localiser les alumni dans le monde</h4>
+                    <p>Sur une carte interactive</p>
+                    <p>
+                      <br/>
+                    </p>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="pull-left mb16 fa fa-question fa-2x"/>
+                    <h4 class="mb0 mt0">D'autres services en cours de développement</h4>
+                    <p>n'hésitez pas à nous contacter si vous voulez nous aider dans nos différents projets!</p>
+                    <p>
+                      <br/>
+                    </p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-muted">
+                      <a class="btn btn-primary btn-lg" href="/web/first_login">Comment vous connecter en tant qu'Alumni</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="col-md-12 mt16 mb16">
+                    <h3 class="mb0">ETUDIANTS</h3>
+                    <h5 class="text-muted mb16" style="font-family: Ubuntu, Tahoma, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">Cet accès vous donne la possibilité de:</h5>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="pull-left mb16 fa fa-file-o fa-2x" data-original-title="" title=""/>
+                    <h4 class="mb0 mt0" style="font-family: Ubuntu, Tahoma, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(102, 102, 102);">Consulter les offres d'emploi et de stage</h4>
+                    <p>Et <b>vous faire notifier par mail</b> lors de la publication de nouvelles offres.</p>
+                  </div>
+                  <div class="col-md-12">
+                    <p>
+                      <br/>
+                    </p>
+                  </div>
+                  <div class="col-md-12">
+                    <span style="min-width: 45px" class="pull-left mb16 fa fa-question fa-2x"/>
+                    <h4 class="mb0 mt0">D'autres services en cours de développement</h4>
+                    <p>n'hésitez pas à nous contacter si vous voulez nous aider dans nos différents projets!</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-muted">
+                      <a class="btn btn-primary btn-lg" href="/web/signup">Créer un compte Etudiant</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </xpath>
+    </template>
+    -->
 </odoo>
