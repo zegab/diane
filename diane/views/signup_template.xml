@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="diane.login" inherit_id="auth_signup.login" name="Sign up - Reset Password Students">
+
+        <xpath expr="//a[@t-if='signup_enabled']" position="replace"/>
+        <xpath expr="//a[@t-if='reset_password_enabled']" position="replace"/>
+        <xpath expr="//button[@type='submit']" position="after">
+            <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}" class="btn btn-primary pull-right">S'inscrire comme étudiant actuel</a>
+            <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}" class="btn btn-link pull-right">Reset Password</a>
+        </xpath>
+    </template>
     <template id="diane.fields_student" inherit_id="auth_signup.fields" name="Auth Signup/ResetPassword form fields for Students">
         <xpath expr="//div/input[@name='name']/.." position="after">
-            <div class="form-group field-login">
-                <label class="control-label" for="country_id">Section</label>
-                <select name="section" class="form-control">
-                    <option value="">Section...</option>
-                    <t t-foreach="sections or []" t-as="section">
-                        <option t-att-value="section.id">
-                            <t t-esc="section.name" />
+            <t t-if="not only_passwords">
+                <div class="form-group field-login">
+                    <label class="control-label" for="country_id">Section</label>
+                    <select name="section" class="form-control">
+                        <option value="">Section...</option>
+                        <t t-foreach="sections or []" t-as="section">
+                            <option t-att-value="section.id">
+                                <t t-esc="section.name" />
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div class="form-group field-login">
+                    <label class="control-label" for="date_entry">Année d'entrée à l'ISFATES</label>
+                    <select name="date_entry" class="form-control">
+                    <option value="">Année...</option>
+                    <t t-foreach="p_years or []" t-as="p_year">
+                        <option t-att-value="datetime.datetime(p_year,1,1)">
+                            <t t-esc="p_year"/>
                         </option>
                     </t>
-                </select>
-            </div>
-            <div class="form-group field-login">
-                <label class="control-label" for="date_entry">Année d'entrée à l'ISFATES</label>
-                <select name="date_entry" class="form-control">
-                <option value="">Année...</option>
-                <t t-foreach="p_years or []" t-as="p_year">
-                    <option t-att-value="datetime.datetime(p_year,1,1)">
-                        <t t-esc="p_year"/>
-                    </option>
-                </t>
-                </select>
-            </div>
-            <div class="form-group field-login">
-                <label class="control-label" for="student">
-                    <input type="checkbox" name="student" value="1" />
-                    <span>Je confirme que je suis un étudiant actuel de l'ISFATES</span>
-                </label>
-            </div>
+                    </select>
+                </div>
+                <div class="form-group field-login">
+                    <label class="control-label" for="student">
+                        <input type="checkbox" name="student" value="1" />
+                        <span>Je confirme que je suis un étudiant actuel de l'ISFATES</span>
+                    </label>
+                </div>
+            </t>
         </xpath>
         <xpath expr="//div/input[@name='confirm_password']/.." position="after">
             <script src="https://www.google.com/recaptcha/api.js"></script>
