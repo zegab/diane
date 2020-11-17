@@ -484,7 +484,7 @@ class AuthSignupHome(Home):
         # fills a list with possible promotion dates
         p_years = []
         i = 0
-        while i < 5:
+        while i < 8:
             p_years.append(int(datetime.date.today().strftime('%Y')) - i)
             i += 1
 
