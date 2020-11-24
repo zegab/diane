@@ -85,7 +85,32 @@
 			<field name="arch" type="xml">
 				<field name="name" position="before">
 					<field name="sequence" widget="handle"/>
+					<field name="alumni_id"/>
 				</field>
+			</field>
+		</record>
+
+		<record id="view_blog_post_form_diane" model="ir.ui.view">
+			<field name="name">blog.post.form.diane</field>
+			<field name="model">blog.post</field>
+			<field name="inherit_id" ref="website_blog.view_blog_post_form"/>
+			<field eval="50" name="priority"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='author_id']/.." position="after">
+					<group string="Perspectives">
+						<field name="alumni_id"/>
+						<field name="video_url"/>
+						<field name="forename"/>
+						<field name="lastname"/>
+						<field name="x_title"/>
+						<field name="diploma"/>
+						<field name="section"/>
+						<field name="d_year"/>
+						<field name="d_other"/>
+						<field name="function"/>
+						<field name="c_name"/>
+					</group>
+				</xpath>
 			</field>
 		</record>
 
