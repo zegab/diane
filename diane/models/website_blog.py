@@ -1,4 +1,5 @@
 from odoo import api, fields, models, _
+from odoo.tools.translate import html_translate
 
 class Blog(models.Model):
 	_name = 'blog.blog'
@@ -25,3 +26,4 @@ class BlogPost(models.Model):
 	d_other = fields.Char(related='alumni_id.d_other', string='Other Diplomas', readonly=True)
 	function = fields.Char(related='alumni_id.function', string='Company Name', readonly=True)
 	c_name = fields.Char(related='alumni_id.c_name', string='Company Name', readonly=True)
+	interview = fields.Html('Interview', translate=html_translate, sanitize=False)

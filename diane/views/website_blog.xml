@@ -110,6 +110,10 @@
 						<field name="function"/>
 						<field name="c_name"/>
 					</group>
+					<group string="Content and Interview">
+						<field name="content" widget="html" string="Content"/>
+						<field name="interview" widget="html" string="Interview"/>
+					</group>
 				</xpath>
 			</field>
 		</record>
