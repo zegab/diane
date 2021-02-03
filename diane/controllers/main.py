@@ -468,7 +468,7 @@ class AuthSignupHome(Home):
         values = { key: qcontext.get(key) for key in ('login', 'name', 'password', 'section', 'date_entry', 'student') }
         ###END CUSTO
         assert values.values(), "The form was not properly filled in."
-        assert values.get('student') == '1'
+        #assert values.get('student') == '1'
         assert values.get('password') == qcontext.get('confirm_password'), "Passwords do not match; please retype them."
         supported_langs = [lang['code'] for lang in request.env['res.lang'].sudo().search_read([], ['code'])]
         if request.lang in supported_langs:
