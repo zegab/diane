@@ -25,8 +25,7 @@
         'data/portal_data.xml',
         'data/job_notification.xml',
         'views/res_partner.xml',
-#        'views/website_blog.xml',
-#        'views/website_theme.xml',
+##        'views/website_blog.xml',
 #        'views/website_menu.xml',
 #        'views/account_update.xml',
 #        'views/alumni_search.xml',
@@ -39,7 +38,12 @@
          'security/ir.model.access.csv',
     ],
     'demo': [],
-
+    'assets': {
+        'web.assets_frontend': [
+            'diane/static/src/js/sorttable.js',
+            'diane/static/src/js/messaging.js',
+        ],
+    },
     'application': True,
     'license': 'LGPL-3',
 }
