@@ -13,12 +13,12 @@ class NACE(models.Model):
     name = fields.Char('NACE Description')
     code = fields.Char('NACE Code')
     level = fields.Integer('Level')
-    parent_id = fields.Many2one('diane.nace',string='Parent NACE',ondelete='restrict',index=True)
-    child_ids = fields.One2many('diane.nace', 'parent_id',string='Child NACE')
+    parent_id = fields.Many2one('diane.nace', string='Parent NACE', ondelete='restrict', index=True)
+    child_ids = fields.One2many('diane.nace', 'parent_id', string='Child NACE')
     sequence = fields.Integer('Sequence')
-    _parent_store = True
-    parent_left = fields.Integer(index=True)
-    parent_right = fields.Integer(index=True)
+#    _parent_store = True
+#    parent_left = fields.Integer(index=True)
+#    parent_right = fields.Integer(index=True)
 
     @api.constrains('parent_id')
     def _check_hierarchy(self):

@@ -3,11 +3,11 @@
     <data noupdate="1">
         <record id="diane.group_alumni" model="res.groups">
             <field name="name">Alumni Group</field>
-            <field name="is_portal" eval="True"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_public'))]"/>
         </record>
         <record id="diane.group_student" model="res.groups">
             <field name="name">Student Group</field>
-            <field name="is_portal" eval="True"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_public'))]"/>
         </record>
     </data>
 </odoo>

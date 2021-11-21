@@ -8,7 +8,6 @@
 			<field eval="100" name="priority"/>
 			<field name="arch" type="xml">
 				<data>
-					<field name="opt_out" position="replace"/>
 					<field name="function" position="replace"/>
 					<field name="lang" position="replace"/>
 					<field name="ref" position="replace"/>
@@ -138,9 +137,6 @@
 									<field name="rgpd_publication_annuaire"/>
 									<field name="rgpd_alumni_contact"/>
 								</group>
-								<group string="Mass Mailing">
-									<field name="opt_out"/>
-								</group>
 								<group string="OLD (!) Privacy Settings (Unpublished from Website)">
 									<!--<field name="annuaire_ok"/>
 									<field name="sponsoring_ok"/>-->
@@ -152,7 +148,6 @@
 									<field name="pro_anciens_ok"/>
 									<field name="pro_stage_ok"/>
 									<field name="hr_stage_ok"/>
-									<field name="opt_out"/>
 								</group>
 							</group>
 						</page>
