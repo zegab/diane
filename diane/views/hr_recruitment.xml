@@ -11,13 +11,14 @@
                     <button name="set_open" position="after">
                         <button name="send_job_notification" string="Send Job notification to followers" states="recruit" type="object" groups="base.group_user"/>
                     </button>
-                    <group name="employee_data" position="replace">
+                    <group name="recruitment" position="replace">
                         <group>
                             <field name="address_id" context="{'show_address': 1}" domain="[('is_company', '=', True )]" options="{'always_reload': True}"/>
                             <field name="department_id" string="Type" class="oe_inline"/>
-                            <field name="x_pdf_url" readonly="False" widget="url"/>
+                            <!--<field name="x_pdf_url" readonly="False" widget="url"/>-->
                             <field name="section_id" string="Section" class="oe_inline" required="1"/>
-                            <field name="x_tag_ids" widget="many2many_tags" class="oe_inline"/>
+                            <!--<field name="x_tag_ids" widget="many2many_tags" class="oe_inline"/>-->
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <div name="button_box" position="replace">

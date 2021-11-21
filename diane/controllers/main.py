@@ -391,13 +391,13 @@ class website_hr_recruitment(http.Controller):
             offices = set(j.address_id for j in jobs if j.address_id)
             countries = set(o.country_id for o in offices if o.country_id)
             sections = env['diane.section'].search([])
-            tags = {}
-            for j in jobs:
-                for t in j.x_tag_ids:
-                    if t in tags:
-                        tags[t] += 1
-                    else:
-                        tags[t] = 1
+#            tags = {}
+#            for j in jobs:
+#                for t in j.x_tag_ids:
+#                    if t in tags:
+#                        tags[t] += 1
+#                    else:
+#                        tags[t] = 1
 
 
             # Default search by user country
@@ -418,8 +418,8 @@ class website_hr_recruitment(http.Controller):
                 jobs = (j for j in jobs if j.address_id and j.address_id.id == office_id)
             if section:
                 jobs = (j for j in jobs if j.section_id and j.section_id == section)
-            if tag:
-                jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
+#            if tag:
+#                jobs = (j for j in jobs if j.x_tag_ids and tag in j.x_tag_ids)
 
             # Render page
             return request.render("website_hr_recruitment.index", {

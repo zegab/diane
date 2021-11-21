@@ -23,7 +23,7 @@
 
     'data': [
         'data/portal_data.xml',
-#        'data/job_notification.xml',
+        'data/job_notification.xml',
         'views/res_partner.xml',
 #        'views/website_blog.xml',
 #        'views/website_theme.xml',
@@ -34,7 +34,7 @@
 #        'views/alumni_message.xml',
 #        'views/alumni_map.xml',
 #        'views/website_jobs.xml',
-#        'views/hr_recruitment.xml',
+        'views/hr_recruitment.xml',
 #        'views/signup_template.xml',
          'security/ir.model.access.csv',
     ],

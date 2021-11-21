@@ -4,7 +4,7 @@
         <record id="email_template_alumni_job_notification" model="mail.template">
             <field name="name">New Job Notification</field>
             <field name="email_from">info@isfates-dfhi-alumni.org</field>
-            <field name="subject">ISFATES Alumni: nouvelle offre publiée -${(object.department_id.name or '')|safe}-(${(object.address_id.name or '')|safe})</field>
+            <field name="subject">ISFATES Alumni: nouvelle offre publiée -{{ object.department_id.name }}-{{ object.address_id.name }}</field>
             <field name="reply_to">info@isfates-dfhi-alumni.org</field>
             <field name="auto_delete">False</field>
             <field name="model_id" ref="hr.model_hr_job"/>
@@ -12,8 +12,8 @@
                 <p><span>Cher Étudiant, Cher Alumni,<br/><br/>
 
                 Une nouvelle offre d'emploi a été publiée qui correspond à votre critère de recherche.<br/>
-                ${(object.name or '')|safe}<br/>
-                ${(object.address_id.name or '')|safe}<br/>
+                <t t-out="object.name"/><br/>
+                <t t-out="object.address_id.name"/><br/>
                 <br/>
                 Vous pouvez la consulter en accédant à <a href="www.isfates-dfhi-alumni.org/jobs">https://www.isfates-dfhi-alumni.org/jobs</a>
                 <br/><br/>

@@ -31,7 +31,7 @@ class hr_job(models.Model):
             'author_id': self.env.uid,
             'body': body,
             'message_type': 'comment',
-            'subtype': 'mail.mt_comment',
+            'subtype_xmlid': 'mail.mt_comment',
         }
         self.message_post(**values)
 
