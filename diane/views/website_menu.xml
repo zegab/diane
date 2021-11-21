@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
 	<data>
-		<template id="diane_website_menu" inherit_id="website_portal.my_account_link">
+		<template id="diane_website_menu" inherit_id="portal.my_account_link">
 				<xpath expr="//a[@href='/my/home']/." position="replace">
 					<li groups="diane.group_alumni">
 						<a href="/diane/alumni_search" role="menuitem">Recherche d'Anciens</a>
