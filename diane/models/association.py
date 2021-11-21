@@ -25,7 +25,6 @@ class NACE(models.Model):
         if not self._check_recursion():
             raise models.ValidationError('Error! You cannot create recursive categories.')
 
-    @api.multi
     def name_get(self):
         return [(nace.id, '%s%s' % (nace.code and '[%s] ' % nace.code or '', nace.name))
                 for nace in self]

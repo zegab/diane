@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-import main
-import random
+from . import main
+from . import random

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import res_partner
-import association
-import website_blog
-import hr_job
+from . import res_partner
+from . import association
+from . import website_blog
+from . import hr_job
