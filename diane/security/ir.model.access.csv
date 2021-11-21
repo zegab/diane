@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+diane.access_diane_section_public,access_diane_section_public,model_diane_section,base.group_public,1,0,0,0
+diane.access_diane_section_user,access_diane_section_user,model_diane_section,base.group_user,1,1,1,1
+diane.access_diane_section_portal,access_diane_section_portal,model_diane_section,base.group_portal,1,0,0,0
+diane.access_diane_diploma,access_diane_diploma,diane.model_diane_diploma,base.group_user,1,1,1,1
+diane.access_diane_diploma_portal,access_diane_diploma_portal,diane.model_diane_diploma,base.group_portal,1,0,0,0
+diane.access_diane_nace,access_diane_nace,diane.model_diane_nace,base.group_user,1,1,1,1
+diane.access_diane_nace_portal,access_diane_nace_portal,diane.model_diane_nace,base.group_portal,1,0,0,0
+diane.access_diane_language,access_diane_language,diane.model_diane_language,base.group_user,1,1,1,1
+diane.access_diane_language_portal,access_diane_language_portal,diane.model_diane_language,base.group_portal,1,0,0,0

@@ -2,14 +2,17 @@ from odoo import api, fields, models, _
 
 class Diploma(models.Model):
     _name = 'diane.diploma'
+    _description = 'Dimploma Type'
     name = fields.Char('Diploma', translate=True)
 
 class Section(models.Model):
     _name = 'diane.section'
+    _description = 'Section'
     name = fields.Char('Section', translate=True)
 
 class NACE(models.Model):
     _name = 'diane.nace'
+    _description = 'NACE Code'
     name = fields.Char('NACE Description')
     code = fields.Char('NACE Code')
     level = fields.Integer('Level')
@@ -33,4 +36,5 @@ class NACE(models.Model):
 
 class Language(models.Model):
     _name = 'diane.language'
+    _description = 'Spoken Languages'
     name = fields.Char('Language', translate=True)
