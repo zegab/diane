@@ -221,11 +221,11 @@ class website_diane_account(http.Controller):
             diplomas = request.env['diane.diploma'].sudo().search([])
 
             #fills a list with possible promotion dates
-            p_years = []
-            i = 0
-            while i < 5:
-                p_years.append(partner.d_year + 1 - i)
-                i += 1
+            #p_years = []
+            #i = 0
+            #while i < 5:
+            #    p_years.append(partner.d_year + 1 - i)
+            #    i += 1
 
             values.update({
                 'partner': partner,
@@ -236,32 +236,52 @@ class website_diane_account(http.Controller):
                 'sections': sections,
                 'diplomas': diplomas,
                 'redirect': redirect,
-                'p_years': p_years,
+                #'p_years': p_years,
             })
 
             if post:
                 error, error_message = self.details_form_validate(post)
                 values.update({'error': error, 'error_message': error_message})
-                #activate if birthday is needed
-                #if post['birthday'] == "":
-                #        post['birthday']=None
 
                 if post['c_date_joined'] == "":
-                        post['c_date_joined']=None
+                    post['c_date_joined'] = None
                 if 'd_year'in post and not post['d_year'].isdigit():
-                    post['d_year']=False
+                    post['d_year'] = False
                 if 'p_year'in post and not post['p_year'].isdigit():
-                    post['p_year']=False
+                    post['p_year'] = False
+                if post['country_id'] == "":
+                    del post['country_id']
+                else:
+                    post['country_id'] = int(post['country_id'])
+                if post['nationality1'] == "":
+                    del post['nationality1']
+                else:
+                    post['nationality1'] = int(post['nationality1'])
+                if post['nationality2'] == "":
+                    del post['nationality2']
+                else:
+                    post['nationality2'] = int(post['nationality2'])
+                if post['c_country_id'] == "":
+                    del post['c_country_id']
+                else:
+                    post['c_country_id'] = int(post['c_country_id'])
+                if post['h_country_id'] == "":
+                    del post['h_country_id']
+                else:
+                    post['h_country_id'] = int(post['h_country_id'])
+
 
                 values.update(post)
                 if not error:
-                    post.update({'zip': post.pop('zipcode', ''),'self_updated':True})
-                    #raise Warning(post)
+                    post.update({
+                        'zip': post.pop('zipcode', ''),
+                        'self_updated': True,
+                    })
                     partner.sudo().write(post)
                     if redirect:
                         return request.redirect(redirect)
                     values.update({'message':"Merci d'avoir actualisé vos données!"})
-                    return request.render("diane.alumni_search", values)
+                    return request.render("diane.details", values)
 
 
             return request.render("diane.details", values)
@@ -275,17 +295,7 @@ class website_diane_account(http.Controller):
             error["email"] = 'error'
             error_message.append(_('Invalid Email! Please enter a valid email address.'))
 
-        # vat validation
-        if data.get("vat") and hasattr(request.env["res.partner"], "check_vat"):
-            if request.company_id.vat_check_vies:
-                # force full VIES online check
-                check_func = request.env["res.partner"].vies_vat_check
-            else:
-                # quick and partial off-line checksum validation
-                check_func = request.env["res.partner"].simple_vat_check
-            vat_country, vat_number = request.env["res.partner"]._split_vat(data.get("vat"))
-            if not check_func(vat_country, vat_number):     # simple_vat_check
-                error["vat"] = 'error'
+
         # error message for empty required fields
         if [err for err in error.values() if err == 'missing']:
             error_message.append(_('Some required fields are empty.'))
