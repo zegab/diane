@@ -28,7 +28,7 @@
 ##        'views/website_blog.xml',
         'views/website_menu.xml',
         'views/account_update.xml',
-#        'views/alumni_search.xml',
+        'views/alumni_search.xml',
 #        'data/alumni_contact.xml',
 #        'views/alumni_message.xml',
 #        'views/alumni_map.xml',

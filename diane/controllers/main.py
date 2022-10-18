@@ -13,9 +13,9 @@ from odoo.addons.auth_signup.models.res_users import SignupError
 class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_map'], type='http', auth='user', website=True)
     def show_map(self, redirect=None, **post):
-        is_user = request.env.user.sudo().has_group('diane.group_alumni')
+        is_user = request.env.user.sudo().has_group('base.group_portal')
         if not is_user:
-            return request.render("website.403")
+            return request.render("http_routing.403")
         else:
             partner = request.env['res.users'].browse(request.uid).partner_id
             sections = request.env['diane.section'].sudo().search([])
@@ -114,9 +114,9 @@ class website_diane_account(http.Controller):
     @http.route(['/diane/alumni_search'], type='http', auth='user', website=True)
     @http.route(['/diane/alumni_search_result'], type='http', auth='user', website=True)
     def search(self, redirect=None, **post):
-        is_user = request.env.user.sudo().has_group('diane.group_alumni')
+        is_user = request.env.user.sudo().has_group('base.group_portal')
         if not is_user:
-            return request.render("website.403")
+            return request.render("http_routing.403")
         else:
             partner = request.env['res.users'].browse(request.uid).partner_id
             sections = request.env['diane.section'].sudo().search([])
@@ -203,9 +203,9 @@ class website_diane_account(http.Controller):
 
     @http.route(['/diane/account_update'], type='http', auth='user', website=True)
     def details(self, redirect=None, **post):
-        is_user = request.env.user.sudo().has_group('diane.group_alumni')
+        is_user = request.env.user.sudo().has_group('base.group_portal')
         if not is_user:
-            return request.render("website.403")
+            return request.render("http_routing.403")
         else:
             partner = request.env['res.users'].browse(request.uid).partner_id
             values = {
@@ -295,9 +295,9 @@ class website_diane_account(http.Controller):
 
     @http.route(['/diane/send_message'], type='http', auth='user', website=True)
     def send_message(self, redirect=None, **post):
-        is_user = request.env.user.sudo().has_group('diane.group_alumni')
+        is_user = request.env.user.sudo().has_group('base.group_portal')
         if not is_user:
-            return request.render("website.403")
+            return request.render("http_routing.403")
         else:
             partner = request.env['res.users'].browse(request.uid).partner_id
             sections = request.env['diane.section'].sudo().search([])
@@ -372,10 +372,10 @@ class website_hr_recruitment(http.Controller):
     def jobs(self, country=None, department=None, office_id=None, tag=None, section=None, **kwargs):
         env = request.env(context=dict(request.env.context, show_address=True, no_tag_br=True))
 
-        is_user = request.env.user.sudo().has_group('diane.group_alumni') or request.env.user.sudo().has_group('diane.group_student') or request.env.user.sudo().has_group('base.group_user')
+        is_user = request.env.user.sudo().has_group('base.group_portal') or request.env.user.sudo().has_group('diane.group_student') or request.env.user.sudo().has_group('base.group_user')
         is_user = True # to remove for Golive
         if not is_user:
-            return request.render("website.403")
+            return request.render("http_routing.403")
         else:
 
             Country = env['res.country']

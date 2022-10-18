@@ -11,7 +11,7 @@
 					<field name="function" position="replace"/>
 					<field name="lang" position="replace"/>
 					<field name="ref" position="replace"/>
-					<xpath expr="//label[@for='street']/../.." position="replace">
+					<xpath expr="//group/div[@class='o_address_format']/.." position="replace">
 						<group>
 							<group string="Basic Info">
 								<field name="type" incisible="1"/>
