@@ -31,7 +31,7 @@
         'views/alumni_search.xml',
 #        'data/alumni_contact.xml',
 #        'views/alumni_message.xml',
-#        'views/alumni_map.xml',
+        'views/alumni_map.xml',
 #        'views/website_jobs.xml',
         'views/hr_recruitment.xml',
 #        'views/signup_template.xml',

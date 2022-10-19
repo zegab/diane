@@ -6,16 +6,6 @@
                 <t t-set="additional_title">Search for Alumni</t>
                 <div id="wrap">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb mt8">
-                                    <li>
-                                        <a href="/">Home</a>
-                                    </li>
-                                    <li>Search</li>
-                                </ol>
-                            </div>
-                        </div>
                         <div t-if="message" class="row">
                             <div class="col-12">
                                 <div class="alert alert-info">
@@ -26,45 +16,47 @@
                         </div>
                         <form action="/diane/alumni_search" method="post">
                             <h1>Recherche</h1>
-                            <div t-attf-class="form-group col-lg-1">
-                                <label class="control-label" for="d_year">Promotion</label>
-                                <input type="text" name="d_year" class="form-control"
-                                       t-att-value="d_year or partner.d_year"/>
+                            <div class="form-row">
+                                <div t-attf-class="form-group col-lg-1">
+                                    <label class="control-label" for="d_year">Promotion</label>
+                                    <input type="text" name="d_year" class="form-control"
+                                           t-att-value="d_year or partner.d_year"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-3">
+                                    <label class="control-label" for="section">Filière</label>
+                                    <select name="section" class="form-control">
+                                        <option value="">Filière...</option>
+                                        <t t-foreach="sections or []" t-as="section">
+                                            <option t-att-value="section.id"
+                                                    t-att-selected="section.id == partner.section.id">
+                                                <t t-esc="section.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="form-group col-lg-2">
+                                    <label class="control-label" for="diploma">Diplome</label>
+                                    <select name="diploma" class="form-control">
+                                        <option value="">Type de Diplome...</option>
+                                        <t t-foreach="diplomas or []" t-as="diploma">
+                                            <option t-att-value="diploma.id"
+                                                    t-att-selected="diploma.id == partner.diploma.id">
+                                                <t t-esc="diploma.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="form-group col-lg-3">
+                                    <label class="control-label" for="d_year">Entreprise</label>
+                                    <input type="text" name="company" class="form-control"/>
+                                </div>
+                                <div class="form-group col-lg-3 text-center" style="margin-top:25px;margin-bottom:150px">
+                                    <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
+                                        Chercher
+                                        <span class="fa fa-long-arrow-right"/>
+                                    </button>
+                                </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             </div>
-                            <div t-attf-class="form-group col-lg-3">
-                                <label class="control-label" for="section">Filière</label>
-                                <select name="section" class="form-control">
-                                    <option value="">Filière...</option>
-                                    <t t-foreach="sections or []" t-as="section">
-                                        <option t-att-value="section.id"
-                                                t-att-selected="section.id == partner.section.id">
-                                            <t t-esc="section.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                            <div t-attf-class="form-group col-lg-2">
-                                <label class="control-label" for="diploma">Diplome</label>
-                                <select name="diploma" class="form-control">
-                                    <option value="">Type de Diplome...</option>
-                                    <t t-foreach="diplomas or []" t-as="diploma">
-                                        <option t-att-value="diploma.id"
-                                                t-att-selected="diploma.id == partner.diploma.id">
-                                            <t t-esc="diploma.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                            <div t-attf-class="form-group col-lg-3">
-                                <label class="control-label" for="d_year">Entreprise</label>
-                                <input type="text" name="company" class="form-control"/>
-                            </div>
-                            <div class="form-group col-lg-3 text-center" style="margin-top:25px;margin-bottom:150px">
-                                <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
-                                    Chercher
-                                    <span class="fa fa-long-arrow-right"/>
-                                </button>
-                            </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         </form>
                     </div>
                 </div>
@@ -76,58 +68,49 @@
                 <t t-set="additional_title">Search for Alumni</t>
                 <div id="wrap">
                     <div class="container">
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb mt8">
-                                    <li>
-                                        <a href="/">Home</a>
-                                    </li>
-                                    <li>Search</li>
-                                </ol>
-                            </div>
-                        </div>
                         <form action="/diane/alumni_search" method="post">
                             <h1>Recherche</h1>
-                            <div t-attf-class="form-group col-lg-1">
-                                <label class="control-label" for="d_year">Promotion</label>
-                                <input type="text" name="d_year" class="form-control"
-                                       t-att-value="result[0]['d_year']"/>
+                            <div class="form-row">
+                                <div t-attf-class="form-group col-lg-1">
+                                    <label class="control-label" for="d_year">Promotion</label>
+                                    <input type="text" name="d_year" class="form-control"
+                                           t-att-value="result[0]['d_year']"/>
+                                </div>
+                                <div t-attf-class="form-group col-lg-3">
+                                    <label class="control-label" for="section">Filière</label>
+                                    <select name="section" class="form-control">
+                                        <option value="">Filière...</option>
+                                        <t t-foreach="sections or []" t-as="section">
+                                            <option t-att-value="section.id"
+                                                    t-att-selected="section.id == result[0]['section_id']">
+                                                <t t-esc="section.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="form-group col-lg-2">
+                                    <label class="control-label" for="diploma">Diplome</label>
+                                    <select name="diploma" class="form-control">
+                                        <option value="">Type de Diplome...</option>
+                                        <t t-foreach="diplomas or []" t-as="diploma">
+                                            <option t-att-value="diploma.id"
+                                                    t-att-selected="diploma.id == result[0]['diploma_id']">
+                                                <t t-esc="diploma.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="form-group col-lg-3">
+                                    <label class="control-label" for="d_year">Entreprise</label>
+                                    <input type="text" name="company" class="form-control"/>
+                                </div>
+                                <div class="form-group col-lg-3 text-center" style="margin-top:25px">
+                                    <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
+                                        Chercher
+                                        <span class="fa fa-long-arrow-right"/>
+                                    </button>
+                                </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             </div>
-                            <div t-attf-class="form-group col-lg-3">
-                                <label class="control-label" for="section">Filière</label>
-                                <select name="section" class="form-control">
-                                    <option value="">Filière...</option>
-                                    <t t-foreach="sections or []" t-as="section">
-                                        <option t-att-value="section.id"
-                                                t-att-selected="section.id == result[0]['section_id']">
-                                            <t t-esc="section.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                            <div t-attf-class="form-group col-lg-2">
-                                <label class="control-label" for="diploma">Diplome</label>
-                                <select name="diploma" class="form-control">
-                                    <option value="">Type de Diplome...</option>
-                                    <t t-foreach="diplomas or []" t-as="diploma">
-                                        <option t-att-value="diploma.id"
-                                                t-att-selected="diploma.id == result[0]['diploma_id']">
-                                            <t t-esc="diploma.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                            <div t-attf-class="form-group col-lg-3">
-                                <label class="control-label" for="d_year">Entreprise</label>
-                                <input type="text" name="company" class="form-control"/>
-                            </div>
-                            <div class="form-group col-lg-3 text-center" style="margin-top:25px">
-                                <button type="submit" class="form-control btn btn-default btn-primary mb32 pull-left">
-                                    Chercher
-                                    <span class="fa fa-long-arrow-right"/>
-                                </button>
-                            </div><input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         </form>
 
                         <div class="col-md-12" style="margin-bottom:150px">
