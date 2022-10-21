@@ -5,7 +5,8 @@ from odoo import http
 from odoo.http import request
 from odoo import tools
 from odoo.tools.translate import _
-from . import random
+import random
+from odoo.tools.safe_eval import safe_eval
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.addons.web.controllers.main import ensure_db, Home
 from odoo.addons.auth_signup.models.res_users import SignupError

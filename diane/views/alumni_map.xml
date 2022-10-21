@@ -131,7 +131,7 @@
                                     });
 
                                     var marker = new google.maps.Marker({
-                                    position: {lat: <t t-esc="alumni['lat']+random.uniform(-0.08,0.08)"/>, lng: <t t-esc="alumni['lng']+random.uniform(-0.08,0.08)"/>},
+                                    position: {lat: <t t-esc="alumni['lat']+safe_eval(random.uniform(-0.08,0.08))"/>, lng: <t t-esc="alumni['lng']+safe_eval(random.uniform(-0.08,0.08))"/>},
                                     map: map,
                                     title: '',
                                     infowindow: myinfowindow,
