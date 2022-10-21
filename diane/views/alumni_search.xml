@@ -10,13 +10,13 @@
                             <div class="col-12">
                                 <div class="alert alert-info">
                                     <span><t t-esc="message"/></span>
-                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                                    <!--<button type="button" class="close" data-dismiss="alert">&amp;times;</button>-->
                                 </div>
                             </div>
                         </div>
-                        <form action="/diane/alumni_search" method="post">
+                        <form action="/diane/alumni_search" method="post" class="form-inline">
                             <h1>Recherche</h1>
-                            <div class="form-row">
+                            <div class="row">
                                 <div t-attf-class="form-group col-lg-1">
                                     <label class="control-label" for="d_year">Promotion</label>
                                     <input type="text" name="d_year" class="form-control"
@@ -68,9 +68,9 @@
                 <t t-set="additional_title">Search for Alumni</t>
                 <div id="wrap">
                     <div class="container">
-                        <form action="/diane/alumni_search" method="post">
+                        <form action="/diane/alumni_search" method="post" class="form-inline">
                             <h1>Recherche</h1>
-                            <div class="form-row">
+                            <div class="row">
                                 <div t-attf-class="form-group col-lg-1">
                                     <label class="control-label" for="d_year">Promotion</label>
                                     <input type="text" name="d_year" class="form-control"
